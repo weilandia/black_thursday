@@ -50,4 +50,20 @@ class MerchantTest < Minitest::Test
     merchant = @sales_engine.merchants.find_by_id(12334115)
     assert_equal item_one_object.name, merchant.items[0].name
   end
+
+  def test_merchant_can_list_multiple_items
+    item_one_name = "TestItemOne"
+    item_two_name = "TestItemTwo"
+    item_three_name = "TestItemThree"
+    item_four_name = "TestItemFour"
+
+    merchant = @sales_engine.merchants.find_by_id(12334144)
+    assert_equal Array, merchant.items.class
+
+    assert_equal item_one_name, merchant.items[0].name
+    assert_equal item_two_name, merchant.items[1].name
+    assert_equal item_three_name, merchant.items[2].name
+    assert_equal item_four_name, merchant.items[3].name
+
+  end
 end
