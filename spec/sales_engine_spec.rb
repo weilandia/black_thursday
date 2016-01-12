@@ -20,4 +20,10 @@ class SalesEngineTest < Minitest::Test
   def test_sales_engine_object_has_item_repository_object
     assert_equal ItemRepository, @sales_engine.items.class
   end
+
+  def test_data_files_hash_method_defaults_correct_files
+    assert_equal @sales_engine.data_files_hash[:merchants], "./data/merchants.csv"
+
+    assert_equal @sales_engine.data_files_hash[:items], "./data/items.csv"
+  end
 end
