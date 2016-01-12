@@ -37,8 +37,7 @@ class ItemRepository
   end
 
   def find_by_merchant_id(merchant_id)
-    search_result = @all_items.select {|search| search.merchant_id == merchant_id.to_s}
-    exact_item_search(search_result)
+    @all_items.select {|search| search.merchant_id == merchant_id.to_s}
   end
 
   def find_by_name(item_name)

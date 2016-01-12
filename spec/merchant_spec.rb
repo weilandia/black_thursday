@@ -38,7 +38,7 @@ class MerchantTest < Minitest::Test
     assert_equal "2016-01-11 10:37:09 UTC", @merchant.updated_at
   end
 
-  def test_merchant_can_list_its_items
+  def test_merchant_can_list_an_item
     item_one_object = Item.new({:id => "263467489",
                 :name => "TestItem",
                 :description => "This is a test item",
@@ -48,6 +48,6 @@ class MerchantTest < Minitest::Test
                 :updated_at => "1990-10-06 04:14:15 UTC"
               })
     merchant = @sales_engine.merchants.find_by_id(12334115)
-    assert_equal item_one_object.name, merchant.items.name
+    assert_equal item_one_object.name, merchant.items[0].name
   end
 end
