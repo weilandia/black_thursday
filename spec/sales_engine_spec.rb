@@ -6,10 +6,7 @@ require_relative '../lib/sales_engine'
 
 class SalesEngineTest < Minitest::Test
   def setup
-    test_data_hash = {:merchants => "./test_data/merchant_test.csv",
-            :items => "./test_data/item_test.csv"
-            }
-    @sales_engine = SalesEngine.from_csv(test_data_hash)
+    @sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
   end
 
   def test_sales_engine_object_has_merchant_repository_object
@@ -61,5 +58,21 @@ class SalesEngineTest < Minitest::Test
     item_unit_price = @sales_engine.items.find_by_id(263404435).unit_price
 
     assert_equal "80000", item_unit_price
+  end
+
+  def test_sales_engines_creates_merchants_that_have_access_to_items
+    merchant = @sales_engine.merchants.find_by_id(12334105)
+    assert_equal Array, merchant.items.class
+    assert_equal 4, merchant.items.length
+    assert_equal "TestItemOne", merchant.items[0].name
+    assert_equal "TestItemTwo", merchant.items[1].name
+    assert_equal "TestItemThree", merchant.items[2].name
+    assert_equal "TestItemFour", merchant.items[3].name
+  end
+
+  def test_sales_engines_creates_items_that_have_access_to_merchants
+    item = @sales_engine.items.find_by_id(1000)
+    assert_equal Merchant, item.merchant.class
+    assert_equal "Shopin1901", item.merchant.name
   end
 end
