@@ -10,7 +10,7 @@ class SalesEngineTest < Minitest::Test
             :items => "./test_data/item_test.csv"
             }
     @sales_engine = SalesEngine.new
-    @sales_engine.load_data(test_data_hash)
+    @sales_engine.from_csv(test_data_hash)
   end
 
   def test_sales_engine_object_has_merchant_repository_object

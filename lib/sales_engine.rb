@@ -12,7 +12,7 @@ class SalesEngine
     data
   end
 
-  def load_data(data = data_files_hash)
+  def from_csv(data = data_files_hash)
     @merchants = MerchantRepository.new(data[:merchants])
     @items = ItemRepository.new(data[:items])
   end
