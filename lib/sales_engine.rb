@@ -5,14 +5,22 @@ require 'item_repository'
 class SalesEngine
   attr_reader :merchants, :items
 
-  def data_files_hash
+  def initialize(csv_data)
+    load_data(csv_data)
+  end
+
+  def self.from_csv(data = data_files_hash)
+    SalesEngine.new(data)
+  end
+
+  def self.data_files_hash
     data = {:merchants => "./data/merchants.csv",
             :items => "./data/items.csv"
             }
     data
   end
 
-  def from_csv(data = data_files_hash)
+  def load_data(data)
     @merchants = MerchantRepository.new(data[:merchants])
     @items = ItemRepository.new(data[:items])
   end
