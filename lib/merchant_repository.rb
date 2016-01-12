@@ -5,8 +5,9 @@ require "csv"
 class MerchantRepository
 
   attr_reader :all_merchants
-  def initialize(merchant_data)
+  def initialize(merchant_data, item_repo)
     @all_merchants = []
+    @items = item_repo
     load_data(merchant_data)
   end
 
@@ -19,8 +20,7 @@ class MerchantRepository
                       :created_at => row[:created_at],
                       :updated_at => row[:updated_at]
                     }
-
-      @all_merchants << Merchant.new(merchant_data)
+      @all_merchants << Merchant.new(merchant_data, @items)
     end
   end
 

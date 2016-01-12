@@ -21,7 +21,7 @@ class SalesEngine
   end
 
   def load_data(data)
-    @merchants = MerchantRepository.new(data[:merchants])
     @items = ItemRepository.new(data[:items])
+    @merchants = MerchantRepository.new(data[:merchants], @items)
   end
 end

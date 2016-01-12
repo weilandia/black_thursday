@@ -3,10 +3,13 @@ SimpleCov.start
 require 'minitest/autorun'
 require 'minitest/pride'
 require_relative '../lib/merchant_repository'
+require_relative '../lib/item_repository'
 
 class MerchantRepositoryTest < Minitest::Test
   def setup
-    @merchant_repo = MerchantRepository.new("test_data/merchant_test.csv")
+    item_repo = ItemRepository.new("test_data/item_test.csv")
+
+    @merchant_repo = MerchantRepository.new("test_data/merchant_test.csv", item_repo)
   end
 
   def test_merchant_repo_can_list_all_merchants

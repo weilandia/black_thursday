@@ -10,12 +10,12 @@ class ItemRepositoryTest < Minitest::Test
   end
 
   def test_item_repo_queries_all_items
-    assert_equal 3, @item_repo.all.length
+    assert_equal 4, @item_repo.all.length
     assert_equal Array, @item_repo.all.class
     assert_equal Item, @item_repo.all[0].class
     assert_equal Item, @item_repo.all[1].class
     assert_equal Item, @item_repo.all[2].class
-    assert_equal NilClass, @item_repo.all[3].class
+    assert_equal NilClass, @item_repo.all[4].class
   end
 
   def test_item_repo_finds_item_by_id
