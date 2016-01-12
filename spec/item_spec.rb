@@ -42,7 +42,7 @@ class ItemTest < Minitest::Test
     assert_equal "2016-01-11 12:22:31 UTC", @item.created_at
   end
 
-  def test_item_can_query_date_of_last_updated
+  def test_item_can_query_date_of_last_update
     assert_equal "2012-03-27 14:53:59 UTC", @item.updated_at
   end
 end

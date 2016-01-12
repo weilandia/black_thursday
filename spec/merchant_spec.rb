@@ -26,7 +26,7 @@ class MerchantTest < Minitest::Test
     assert_equal "2016-01-11 10:37:09 UTC", @merchant.created_at
   end
 
-  def test_merchant_can_query_date_of_last_updated
+  def test_merchant_can_query_date_of_last_update
     assert_equal "2016-01-11 10:37:09 UTC", @merchant.updated_at
   end
 end
