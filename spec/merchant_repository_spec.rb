@@ -18,9 +18,7 @@ class MerchantRepositoryTest < Minitest::Test
 
   def test_merchant_repo_can_find_merchant_by_id
     merchant = @merchant_repo.find_by_id(12334112)
-
     assert_equal Merchant, merchant.class
-
     assert_equal "12334112", merchant.id
   end
 
