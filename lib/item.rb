@@ -1,5 +1,5 @@
 class Item
-  attr_reader  :id, :name, :description, :unit_price, :merchant_id, :created_at, :updated_at
+  attr_reader  :id, :name, :description, :unit_price, :merchant_id, :created_at, :updated_at, :merchant
   def initialize(item_data)
     @id = item_data[:id]
     @name = item_data[:name]
@@ -8,5 +8,9 @@ class Item
     @merchant_id = item_data[:merchant_id]
     @created_at =  item_data[:created_at]
     @updated_at = item_data[:updated_at]
+  end
+
+  def load_merchant(merchant)
+    @merchant = merchant
   end
 end

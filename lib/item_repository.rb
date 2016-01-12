@@ -4,7 +4,7 @@ require "csv"
 
 class ItemRepository
 
-  attr_reader :all_items
+  attr_reader :all_items, :merchant_repo
   def initialize(item_data = "data/items.csv")
     @all_items = []
     load_data(item_data)
@@ -24,6 +24,14 @@ class ItemRepository
                 }
 
       @all_items << Item.new(item_data)
+    end
+  end
+
+  def load_merchant_repo(merchant_repo)
+    @merchant_repo = merchant_repo
+    @all_items.each do |item|
+      merchant_id = item.merchant_id
+      item.load_merchant(merchant_repo.find_by_id(merchant_id))
     end
   end
 

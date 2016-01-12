@@ -7,9 +7,7 @@ require_relative '../lib/item_repository'
 
 class MerchantRepositoryTest < Minitest::Test
   def setup
-    item_repo = ItemRepository.new("test_data/item_test.csv")
-
-    @merchant_repo = MerchantRepository.new("test_data/merchant_test.csv", item_repo)
+    @merchant_repo = test_helper_merchant_repo
   end
 
   def test_merchant_repo_can_list_all_merchants

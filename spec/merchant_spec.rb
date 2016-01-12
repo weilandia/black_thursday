@@ -8,18 +8,8 @@ require_relative '../lib/item_repository'
 
 class MerchantTest < Minitest::Test
   def setup
-    test_data_hash = {:merchants => "./test_data/merchant_test.csv",
-            :items => "./test_data/item_test.csv"
-            }
-    @sales_engine = SalesEngine.from_csv(test_data_hash)
-    merchant_data = {:id => "12334105",
-                :name => "Shopin1901",
-                :created_at => "2016-01-11 10:37:09 UTC",
-                :updated_at => "2016-01-11 10:37:09 UTC"
-              }
-
-    item_repo = ItemRepository.new("test_data/item_test.csv")
-    @merchant = Merchant.new(merchant_data, item_repo)
+    @sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+    @merchant = test_helper_merchant
   end
 
   def test_merchant_can_query_id
@@ -64,6 +54,5 @@ class MerchantTest < Minitest::Test
     assert_equal item_two_name, merchant.items[1].name
     assert_equal item_three_name, merchant.items[2].name
     assert_equal item_four_name, merchant.items[3].name
-
   end
 end
