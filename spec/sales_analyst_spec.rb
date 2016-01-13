@@ -28,10 +28,22 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_sales_analyst_can_calculate_standard_deviation_of_average_items_per_merchant
-    assert_equal 1.2, @sales_analyst.average_items_per_merchant_standard_deviation
+    assert_equal 1.89, @sales_analyst.average_items_per_merchant_standard_deviation
   end
 
   def test_sales_analyst_can_identify_merchants_with_few_items
     assert_equal ["Candisart", "MiniatureBikez", "GoldenRayPress"], @sales_analyst.merchants_with_low_item_count
+  end
+
+  def test_sales_analyst_identifies_average_item_price_per_merchant
+    assert_equal 41125.0, @sales_analyst.average_item_price_for_merchant(12334144)
+  end
+
+  def test_sales_analyst_can_calculate_average_price_per_merchant
+    assert_equal 10969.2, @sales_analyst.average_price_per_merchant
+  end
+
+  def test_sales_analyst_calculate_golden_items_two_standard_devs
+    assert_equal ["Very Magnifique"], @sales_analyst.golden_items
   end
 end
