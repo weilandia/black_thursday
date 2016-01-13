@@ -70,7 +70,7 @@ class SalesAnalyst
       item_prices << item.unit_price.to_f
     end
     average_price = item_prices.inject(:+) / merchant.items.count
-    average_price
+    BigDecimal.new("#{average_price.round(2)}")
   end
 
   def all_prices_array
