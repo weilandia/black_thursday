@@ -1,9 +1,10 @@
 require_relative '../lib/merchant_repository'
 require_relative '../lib/item_repository'
+require_relative '../lib/invoice_repository'
 require_relative '../lib/sales_analyst'
 
 class SalesEngine
-  attr_reader :merchants, :items
+  attr_reader :merchants, :items, :invoices
 
   def self.from_csv(data = data_files_hash)
     SalesEngine.new(data)
@@ -11,7 +12,8 @@ class SalesEngine
 
   def self.data_files_hash
     {:merchants => "./data/merchants.csv",
-    :items => "./data/items.csv"}
+    :items => "./data/items.csv",
+    :invoices => "./data/invoices.csv"}
   end
 
   def initialize(csv_data)
@@ -22,6 +24,7 @@ class SalesEngine
   def load_data(data)
     @items = ItemRepository.new(data[:items])
     @merchants = MerchantRepository.new(data[:merchants])
+    @invoices = InvoiceRepository.new(data[:invoices])
   end
 
   def relationships

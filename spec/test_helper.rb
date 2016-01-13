@@ -35,12 +35,24 @@ def merchant_data
   {:id => "12334105",
     :name => "Shopin1901",
     :created_at => "2016-01-11 10:37:09 UTC",
-    :updated_at => "2016-01-11 10:37:09 UTC"
-  }
+    :updated_at => "2016-01-11 10:37:09 UTC"}
+end
+
+def invoice_data
+  {:id => 11,
+  :customer_id => 2,
+  :merchant_id => 12334771,
+  :status => "pending",
+  :created_at => "2016-01-11 10:37:09 UTC",
+  :updated_at => "2016-01-11 10:37:09 UTC"}
 end
 
 def test_helper_merchant
   Merchant.new(merchant_data)
+end
+
+def test_helper_invoice
+  Invoice.new(invoice_data)
 end
 
 def test_helper_item_repo
@@ -51,12 +63,16 @@ def test_helper_merchant_repo
   MerchantRepository.new("test_data/merchant_test.csv")
 end
 
+def test_helper_invoice_repo
+  InvoiceRepository.new("test_data/invoice_test.csv")
+end
+
 def load_merchant(item)
   item.load_merchant(merchant)
 end
 
 def test_helper_csv_hash
   {:merchants => "./test_data/merchant_test.csv",
-  :items => "./test_data/item_test.csv"
-  }
+  :items => "./test_data/item_test.csv",
+  :invoices => "test_data/invoice_test.csv"}
 end
