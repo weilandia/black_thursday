@@ -21,7 +21,7 @@ class MerchantRepositoryTest < Minitest::Test
   def test_merchant_repo_can_find_merchant_by_id
     merchant = @merchant_repo.find_by_id(12334112)
     assert_equal Merchant, merchant.class
-    assert_equal "12334112", merchant.id
+    assert_equal 12334112, merchant.id
   end
 
   def test_merchant_repo_can_find_merchant_by_name
@@ -37,9 +37,9 @@ class MerchantRepositoryTest < Minitest::Test
 
     merchant_two = @merchant_repo.find_by_id("hello")
 
-    assert_equal "Merchant not found.", merchant_one
+    assert_equal nil, merchant_one
 
-    assert_equal "Merchant not found.", merchant_two
+    assert_equal nil, merchant_two
   end
 
   def test_merchant_repo_can_find_array_of_merchants_matching_search_fragment

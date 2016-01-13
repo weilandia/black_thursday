@@ -23,7 +23,7 @@ class ItemRepositoryTest < Minitest::Test
 
     assert_equal Item, item.class
 
-    assert_equal "263406193", item.id
+    assert_equal 263406193, item.id
   end
 
   def test_item_repo_finds_item_by_name
@@ -39,12 +39,12 @@ class ItemRepositoryTest < Minitest::Test
 
     item_two = @item_repo.find_by_id("hello")
 
-    assert_equal "Item not found.", item_one
+    assert_equal nil, item_one
 
-    assert_equal "Item not found.", item_two
+    assert_equal nil, item_two
   end
 
-  def test_item_repo_finds_array_of_items_matching_search_fragment
+  def test_item_repo_finds_array_of_items_matching_name_search_fragment
     search_array_names = @item_repo.find_all_by_name("Mag").map do |item|
       item.name
     end
@@ -56,5 +56,12 @@ class ItemRepositoryTest < Minitest::Test
       item.name
     end
     assert_equal ["Magnifique", "Very Magnifique"], search_array_names
+  end
+
+  def test_item_repo_finds_array_of_items_matching_description_search_fragment
+    search_array_description = @item_repo.find_all_with_description("This decorative lighted wine bottle").map do |item|
+      item.name
+    end
+    assert_equal ["Shimmering Peacock"], search_array_description
   end
 end

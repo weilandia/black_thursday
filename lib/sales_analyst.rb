@@ -1,6 +1,5 @@
-$LOAD_PATH.unshift(File.expand_path("../lib", __dir__))
 require 'mathn'
-require 'sales_engine'
+require_relative '../lib/sales_engine'
 
 class SalesAnalyst
   attr_reader :engine

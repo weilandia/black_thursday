@@ -1,6 +1,5 @@
-$LOAD_PATH.unshift(File.expand_path("../lib", __dir__))
-require 'merchant_repository'
-require 'item_repository'
+require_relative '../lib/merchant_repository'
+require_relative '../lib/item_repository'
 
 class SalesEngine
   attr_reader :merchants, :items

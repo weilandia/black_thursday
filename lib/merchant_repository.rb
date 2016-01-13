@@ -1,6 +1,5 @@
-$LOAD_PATH.unshift(File.expand_path("../lib", __dir__))
-require 'merchant'
 require "csv"
+require_relative '../lib/merchant'
 
 class MerchantRepository
 
@@ -15,7 +14,7 @@ class MerchantRepository
     merchants = CSV.open data, headers: true, header_converters: :symbol
 
     merchants.each do |row|
-      merchant_data= {:id => row[:id],
+      merchant_data= {:id =>  row[:id].to_i,
                       :name => row[:name],
                       :created_at => row[:created_at],
                       :updated_at => row[:updated_at]
@@ -24,12 +23,16 @@ class MerchantRepository
     end
   end
 
+  def inspect
+    "#<#{self.class} #{@all_merchants.size} rows>"
+  end
+
   def all
     @all_merchants
   end
 
   def find_by_id(merchant_id)
-    search_result = @all_merchants.select {|search| search.id == merchant_id.to_s}
+    search_result = @all_merchants.select {|search| search.id == merchant_id}
     exact_merchant_search(search_result)
   end
 
@@ -40,7 +43,7 @@ class MerchantRepository
 
   def exact_merchant_search(search_result)
     if search_result.empty? == true
-      search_result = "Merchant not found."
+      search_result = nil
     else
       search_result = search_result[0]
     end

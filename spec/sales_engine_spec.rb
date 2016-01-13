@@ -27,7 +27,7 @@ class SalesEngineTest < Minitest::Test
   def test_sales_engine_object_has_access_to_merhant_id
     merchant_id = @sales_engine.merchants.find_by_name("MiniatureBikez").id
 
-    assert_equal "12334113", merchant_id
+    assert_equal 12334113, merchant_id
   end
 
   def test_sales_engine_object_has_access_to_merhant_name
@@ -39,7 +39,7 @@ class SalesEngineTest < Minitest::Test
   def test_sales_engine_object_has_access_to_item_id
     item_id = @sales_engine.items.find_by_name("Very Magnifique").id
 
-    assert_equal "263404435", item_id
+    assert_equal 263404435, item_id
   end
 
   def test_sales_engine_object_has_access_item_name
@@ -51,16 +51,16 @@ class SalesEngineTest < Minitest::Test
   def test_sales_engine_object_has_access_an_items_merchant_id
     item_merchant_id = @sales_engine.items.find_by_id(263404435).merchant_id
 
-    assert_equal "12334144", item_merchant_id
+    assert_equal 12334144, item_merchant_id
   end
 
   def test_sales_engine_object_has_access_an_item_unit_price
     item_unit_price = @sales_engine.items.find_by_id(263404435).unit_price
 
-    assert_equal "80000", item_unit_price
+    assert_equal 80000, item_unit_price
   end
 
-  def test_sales_engines_creates_merchants_that_have_access_to_items
+  def test_sales_engine_creates_merchants_that_have_access_to_items
     merchant = @sales_engine.merchants.find_by_id(12334105)
     assert_equal Array, merchant.items.class
     assert_equal 6, merchant.items.length
@@ -70,7 +70,7 @@ class SalesEngineTest < Minitest::Test
     assert_equal "SalesAnalystItemZero", merchant.items[3].name
   end
 
-  def test_sales_engines_creates_items_that_have_access_to_merchants
+  def test_sales_engine_creates_items_that_have_access_to_merchants
     item = @sales_engine.items.find_by_id(1000)
     assert_equal Merchant, item.merchant.class
     assert_equal "Shopin1901", item.merchant.name
