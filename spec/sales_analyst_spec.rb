@@ -32,7 +32,8 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_sales_analyst_can_identify_merchants_with_few_items
-    assert_equal ["Candisart", "MiniatureBikez", "GoldenRayPress"], @sales_analyst.merchants_with_low_item_count
+    merchants = @sales_analyst.merchants_with_low_item_count
+    assert_equal ["Candisart", "MiniatureBikez", "GoldenRayPress"], merchants.map { |m| m.name }
   end
 
   def test_sales_analyst_identifies_average_item_price_per_merchant

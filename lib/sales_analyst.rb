@@ -24,7 +24,7 @@ class SalesAnalyst
   end
 
   def average_items_per_merchant
-    mean(item_count_per_merchant)
+    mean(item_count_per_merchant).round(2)
   end
 
   def average_items_per_merchant_standard_deviation
@@ -57,7 +57,7 @@ class SalesAnalyst
     low_items_merchants = []
      @engine.merchants.all.each do |merchant|
        if merchant.items.count < sd
-         low_items_merchants << merchant.name
+         low_items_merchants << merchant
        end
      end
      low_items_merchants
