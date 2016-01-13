@@ -73,4 +73,16 @@ class ItemRepository
   def find_all_with_description(search_fragment)
     @all_items.select {|search| search.description.downcase.include? search_fragment.downcase}
   end
+
+  def find_all_by_price(price)
+    @all_items.select {|search| search.unit_price == price}
+  end
+
+  def find_all_by_price_in_range(range)
+    @all_items.select {|search| search.unit_price <= range.last && search.unit_price >= range.first}
+  end
+
+  def find_all_by_merchant_id(merchant_id)
+    @all_items.select {|search| search.merchant_id == merchant_id}
+  end
 end

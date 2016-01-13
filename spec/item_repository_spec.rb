@@ -64,4 +64,26 @@ class ItemRepositoryTest < Minitest::Test
     end
     assert_equal ["Shimmering Peacock"], search_array_description
   end
+
+  def test_item_repo_finds_array_of_items_mathcing_price
+    search_array_price = @item_repo.find_all_by_price(40000).map do |item|
+      item.name
+    end
+    assert_equal ["Magnifique", "TestItem"], search_array_price
+  end
+
+  def test_item_repo_finds_array_of_all_items_in_price_range
+    search_array_price = @item_repo.find_all_by_price_in_range(4000..4600).map do |item|
+      item.name
+    end
+    assert_equal ["Shimmering Peacock"], search_array_price
+  end
+
+  def test_item_repo_finds_array_of_all_items_given_merchant_id
+    search_array = @item_repo.find_all_by_merchant_id(12374855).map do |item|
+      item.name
+    end
+    assert_equal ["SalesAnalystItemSix", "SalesAnalystItemSeven"], search_array
+  end
+
 end
