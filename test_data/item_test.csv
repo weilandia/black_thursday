@@ -6,4 +6,11 @@ id,name,description,unit_price,merchant_id,created_at,updated_at
 1000,TestItemOne,"This is a test item",1,12334105,2016-01-11 11:44:13 UTC,1990-10-06 04:14:15 UTC
 1100,TestItemTwo,"This is a test item",2,12334105,2016-01-11 11:44:13 UTC,1990-10-06 04:14:15 UTC
 1200,TestItemThree,"This is a test item",3,12334105,2016-01-11 11:44:13 UTC,1990-10-06 04:14:15 UTC
-1300,TestItemFour,"This is a test item",4,12334105,2016-01-11 11:44:13 UTC,1990-10-06 04:14:15 UTC
+1500,SalesAnalystItemZero,"This is a Sales Analyst test item",4,12334105,2016-01-11 11:44:13 UTC,1990-10-06 04:14:15 UTC
+1501,SalesAnalystItemOne,"This is a Sales Analyst test item",4,12334105,2016-01-11 11:44:13 UTC,1990-10-06 04:14:15 UTC
+1502,SalesAnalystItemTwo,"This is a Sales Analyst test item",4,12334105,2016-01-11 11:44:13 UTC,1990-10-06 04:14:15 UTC
+1503,SalesAnalystItemThree,"This is a Sales Analyst test item",4,12334112,2016-01-11 11:44:13 UTC,1990-10-06 04:14:15 UTC
+1504,SalesAnalystItemFour,"This is a Sales Analyst test item",4,12334113,2016-01-11 11:44:13 UTC,1990-10-06 04:14:15 UTC
+1505,SalesAnalystItemFive,"This is a Sales Analyst test item",4,12334135,2016-01-11 11:44:13 UTC,1990-10-06 04:14:15 UTC
+1506,SalesAnalystItemSix,"This is a Sales Analyst test item",4,12374855,2016-01-11 11:44:13 UTC,1990-10-06 04:14:15 UTC
+1507,SalesAnalystItemSeven,"This is a Sales Analyst test item",4,12374855,2016-01-11 11:44:13 UTC,1990-10-06 04:14:15 UTC

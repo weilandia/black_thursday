@@ -63,11 +63,11 @@ class SalesEngineTest < Minitest::Test
   def test_sales_engines_creates_merchants_that_have_access_to_items
     merchant = @sales_engine.merchants.find_by_id(12334105)
     assert_equal Array, merchant.items.class
-    assert_equal 4, merchant.items.length
+    assert_equal 6, merchant.items.length
     assert_equal "TestItemOne", merchant.items[0].name
     assert_equal "TestItemTwo", merchant.items[1].name
     assert_equal "TestItemThree", merchant.items[2].name
-    assert_equal "TestItemFour", merchant.items[3].name
+    assert_equal "SalesAnalystItemZero", merchant.items[3].name
   end
 
   def test_sales_engines_creates_items_that_have_access_to_merchants

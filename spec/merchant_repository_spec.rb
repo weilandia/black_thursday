@@ -11,11 +11,10 @@ class MerchantRepositoryTest < Minitest::Test
   end
 
   def test_merchant_repo_can_list_all_merchants
-    assert_equal 10, @merchant_repo.all.length
+    assert_equal 6, @merchant_repo.all.length
     assert_equal Array, @merchant_repo.all.class
     assert_equal Merchant, @merchant_repo.all[0].class
     assert_equal Merchant, @merchant_repo.all[1].class
-    assert_equal Merchant, @merchant_repo.all[9].class
     assert_equal NilClass, @merchant_repo.all[10].class
   end
 
