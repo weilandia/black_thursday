@@ -30,6 +30,8 @@ class SalesEngine
   def relationships
     merchant_item_relationship
     item_merchant_relationship
+    invoice_merchant_relationship
+    merchant_invoice_relationship
   end
 
   def merchant_item_relationship
@@ -41,6 +43,18 @@ class SalesEngine
   def item_merchant_relationship
     items.all.each do |item|
       item.merchant = merchants.find_by_id(item.merchant_id)
+    end
+  end
+
+  def merchant_invoice_relationship
+    merchants.all.each do |merchant|
+      merchant.invoices = invoices.find_all_by_merchant_id(merchant.id)
+    end
+  end
+
+  def invoice_merchant_relationship
+    invoices.all.each do |invoice|
+      invoice.merchant = merchants.find_by_id(invoice.merchant_id)
     end
   end
 end

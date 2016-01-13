@@ -17,10 +17,16 @@ class SalesEngineTest < Minitest::Test
     assert_equal ItemRepository, @sales_engine.items.class
   end
 
+  def test_sales_engine_object_has_invoice_repository_object
+    assert_equal InvoiceRepository, @sales_engine.invoices.class
+  end
+
   def test_sales_engine_data_files_hash_method_defaults_correct_files
     assert_equal SalesEngine.data_files_hash[:merchants], "./data/merchants.csv"
 
     assert_equal SalesEngine.data_files_hash[:items], "./data/items.csv"
+
+    assert_equal SalesEngine.data_files_hash[:invoices], "./data/invoices.csv"
   end
 
   # Integrated SalesEngine tests
@@ -60,6 +66,30 @@ class SalesEngineTest < Minitest::Test
     assert_equal 800.0, item_unit_price.to_f
   end
 
+  def test_sales_engine_object_has_access_an_invoice_id
+    invoice_id = @sales_engine.invoices.find_by_id(4).id
+
+    assert_equal 4, invoice_id
+  end
+
+  def test_sales_engine_object_has_access_an_invoice_customer_id
+    customer_id = @sales_engine.invoices.find_by_id(4).customer_id
+
+    assert_equal 1, customer_id
+  end
+
+  def test_sales_engine_object_has_access_an_merchant_id
+    merchant_id = @sales_engine.invoices.find_by_id(20).merchant_id
+
+    assert_equal 12336163, merchant_id
+  end
+
+  def test_sales_engine_object_has_access_an_invoice_status
+    invoice_status = @sales_engine.invoices.find_by_id(25).status
+
+    assert_equal "returned", invoice_status
+  end
+
   def test_sales_engine_creates_merchants_that_have_access_to_items
     merchant = @sales_engine.merchants.find_by_id(12334105)
     assert_equal Array, merchant.items.class
@@ -70,9 +100,23 @@ class SalesEngineTest < Minitest::Test
     assert_equal "SalesAnalystItemZero", merchant.items[3].name
   end
 
+  def test_sales_engine_creates_merchants_that_have_access_to_invoices
+    merchant = @sales_engine.merchants.find_by_id(12334112)
+    assert_equal Array, merchant.invoices.class
+    assert_equal 2, merchant.invoices.length
+    assert_equal 10, merchant.invoices[0].id
+    assert_equal 18, merchant.invoices[1].id
+  end
+
   def test_sales_engine_creates_items_that_have_access_to_merchants
     item = @sales_engine.items.find_by_id(1000)
     assert_equal Merchant, item.merchant.class
     assert_equal "Shopin1901", item.merchant.name
+  end
+
+  def test_sales_engine_creates_invoices_that_have_access_to_merchants
+    invoice = @sales_engine.invoices.find_by_id(18)
+    assert_equal Merchant, invoice.merchant.class
+    assert_equal "Candisart", invoice.merchant.name
   end
 end
