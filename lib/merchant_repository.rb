@@ -31,21 +31,14 @@ class MerchantRepository
   end
 
   def find_by_id(merchant_id)
-    search_result = @all_merchants.select {|search| search.id == merchant_id}
-    exact_merchant_search(search_result)
+    search_result = @all_merchants.select {|search| search.id == merchant_id}[0]
+    return nil if search_result.nil?
+    search_result
   end
 
   def find_by_name(merchant_name)
-    search_result = @all_merchants.select {|search| search.name.downcase == merchant_name.downcase}
-    exact_merchant_search(search_result)
-  end
-
-  def exact_merchant_search(search_result)
-    if search_result.empty? == true
-      search_result = nil
-    else
-      search_result = search_result[0]
-    end
+    search_result = @all_merchants.select {|search| search.name.downcase == merchant_name.downcase}[0]
+    return nil if search_result.nil?
     search_result
   end
 

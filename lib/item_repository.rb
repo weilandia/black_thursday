@@ -36,21 +36,20 @@ class ItemRepository
     "#<#{self.class} #{@all_items.size} rows>"
   end
 
-  def load_merchant_repo(merchant_repo)
-    @merchant_repo = merchant_repo
-    @all_items.each do |item|
-      merchant_id = item.merchant_id
-      item.load_merchant(merchant_repo.find_by_id(merchant_id))
-    end
-  end
-
   def all
     @all_items
   end
 
+  def find_by_name(merchant_name)
+    search_result = @all_merchants.select {|search| search.name.downcase == merchant_name.downcase}[0]
+    return nil if search_result.nil?
+    search_result
+  end
+
   def find_by_id(item_id)
-    search_result = @all_items.select {|search| search.id == item_id}
-    exact_item_search(search_result)
+    search_result = @all_items.select {|search| search.id == item_id}[0]
+    return nil if search_result.nil?
+    search_result
   end
 
   def find_by_merchant_id(merchant_id)
@@ -58,16 +57,8 @@ class ItemRepository
   end
 
   def find_by_name(item_name)
-    search_result = @all_items.select {|search| search.name.downcase == item_name.downcase}
-    exact_item_search(search_result)
-  end
-
-  def exact_item_search(search_result)
-    if search_result.empty? == true
-      search_result = nil
-    else
-      search_result = search_result[0]
-    end
+    search_result = @all_items.select {|search| search.name.downcase == item_name.downcase}[0]
+    return nil if search_result.nil?
     search_result
   end
 
