@@ -51,7 +51,7 @@ class SalesEngineTest < Minitest::Test
   def test_sales_engine_object_has_access_an_items_merchant_id
     item_merchant_id = @sales_engine.items.find_by_id(263404435).merchant_id
 
-    assert_equal "12334401", item_merchant_id
+    assert_equal "12334144", item_merchant_id
   end
 
   def test_sales_engine_object_has_access_an_item_unit_price
