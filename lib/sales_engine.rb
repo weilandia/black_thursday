@@ -4,20 +4,18 @@ require_relative '../lib/item_repository'
 class SalesEngine
   attr_reader :merchants, :items
 
-  def initialize(csv_data)
-    load_data(csv_data)
-    relationships
-  end
-
   def self.from_csv(data = data_files_hash)
     SalesEngine.new(data)
   end
 
   def self.data_files_hash
-    data = {:merchants => "./data/merchants.csv",
-            :items => "./data/items.csv"
-            }
-    data
+    {:merchants => "./data/merchants.csv",
+    :items => "./data/items.csv"}
+  end
+
+  def initialize(csv_data)
+    load_data(csv_data)
+    relationships
   end
 
   def load_data(data)
