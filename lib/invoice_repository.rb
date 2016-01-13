@@ -26,4 +26,31 @@ class InvoiceRepository
       @all_invoices << Invoice.new(invoice_data)
     end
   end
+
+  def all
+    all_invoices
+  end
+
+  def find_by_id(invoice_id)
+    search_result = all.select {|search| search.id == invoice_id}[0]
+    exact_search(search_result)
+  end
+
+  def find_all_by_merchant_id(merchant_id)
+    all.select {|search| search.merchant_id == merchant_id}
+  end
+
+  def exact_search(search_result)
+    return nil if search_result.nil?
+    search_result
+  end
+
+  def find_all_by_customer_id(customer_id)
+    all.select {|search| search.customer_id == customer_id}
+  end
+
+  def find_all_by_status(status)
+    all.select {|search| search.status == status}
+  end
+
 end
