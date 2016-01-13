@@ -37,7 +37,7 @@ class ItemRepository
   end
 
   def all
-    @all_items
+    all_items
   end
 
   def find_by_name(merchant_name)
