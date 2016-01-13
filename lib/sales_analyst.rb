@@ -89,7 +89,7 @@ class SalesAnalyst
       if e.class == Float then e end
     end.compact
     average_price = all_prices.inject(:+) / all_prices.count
-    average_price
+    BigDecimal.new("#{average_price.round(2)}")
   end
 
   def golden_items

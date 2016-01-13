@@ -24,10 +24,6 @@ class ItemTest < Minitest::Test
     assert_equal "This is our third test item!", @item_three.description
   end
 
-  def test_item_can_query_unit_price
-    assert_equal 999, @item_one.unit_price
-  end
-
   def test_item_can_query_merchant_id
     assert_equal "12334105", @item_one.merchant_id
   end
@@ -40,9 +36,4 @@ class ItemTest < Minitest::Test
     assert_equal Time.new("2012-03-27 14:53:59 UTC"), @item_one.updated_at
   end
 
-  def test_item_can_identify_its_merchant
-    merchant = test_helper_merchant
-    @item_one.load_merchant(merchant)
-    assert_equal "Shopin1901", @item_one.merchant.name
-  end
 end

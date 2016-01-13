@@ -6,6 +6,7 @@ class SalesEngine
 
   def initialize(csv_data)
     load_data(csv_data)
+    relationships
   end
 
   def self.from_csv(data = data_files_hash)
@@ -21,7 +22,23 @@ class SalesEngine
 
   def load_data(data)
     @items = ItemRepository.new(data[:items])
-    @merchants = MerchantRepository.new(data[:merchants], @items)
-    @items.load_merchant_repo(@merchants)
+    @merchants = MerchantRepository.new(data[:merchants])
+  end
+
+  def relationships
+    merchant_item_relationship
+    item_merchant_relationship
+  end
+
+  def merchant_item_relationship
+    merchants.all.each do |merchant|
+      merchant.items = items.find_all_by_merchant_id(merchant.id)
+    end
+  end
+
+  def item_merchant_relationship
+    items.all.each do |item|
+      item.merchant = merchants.find_by_id(item.merchant_id)
+    end
   end
 end

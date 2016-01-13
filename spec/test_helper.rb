@@ -40,7 +40,7 @@ def merchant_data
 end
 
 def test_helper_merchant
-  Merchant.new(merchant_data, test_helper_item_repo)
+  Merchant.new(merchant_data)
 end
 
 def test_helper_item_repo
@@ -48,7 +48,7 @@ def test_helper_item_repo
 end
 
 def test_helper_merchant_repo
-  MerchantRepository.new("test_data/merchant_test.csv", test_helper_item_repo)
+  MerchantRepository.new("test_data/merchant_test.csv")
 end
 
 def load_merchant(item)

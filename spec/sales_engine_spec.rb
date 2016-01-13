@@ -57,7 +57,7 @@ class SalesEngineTest < Minitest::Test
   def test_sales_engine_object_has_access_an_item_unit_price
     item_unit_price = @sales_engine.items.find_by_id(263404435).unit_price
 
-    assert_equal 80000, item_unit_price
+    assert_equal 800.0, item_unit_price.to_f
   end
 
   def test_sales_engine_creates_merchants_that_have_access_to_items

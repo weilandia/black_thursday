@@ -36,11 +36,11 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_sales_analyst_identifies_average_item_price_per_merchant
-    assert_equal 41125.0, @sales_analyst.average_item_price_for_merchant(12334144)
+    assert_equal 411.25, @sales_analyst.average_item_price_for_merchant(12334144)
   end
 
   def test_sales_analyst_can_calculate_average_price_per_merchant
-    assert_equal 10969.2, @sales_analyst.average_price_per_merchant
+    assert_equal 109.67, @sales_analyst.average_price_per_merchant.to_f
   end
 
   def test_sales_analyst_calculate_golden_items_two_standard_devs

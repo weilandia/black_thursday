@@ -1,4 +1,5 @@
-require "csv"
+require 'csv'
+require 'bigdecimal'
 require_relative '../lib/item'
 
 
@@ -17,7 +18,7 @@ class ItemRepository
       item_data= {:id => row[:id].to_i,
                   :name => row[:name],
                   :description => row[:description],
-                  :unit_price => row[:unit_price],
+                  :unit_price => make_bigdecimal(row[:unit_price]),
                   :merchant_id => row[:merchant_id].to_i,
                   :created_at => row[:created_at],
                   :updated_at => row[:updated_at]
@@ -25,6 +26,10 @@ class ItemRepository
 
       @all_items << Item.new(item_data)
     end
+  end
+
+  def make_bigdecimal(unit_price)
+    BigDecimal.new("#{unit_price[0..-3]}.#{unit_price[-2..-1]}")
   end
 
   def inspect
