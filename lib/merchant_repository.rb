@@ -30,19 +30,19 @@ class MerchantRepository
     all_merchants
   end
 
-  def exact_result(search_result)
+  def exact_search(search_result)
     return nil if search_result.nil?
     search_result
   end
 
   def find_by_id(merchant_id)
     search_result = @all_merchants.select {|search| search.id == merchant_id}[0]
-    exact_result(search_result)
+    exact_search(search_result)
   end
 
   def find_by_name(merchant_name)
     search_result = @all_merchants.select {|search| search.name.downcase == merchant_name.downcase}[0]
-    exact_result(search_result)
+    exact_search(search_result)
   end
 
   def find_all_by_name(search_fragment)

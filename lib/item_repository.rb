@@ -2,28 +2,27 @@ require 'csv'
 require 'bigdecimal'
 require_relative '../lib/item'
 
-
 class ItemRepository
-
   attr_reader :all_items, :merchant_repo
   def initialize(item_data = "data/items.csv")
     @all_items = []
     load_data(item_data)
   end
 
+  def inspect
+    "#<#{self.class} #{@all_items.size} rows>"
+  end
+
   def load_data(data)
     items = CSV.open data, headers: true, header_converters: :symbol
-
     items.each do |row|
-      item_data= {:id => row[:id].to_i,
+      item_data = {:id => row[:id].to_i,
                   :name => row[:name],
                   :description => row[:description],
                   :unit_price => make_bigdecimal(row[:unit_price]),
                   :merchant_id => row[:merchant_id].to_i,
                   :created_at => row[:created_at],
-                  :updated_at => row[:updated_at]
-                }
-
+                  :updated_at => row[:updated_at]}
       @all_items << Item.new(item_data)
     end
   end
@@ -32,22 +31,18 @@ class ItemRepository
     BigDecimal.new("#{unit_price[0..-3]}.#{unit_price[-2..-1]}")
   end
 
-  def inspect
-    "#<#{self.class} #{@all_items.size} rows>"
-  end
-
   def all
     all_items
   end
 
   def find_by_name(merchant_name)
     search_result = @all_merchants.select {|search| search.name.downcase == merchant_name.downcase}[0]
-    exact_result(search_result)
+    exact_search(search_result)
   end
 
   def find_by_id(item_id)
     search_result = @all_items.select {|search| search.id == item_id}[0]
-    exact_result(search_result)
+    exact_search(search_result)
   end
 
   def find_by_merchant_id(merchant_id)
@@ -56,10 +51,10 @@ class ItemRepository
 
   def find_by_name(item_name)
     search_result = @all_items.select {|search| search.name.downcase == item_name.downcase}[0]
-    exact_result(search_result)
+    exact_search(search_result)
   end
 
-  def exact_result(search_result)
+  def exact_search(search_result)
     return nil if search_result.nil?
     search_result
   end

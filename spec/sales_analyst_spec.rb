@@ -28,7 +28,7 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_sales_analyst_can_calculate_standard_deviation_of_average_items_per_merchant
-    assert_equal 1.89, @sales_analyst.average_items_per_merchant_standard_deviation
+    assert_equal 2.07, @sales_analyst.average_items_per_merchant_standard_deviation
   end
 
   def test_sales_analyst_can_identify_merchants_with_few_items
@@ -45,6 +45,6 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_sales_analyst_calculate_golden_items_two_standard_devs
-    assert_equal ["Very Magnifique"], @sales_analyst.golden_items
+    assert_equal ["Very Magnifique"], @sales_analyst.golden_items.map { |item| item.name }
   end
 end

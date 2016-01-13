@@ -43,7 +43,7 @@ class SalesAnalyst
   def sample_variance(mean, array)
    m = mean
    sum = array.inject(0){|accum, i| accum + (i-m)**2 }
-   sum/(array.length).to_f
+   sum/(array.length-1).to_f
   end
 
   def standard_deviation(array)
@@ -77,33 +77,23 @@ class SalesAnalyst
   def all_prices_array
     all_prices = []
     @engine.merchants.all.each do |merchant|
-      merchant.items.each do |item|
-        all_prices << [item.unit_price.to_f,item]
-      end
+      merchant.items.each { |item| all_prices << item }
     end
     all_prices
   end
 
   def average_price_per_merchant
-    all_prices_with_object = all_prices_array.flatten
-    all_prices = all_prices_with_object.map do |e|
-      if e.class == Float then e end
-    end.compact
+    all_prices = all_prices_array.map { |item| item.unit_price.to_f }
     average_price = all_prices.inject(:+) / all_prices.count
     BigDecimal.new("#{average_price.round(2)}")
   end
 
   def golden_items
-    all_prices_with_object = all_prices_array.flatten
-    all_prices = all_prices_with_object.map do |e|
-      if e.class == Float then e end
-    end.compact
+    all_prices = all_prices_array.map { |item| item.unit_price.to_f }
     sd = standard_deviation(all_prices)
-    gold_items = all_prices_with_object.map do |e|
-      if e.class == Item
-        if  e.unit_price.to_f >= sd * 2
-          e.name
-        end
+    gold_items = all_prices_array.map do |item|
+      if item.unit_price.to_f >= sd * 2
+          item
       end
     end.compact
     gold_items
