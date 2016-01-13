@@ -42,14 +42,12 @@ class ItemRepository
 
   def find_by_name(merchant_name)
     search_result = @all_merchants.select {|search| search.name.downcase == merchant_name.downcase}[0]
-    return nil if search_result.nil?
-    search_result
+    exact_result(search_result)
   end
 
   def find_by_id(item_id)
     search_result = @all_items.select {|search| search.id == item_id}[0]
-    return nil if search_result.nil?
-    search_result
+    exact_result(search_result)
   end
 
   def find_by_merchant_id(merchant_id)
@@ -58,6 +56,10 @@ class ItemRepository
 
   def find_by_name(item_name)
     search_result = @all_items.select {|search| search.name.downcase == item_name.downcase}[0]
+    exact_result(search_result)
+  end
+
+  def exact_result(search_result)
     return nil if search_result.nil?
     search_result
   end
