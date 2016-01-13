@@ -1,4 +1,5 @@
 $LOAD_PATH.unshift(File.expand_path("../lib", __dir__))
+require 'mathn'
 require 'sales_engine'
 
 class SalesAnalyst
@@ -7,13 +8,13 @@ class SalesAnalyst
     @engine = sales_engine
   end
 
-  # def item_count_per_merchant
-  #  items_per_merchant = []
-  #  @engine.merchants.all.each do |merchant|
-  #    items_per_merchant << merchant.items.count
-  #  end
-  #  items_per_merchant
-  # end
+  def item_count_per_merchant
+   items_per_merchant = []
+   @engine.merchants.all.each do |merchant|
+     items_per_merchant << merchant.items.count
+   end
+   items_per_merchant
+  end
 
   def total_merchant_count
     @engine.merchants.all.count
@@ -27,7 +28,18 @@ class SalesAnalyst
     total_item_count.to_f / total_merchant_count
   end
 
-  def average_items_per_merchant_standard_deviation
+  def standard_deviation_items_per_merchant
+    mean = average_items_per_merchant
+    count_minus_mean_squared = item_count_per_merchant.map do |merchant|
+      (merchant - mean) ** 2
+    end
 
+    new_total = count_minus_mean_squared.inject(:+)
+
+    new_average = new_total / total_item_count
+
+    standard_deviation = Math.sqrt(new_average)
+
+    standard_deviation.round(2)
   end
 end
