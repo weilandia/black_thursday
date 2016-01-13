@@ -28,7 +28,7 @@ class SalesAnalyst
     total_item_count.to_f / total_merchant_count
   end
 
-  def standard_deviation_items_per_merchant
+  def average_items_per_merchant_standard_deviation
     mean = average_items_per_merchant
     count_minus_mean_squared = item_count_per_merchant.map do |merchant|
       (merchant - mean) ** 2
