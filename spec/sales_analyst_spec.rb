@@ -47,4 +47,28 @@ class SalesAnalystTest < Minitest::Test
   def test_sales_analyst_calculate_golden_items_two_standard_devs
     assert_equal ["Very Magnifique"], @sales_analyst.golden_items.map { |item| item.name }
   end
+
+  def test_sales_analyst_calculates_invoices_per_merchant
+
+  end
+
+  def test_sales_analyst_calculates_invoices_per_merchant_standard_deviation
+
+  end
+
+  def test_sales_analyst_calculates_top_merchants_by_invoice_count
+
+  end
+
+  def test_sales_analyst_calculates_bottom_merchants_by_invoice_count
+
+  end
+
+  def test_sales_analyst_calculates_days_days_by_invoice_count
+
+  end
+
+  def test_sales_analyst_calculates_invoices_status_percentages
+
+  end
 end
