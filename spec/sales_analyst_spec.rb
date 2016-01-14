@@ -1,6 +1,5 @@
-require 'coveralls'; Coveralls.wear!
-require 'simplecov'; SimpleCov.start
 require 'minitest/autorun'; require 'minitest/pride'
+require_relative 'test_helper'
 require_relative '../lib/sales_analyst'
 
 class SalesAnalystTest < Minitest::Test
