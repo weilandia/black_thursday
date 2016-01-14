@@ -3,8 +3,9 @@ require_relative '../lib/invoice_repository'
 
 class InvoiceRepositoryTest < Minitest::Test
   def test_invoice_repo_can_list_all_invoices
+    invoices = CSV.open "./test_data/invoice_test.csv", headers: true, header_converters: :symbol
     invoice_repo = test_helper_invoice_repo
-    assert_equal 50, invoice_repo.all.length
+    assert_equal invoices.count, invoice_repo.all.length
     assert_equal Invoice, invoice_repo.all.first.class
   end
 

@@ -11,7 +11,6 @@ class MerchantRepository
 
   def load_data(data)
     merchants = CSV.open data, headers: true, header_converters: :symbol
-
     merchants.each do |row|
       merchant_data= {:id =>  row[:id].to_i,
                       :name => row[:name],
