@@ -1,4 +1,4 @@
-require 'test_helper'
+require_relative 'test_helper'
 require_relative '../lib/merchant_repository'
 require_relative '../lib/item_repository'
 
@@ -8,17 +8,17 @@ class MerchantRepositoryTest < Minitest::Test
   end
 
   def test_merchant_repo_can_list_all_merchants
-    assert_equal 6, @merchant_repo.all.length
+    assert_equal 15, @merchant_repo.all.length
     assert_equal Array, @merchant_repo.all.class
     assert_equal Merchant, @merchant_repo.all[0].class
     assert_equal Merchant, @merchant_repo.all[1].class
-    assert_equal NilClass, @merchant_repo.all[10].class
+    assert_equal NilClass, @merchant_repo.all[15].class
   end
 
   def test_merchant_repo_can_find_merchant_by_id
-    merchant = @merchant_repo.find_by_id(12334112)
+    merchant = @merchant_repo.find_by_id(3)
     assert_equal Merchant, merchant.class
-    assert_equal 12334112, merchant.id
+    assert_equal 3, merchant.id
   end
 
   def test_merchant_repo_can_find_merchant_by_name

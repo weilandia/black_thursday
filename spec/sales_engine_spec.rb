@@ -1,4 +1,4 @@
-require 'test_helper'
+require_relative 'test_helper'
 require_relative '../lib/sales_engine'
 
 class SalesEngineTest < Minitest::Test
@@ -18,8 +18,6 @@ class SalesEngineTest < Minitest::Test
   end
 
   def test_sales_engine_data_files_hash_method_defaults_correct_files
-    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
-
     assert_equal SalesEngine.data_files_hash[:merchants], "./data/merchants.csv"
 
     assert_equal SalesEngine.data_files_hash[:items], "./data/items.csv"
@@ -33,13 +31,13 @@ class SalesEngineTest < Minitest::Test
 
     merchant_id = sales_engine.merchants.find_by_name("MiniatureBikez").id
 
-    assert_equal 12334113, merchant_id
+    assert_equal 3, merchant_id
   end
 
   def test_sales_engine_object_has_access_to_merhant_name
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
 
-    merchant_name = sales_engine.merchants.find_by_id(12334113).name
+    merchant_name = sales_engine.merchants.find_by_id(3).name
 
     assert_equal "MiniatureBikez", merchant_name
   end
@@ -49,13 +47,13 @@ class SalesEngineTest < Minitest::Test
 
     item_id = sales_engine.items.find_by_name("Very Magnifique").id
 
-    assert_equal 263404435, item_id
+    assert_equal 2, item_id
   end
 
   def test_sales_engine_object_has_access_item_name
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
 
-    item_name = sales_engine.items.find_by_id(263404435).name
+    item_name = sales_engine.items.find_by_id(2).name
 
     assert_equal "Very Magnifique", item_name
   end
@@ -63,15 +61,15 @@ class SalesEngineTest < Minitest::Test
   def test_sales_engine_object_has_access_an_items_merchant_id
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
 
-    item_merchant_id = sales_engine.items.find_by_id(263404435).merchant_id
+    item_merchant_id = sales_engine.items.find_by_id(2).merchant_id
 
-    assert_equal 12334144, item_merchant_id
+    assert_equal 1, item_merchant_id
   end
 
   def test_sales_engine_object_has_access_an_item_unit_price
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
 
-    item_unit_price = sales_engine.items.find_by_id(263404435).unit_price
+    item_unit_price = sales_engine.items.find_by_id(2).unit_price
 
     assert_equal 800.0, item_unit_price.to_f
   end
@@ -79,9 +77,9 @@ class SalesEngineTest < Minitest::Test
   def test_sales_engine_object_has_access_an_invoice_id
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
 
-    invoice_id = sales_engine.invoices.find_by_id(4).id
+    invoice_id = sales_engine.invoices.find_by_id(2).id
 
-    assert_equal 4, invoice_id
+    assert_equal 2, invoice_id
   end
 
   def test_sales_engine_object_has_access_an_invoice_customer_id
@@ -97,7 +95,7 @@ class SalesEngineTest < Minitest::Test
 
     merchant_id = sales_engine.invoices.find_by_id(20).merchant_id
 
-    assert_equal 12336163, merchant_id
+    assert_equal 7, merchant_id
   end
 
   def test_sales_engine_object_has_access_an_invoice_status
@@ -111,29 +109,29 @@ class SalesEngineTest < Minitest::Test
   def test_sales_engine_creates_merchants_that_have_access_to_items
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
 
-    merchant = sales_engine.merchants.find_by_id(12334105)
+    merchant = sales_engine.merchants.find_by_id(1)
     assert_equal Array, merchant.items.class
-    assert_equal 6, merchant.items.length
-    assert_equal "TestItemOne", merchant.items[0].name
-    assert_equal "TestItemTwo", merchant.items[1].name
-    assert_equal "TestItemThree", merchant.items[2].name
-    assert_equal "SalesAnalystItemZero", merchant.items[3].name
+    assert_equal 14, merchant.items.length
+    assert_equal "Magnifique", merchant.items[0].name
+    assert_equal "Very Magnifique", merchant.items[1].name
+    assert_equal "Shimmering Peacock", merchant.items[2].name
+    assert_equal "TestItem", merchant.items[3].name
   end
 
   def test_sales_engine_creates_merchants_that_have_access_to_invoices
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
 
-    merchant = sales_engine.merchants.find_by_id(12334112)
+    merchant = sales_engine.merchants.find_by_id(15)
     assert_equal Array, merchant.invoices.class
-    assert_equal 2, merchant.invoices.length
-    assert_equal 10, merchant.invoices[0].id
-    assert_equal 18, merchant.invoices[1].id
+    assert_equal 8, merchant.invoices.length
+    assert_equal 43, merchant.invoices[0].id
+    assert_equal 44, merchant.invoices[1].id
   end
 
   def test_sales_engine_creates_items_that_have_access_to_merchants
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
 
-    item = sales_engine.items.find_by_id(1000)
+    item = sales_engine.items.find_by_id(10)
     assert_equal Merchant, item.merchant.class
     assert_equal "Shopin1901", item.merchant.name
   end
@@ -143,6 +141,6 @@ class SalesEngineTest < Minitest::Test
 
     invoice = sales_engine.invoices.find_by_id(18)
     assert_equal Merchant, invoice.merchant.class
-    assert_equal "Candisart", invoice.merchant.name
+    assert_equal "Urcase17", invoice.merchant.name
   end
 end
