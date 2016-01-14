@@ -1,3 +1,9 @@
+require 'coveralls'
+Coveralls.wear!
+
+require 'simplecov'
+SimpleCov.start
+
 def test_helper_item_one_data
   {:id => "0001",
   :name => "Test Item 1",

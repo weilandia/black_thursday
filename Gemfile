@@ -7,3 +7,4 @@ gem 'minitest'
 gem 'mrspec'
 gem 'pry'
 gem 'simplecov'
+gem 'coveralls', require: false
