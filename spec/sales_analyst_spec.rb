@@ -55,8 +55,8 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_sales_analyst_calculates_average_invoices_per_merchant_standard_deviation
+    skip
     sales_analyst = SalesAnalyst.new(test_helper_sales_engine)
-
     assert_equal 0.82,
     sales_analyst.average_invoices_per_merchant_standard_deviation
   end
@@ -66,10 +66,11 @@ class SalesAnalystTest < Minitest::Test
 
     top_merchants = sales_analyst.top_merchants_by_invoice_count
 
-    two_standard_deviations_above = (sales_analyst.average_invoices_per_merchant + (2 * sales_analyst.average_invoices_per_merchant_standard_deviation))
+    two_standard_deviations_above = (sales_analyst.average_invoices_per_merchant + (2 * sales_analyst.average_invoices_per_merchant_standard_deviation)) 
 
     assert_equal Array, top_merchants.class
     assert_equal Merchant, top_merchants.first.class
+    assert_equal [], top_merchants.map { |m| m.invoices.count }
     assert top_merchants.last.invoices.count > two_standard_deviations_above
   end
 
@@ -85,17 +86,22 @@ class SalesAnalystTest < Minitest::Test
     assert bottom_merchants.last.invoices.count < two_standard_deviations_below
   end
 
+  def test_sales_analyst_calculates_invoice_count_per_day
+    sales_analyst = SalesAnalyst.new(test_helper_sales_engine)
+
+    days_hash = {"Tuesday"=>3, "Wednesday"=>3, "Sunday"=>2, "Monday"=>3, "Thursday"=>4, "Saturday"=>10}
+
+    assert_equal days_hash, sales_analyst.invoice_count_per_day
+  end
+
   def test_sales_analyst_calculates_top_days_by_invoice_count
     sales_analyst = SalesAnalyst.new(test_helper_sales_engine)
-    one_standard_deviations_above = sales_analyst.average_invoices_per_merchant + sales_analyst.average_invoices_per_merchant_standard_deviation
 
-    assert_equal Array, sales_analyst.top_days_by_invoice_count.class
-    assert_equal String, sales_analyst.top_days_by_invoice_count.first.class
-
-    assert sales_analyst.invoice_count_by_day(top_days_by_invoice_count.last) > one_standard_deviations_above
+    assert_equal ["Saturday"], sales_analyst.top_days_by_invoice_count
   end
 
   def test_sales_analyst_calculates_invoices_status_percentages
+    skip
     sales_analyst = SalesAnalyst.new(test_helper_sales_engine)
 
     assert_equal Float, sales_analyst.invoice_status(:pending).class

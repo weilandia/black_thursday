@@ -122,33 +122,61 @@ class SalesAnalyst
 
 
   def top_merchants_by_invoice_count
+    sd = average_invoices_per_merchant_standard_deviation
+    avg = average_invoices_per_merchant
+    high_invoices_merchants = []
+     @engine.merchants.all.each do |merchant|
+       if merchant.invoices.count >=  avg + (2 * sd)
+         high_invoices_merchants << merchant
+       end
+     end
+     high_invoices_merchants
   end
 
   def bottom_merchants_by_invoice_count
+    sd = average_invoices_per_merchant_standard_deviation
+    avg = average_invoices_per_merchant
+    low_invoices_merchants = []
+     @engine.merchants.all.each do |merchant|
+       if merchant.invoices.count <=  avg - (2 * sd)
+         low_invoices_merchants << merchant
+       end
+     end
+     low_invoices_merchants
   end
 
   def top_days_by_invoice_count
   end
 
   def average_invoices_per_day_standard_deviation
+    standard_deviation(invoice_count_per_day.values)
   end
 
   def top_days_by_invoice_count
     sd = average_invoices_per_day_standard_deviation
     avg = average_invoices_per_day
-    top_days = []
-     @engine.invoices.all.each do |invoice|
-
+     invoice_count_per_day.select do |day, count|
+       count > avg + sd
+    end.keys
   end
-end
 
-  def invoice_count_by_day
+  def average_invoices_per_day
+    mean(invoice_count_per_day.values).round(2)
+  end
+
+  def invoice_count_hash_by_day
     all_invoice_days = []
     @engine.invoices.all.each do |invoice|
-      all_invoice_days << invoice.created_at.wday
+      all_invoice_days << invoice.created_at.strftime("%A")
     end
-    require "pry"; binding.pry
     all_invoice_days.group_by { |day| day }
+  end
+
+  def invoice_count_per_day
+    hash = invoice_count_hash_by_day
+    hash.map do |k, v|
+      [k, v.count]
+    end.to_h
   end
 
   def invoice_status(status)
