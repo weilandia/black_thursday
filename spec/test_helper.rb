@@ -67,6 +67,10 @@ def test_helper_invoice_repo
   InvoiceRepository.new("test_data/invoice_test.csv")
 end
 
+def test_helper_sales_engine
+  SalesEngine.new(test_helper_csv_hash)
+end
+
 def test_helper_csv_hash
   {:merchants => "./test_data/merchant_test.csv",
   :items => "./test_data/item_test.csv",

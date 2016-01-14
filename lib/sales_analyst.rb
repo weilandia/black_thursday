@@ -99,6 +99,7 @@ class SalesAnalyst
     gold_items
   end
 
+#Invoices
   def average_invoices_per_merchant
   end
 
@@ -114,7 +115,21 @@ class SalesAnalyst
   def top_days_by_invoice_count
   end
 
+  def invoice_count_by_day(day)
+    #takes day as a String
+    #returns invoice count for day
+  end
+
   def invoice_status(status)
     #returns percentage status
   end
+
+  def total_invoice_count
+    @engine.invoices.all.count
+  end
+
+  def invoice_count_by_status(status)
+    #counts by status
+  end
+
 end
