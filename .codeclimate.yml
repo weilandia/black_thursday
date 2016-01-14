@@ -26,3 +26,4 @@ ratings:
 exclude_paths:
 - spec/**/*
 - coverage/**/*
+- utility_scripts/**/*
