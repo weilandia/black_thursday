@@ -54,7 +54,7 @@ def invoice_data
   {:id => 11,
   :customer_id => 2,
   :merchant_id => 12334771,
-  :status => "pending",
+  :status => :pending,
   :created_at => "2016-01-11 10:37:09 UTC",
   :updated_at => "2016-01-11 10:37:09 UTC"}
 end

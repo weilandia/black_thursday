@@ -30,16 +30,16 @@ class InvoiceRepositoryTest < Minitest::Test
 
   def test_invoice_repo_can_find_invoice_by_status
     invoice_repo = test_helper_invoice_repo
-    assert_equal Array, invoice_repo.find_all_by_status("pending").class
-    assert_equal Invoice, invoice_repo.find_all_by_status("pending").first.class
-    assert_equal 19, invoice_repo.find_all_by_status("pending").length
+    assert_equal Array, invoice_repo.find_all_by_status(:pending).class
+    assert_equal Invoice, invoice_repo.find_all_by_status(:pending).first.class
+    assert_equal 19, invoice_repo.find_all_by_status(:pending).length
   end
 
   def test_invoice_repo_can_find_invoice_by_status_all_statuses
     invoice_repo = test_helper_invoice_repo
-    assert_equal 19, invoice_repo.find_all_by_status("pending").length
-    assert_equal 22, invoice_repo.find_all_by_status("shipped").length
-    assert_equal 9, invoice_repo.find_all_by_status("returned").length
-    assert_equal 0, invoice_repo.find_all_by_status("nil").length
+    assert_equal 19, invoice_repo.find_all_by_status(:pending).length
+    assert_equal 22, invoice_repo.find_all_by_status(:shipped).length
+    assert_equal 9, invoice_repo.find_all_by_status(:returned).length
+    assert_equal 0, invoice_repo.find_all_by_status(:status).length
   end
 end

@@ -145,9 +145,6 @@ class SalesAnalyst
      low_invoices_merchants
   end
 
-  def top_days_by_invoice_count
-  end
-
   def average_invoices_per_day_standard_deviation
     standard_deviation(invoice_count_per_day.values)
   end
@@ -179,16 +176,22 @@ class SalesAnalyst
     end.to_h
   end
 
-  def invoice_status(status)
-    #returns percentage status
-  end
-
   def total_invoice_count
     @engine.invoices.all.count
   end
 
+  def invoice_status(status)
+    return 0.0 if invoice_count_by_status(status) == 0
+    (total_invoice_count.to_f / invoice_count_by_status(status)).round(2)
+  end
+
+
   def invoice_count_by_status(status)
-    #counts by status
+    @engine.invoices.all.select do |invoice|
+      if invoice.status == status
+        invoice
+      end
+    end.length
   end
 
 end

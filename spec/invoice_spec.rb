@@ -20,7 +20,7 @@ class InvoiceTest < Minitest::Test
 
   def test_invoice_can_query_status
     invoice = test_helper_invoice
-    assert_equal "pending", invoice.status
+    assert_equal :pending, invoice.status
   end
 
   def test_invoice_can_query_creation_date

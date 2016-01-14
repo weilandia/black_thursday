@@ -103,7 +103,7 @@ class SalesEngineTest < Minitest::Test
 
     invoice_status = sales_engine.invoices.find_by_id(25).status
 
-    assert_equal "returned", invoice_status
+    assert_equal :returned, invoice_status
   end
 
   def test_sales_engine_creates_merchants_that_have_access_to_items

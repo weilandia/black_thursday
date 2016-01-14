@@ -55,9 +55,8 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_sales_analyst_calculates_average_invoices_per_merchant_standard_deviation
-    skip
     sales_analyst = SalesAnalyst.new(test_helper_sales_engine)
-    assert_equal 0.82,
+    assert_equal 1.63,
     sales_analyst.average_invoices_per_merchant_standard_deviation
   end
 
@@ -104,15 +103,9 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_sales_analyst_calculates_invoices_status_percentages
-    skip
     sales_analyst = SalesAnalyst.new(test_helper_sales_engine)
-
     assert_equal Float, sales_analyst.invoice_status(:pending).class
 
-    invoice_count = sales_analyst.total_invoice_count
-
-    status_count = sales_analyst.invoice_count_by_status
-
-    assert_equal SOMENUMBER, (status_count/invoice_count) * 100
+    assert_equal 2.63, sales_analyst.invoice_status(:pending)
   end
 end
