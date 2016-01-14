@@ -25,11 +25,11 @@ class InvoiceTest < Minitest::Test
 
   def test_invoice_can_query_creation_date
     invoice = test_helper_invoice
-    assert_equal Time.new("2016-01-11 12:22:31 UTC"), invoice.created_at
+    assert_equal Time.parse("2016-01-11 10:37:09 UTC"), invoice.created_at
   end
 
   def test_invoice_can_query_date_of_last_update
     invoice = test_helper_invoice
-    assert_equal Time.new("2016-01-01 00:00:00 -0700"), invoice.updated_at
+    assert_equal Time.parse("2016-01-11 10:37:09 UTC"), invoice.updated_at
   end
 end

@@ -48,16 +48,16 @@ class SalesAnalystTest < Minitest::Test
     assert_equal ["Very Magnifique"], sales_analyst.golden_items.map { |item| item.name }
   end
 
-  def test_sales_analyst_calculates_invoices_per_merchant
+  def test_sales_analyst_calculates_average_invoices_per_merchant
     sales_analyst = SalesAnalyst.new(test_helper_sales_engine)
 
-    assert_equal SOMENUMBER, sales_analyst.average_invoices_per_merchant
+    assert_equal 4.17, sales_analyst.average_invoices_per_merchant
   end
 
   def test_sales_analyst_calculates_average_invoices_per_merchant_standard_deviation
     sales_analyst = SalesAnalyst.new(test_helper_sales_engine)
 
-    assert_equal SOMENUMBER,
+    assert_equal 0.82,
     sales_analyst.average_invoices_per_merchant_standard_deviation
   end
 
@@ -87,7 +87,6 @@ class SalesAnalystTest < Minitest::Test
 
   def test_sales_analyst_calculates_top_days_by_invoice_count
     sales_analyst = SalesAnalyst.new(test_helper_sales_engine)
-
     one_standard_deviations_above = sales_analyst.average_invoices_per_merchant + sales_analyst.average_invoices_per_merchant_standard_deviation
 
     assert_equal Array, sales_analyst.top_days_by_invoice_count.class

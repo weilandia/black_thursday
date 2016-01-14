@@ -26,11 +26,11 @@ class ItemTest < Minitest::Test
   end
 
   def test_item_can_query_creation_date
-    assert_equal Time.new("2016-01-11 12:22:31 UTC"), @item_one.created_at
+    assert_equal Time.parse("2016-01-11 12:22:31 UTC"), @item_one.created_at
   end
 
   def test_item_can_query_date_of_last_update
-    assert_equal Time.new("2012-03-27 14:53:59 UTC"), @item_one.updated_at
+    assert_equal Time.parse("2012-03-27 14:53:59 UTC"), @item_one.updated_at
   end
 
 end

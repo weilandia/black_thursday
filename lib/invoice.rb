@@ -5,8 +5,8 @@ class Invoice
     @customer_id = invoice_data[:customer_id]
     @merchant_id = invoice_data[:merchant_id]
     @status = invoice_data[:status]
-    @created_at =  Time.new(invoice_data[:created_at])
-    @updated_at = Time.new(invoice_data[:updated_at])
+    @created_at = Time.parse(invoice_data[:created_at])
+    @updated_at = Time.parse(invoice_data[:updated_at])
   end
 end
 

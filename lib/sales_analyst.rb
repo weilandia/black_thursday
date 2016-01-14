@@ -100,11 +100,26 @@ class SalesAnalyst
   end
 
 #Invoices
+  def total_invoice_count
+    @engine.invoices.all.count
+  end
+
   def average_invoices_per_merchant
+    (total_invoice_count.to_f / total_merchant_count).round(2)
+  end
+
+  def invoice_count_per_merchant
+   invoices_per_merchant = []
+   @engine.merchants.all.each do |merchant|
+     invoices_per_merchant << merchant.invoices.count
+   end
+   invoices_per_merchant
   end
 
   def average_invoices_per_merchant_standard_deviation
+    standard_deviation(invoice_count_per_merchant)
   end
+
 
   def top_merchants_by_invoice_count
   end
@@ -115,9 +130,25 @@ class SalesAnalyst
   def top_days_by_invoice_count
   end
 
-  def invoice_count_by_day(day)
-    #takes day as a String
-    #returns invoice count for day
+  def average_invoices_per_day_standard_deviation
+  end
+
+  def top_days_by_invoice_count
+    sd = average_invoices_per_day_standard_deviation
+    avg = average_invoices_per_day
+    top_days = []
+     @engine.invoices.all.each do |invoice|
+
+  end
+end
+
+  def invoice_count_by_day
+    all_invoice_days = []
+    @engine.invoices.all.each do |invoice|
+      all_invoice_days << invoice.created_at.wday
+    end
+    require "pry"; binding.pry
+    all_invoice_days.group_by { |day| day }
   end
 
   def invoice_status(status)

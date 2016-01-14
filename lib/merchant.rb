@@ -4,8 +4,8 @@ class Merchant
   def initialize(merchant_data)
     @id = merchant_data[:id].to_i
     @name = merchant_data[:name]
-    @created_at =  Time.new(merchant_data[:created_at])
-    @updated_at = Time.new(merchant_data[:updated_at])
+    @created_at = Time.parse(merchant_data[:created_at])
+    @updated_at = Time.parse(merchant_data[:updated_at])
   end
 end
 
