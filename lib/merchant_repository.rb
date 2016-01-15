@@ -4,7 +4,7 @@ require_relative '../lib/merchant'
 class MerchantRepository
 
   attr_reader :all_merchants
-  def initialize(merchant_data)
+  def from_csv(merchant_data = "./data/merchants.csv")
     @all_merchants = []
     load_data(merchant_data)
   end

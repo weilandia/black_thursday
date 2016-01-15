@@ -19,15 +19,23 @@ class SalesEngine
   end
 
   def initialize(csv_data)
+    instantiate_repositories
     load_data(csv_data)
     relationships
   end
 
+  def instantiate_repositories
+    @items = ItemRepository.new
+    @merchants = MerchantRepository.new
+    @invoices = InvoiceRepository.new
+    @invoice_items = InvoiceItemRepository.new
+  end
+
   def load_data(data)
-    @items = ItemRepository.new(data[:items])
-    @merchants = MerchantRepository.new(data[:merchants])
-    @invoices = InvoiceRepository.new(data[:invoices])
-    @invoice_items = InvoiceItemRepository.new.from_csv(data[:invoice_items])
+    @items.from_csv(data[:items])
+    @merchants.from_csv(data[:merchants])
+    @invoices.from_csv(data[:invoices])
+    @invoice_items.from_csv(data[:invoice_items])
   end
 
   def relationships

@@ -4,7 +4,8 @@ require_relative '../lib/item'
 
 class ItemRepository
   attr_reader :all_items
-  def initialize(item_data = "data/items.csv")
+
+  def from_csv(item_data = "./data/items.csv")
     @all_items = []
     load_data(item_data)
   end

@@ -4,7 +4,7 @@ require_relative '../lib/invoice'
 class InvoiceRepository
 
   attr_reader :all_invoices
-  def initialize(invoice_data)
+  def from_csv(invoice_data = "./data/invoices.csv")
     @all_invoices = []
     load_data(invoice_data)
   end

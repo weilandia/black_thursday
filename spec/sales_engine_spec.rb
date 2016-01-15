@@ -3,6 +3,7 @@ require_relative '../lib/sales_engine'
 
 class SalesEngineTest < Minitest::Test
   def test_sales_engine_object_has_merchant_repository_object
+    require "pry"; binding.pry
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
     assert_equal MerchantRepository, sales_engine.merchants.class
   end

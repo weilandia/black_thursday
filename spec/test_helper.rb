@@ -97,15 +97,21 @@ def test_helper_transaction
 end
 
 def test_helper_item_repo
-  ItemRepository.new("test_data/item_test.csv")
+  items_repo = ItemRepository.new
+  items_repo.from_csv("test_data/item_test.csv")
+  items_repo
 end
 
 def test_helper_merchant_repo
-  MerchantRepository.new("test_data/merchant_test.csv")
+  merchant_repo = MerchantRepository.new
+  merchant_repo.from_csv("test_data/merchant_test.csv")
+  merchant_repo
 end
 
 def test_helper_invoice_repo
-  InvoiceRepository.new("test_data/invoice_test.csv")
+  invoice_repo = InvoiceRepository.new
+  invoice_repo.from_csv("test_data/invoice_test.csv")
+  invoice_repo
 end
 
 def test_helper_invoice_items_repo
