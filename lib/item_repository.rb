@@ -21,8 +21,8 @@ class ItemRepository
                   :description => row[:description],
                   :unit_price => make_bigdecimal(row[:unit_price]),
                   :merchant_id => row[:merchant_id].to_i,
-                  :created_at => row[:created_at],
-                  :updated_at => row[:updated_at]}
+                  :created_at => Time.parse(row[:created_at]),
+                  :updated_at => Time.parse(row[:updated_at])}
       @all_items << Item.new(item_data)
     end
   end

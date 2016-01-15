@@ -12,43 +12,43 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
 SimpleCov.start
 
 def test_helper_item_one_data
-  {:id => "0001",
+  {:id => 1,
   :name => "Test Item 1",
   :description => "This is our first test item!",
-  :unit_price => "999",
-  :merchant_id => "12334105",
-  :created_at => "2016-01-11 12:22:31 UTC",
-  :updated_at => "2012-03-27 14:53:59 UTC"
+  :unit_price => 9.99,
+  :merchant_id => 12334105,
+  :created_at => Time.parse("2016-01-11 12:22:31 UTC"),
+  :updated_at => Time.parse("2012-03-27 14:53:59 UTC")
   }
 end
 
 def test_helper_item_two_data
-  {:id => "0002",
+  {:id => 2,
   :name => "Test Item 2",
   :description => "This is our second test item!",
-  :unit_price => "11111",
-  :merchant_id => "12334105",
-  :created_at => "2016-01-11 12:22:31 UTC",
-  :updated_at => "2012-03-27 14:53:59 UTC"
+  :unit_price => 111.11,
+  :merchant_id => 12334105,
+  :created_at => Time.parse("2016-01-11 12:22:31 UTC"),
+  :updated_at => Time.parse("2012-03-27 14:53:59 UTC")
   }
 end
 
 def test_helper_item_three_data
-  {:id => "0003",
+  {:id => 3,
   :name => "Test Item 3",
   :description => "This is our third test item!",
-  :unit_price => "33333",
-  :merchant_id => "12334105",
-  :created_at => "2016-01-11 12:22:31 UTC",
-  :updated_at => "2012-03-27 14:53:59 UTC"
+  :unit_price => 333.33,
+  :merchant_id => 12334105,
+  :created_at => Time.parse("2016-01-11 12:22:31 UTC"),
+  :updated_at => Time.parse("2012-03-27 14:53:59 UTC")
   }
 end
 
 def merchant_data
-  {:id => "12334105",
+  {:id => 12334105,
     :name => "Shopin1901",
-    :created_at => "2016-01-11 10:37:09 UTC",
-    :updated_at => "2016-01-11 10:37:09 UTC"}
+    :created_at => Time.parse("2016-01-11 10:37:09 UTC"),
+    :updated_at => Time.parse("2016-01-11 10:37:09 UTC")}
 end
 
 def invoice_data
@@ -56,8 +56,8 @@ def invoice_data
   :customer_id => 2,
   :merchant_id => 12334771,
   :status => :pending,
-  :created_at => "2016-01-11 10:37:09 UTC",
-  :updated_at => "2016-01-11 10:37:09 UTC"}
+  :created_at => Time.parse("2016-01-11 10:37:09 UTC"),
+  :updated_at => Time.parse("2016-01-11 10:37:09 UTC")}
 end
 
 def invoice_item_data
@@ -66,8 +66,18 @@ def invoice_item_data
   :invoice_id => 12334771,
   :quantity => 8,
   :unit_price => BigDecimal.new(348.73, 5),
-  :created_at => "2016-01-11 10:37:09 UTC",
-  :updated_at => "2016-01-11 10:37:09 UTC"}
+  :created_at => Time.parse("2016-01-11 10:37:09 UTC"),
+  :updated_at => Time.parse("2016-01-11 10:37:09 UTC")}
+end
+
+def transaction_data
+  {:id => 3,
+  :invoice_id => 3,
+  :credit_card_expiration_date => "1220",
+  :credit_card_number => "4271810000000000",
+  :result => "success",
+  :created_at => Time.parse("2012-02-26 20:56:56 UTC"),
+  :updated_at => Time.parse("2012-02-26 20:56:56 UTC")}
 end
 
 def test_helper_invoice_item
@@ -82,6 +92,10 @@ def test_helper_invoice
   Invoice.new(invoice_data)
 end
 
+def test_helper_transaction
+  Transaction.new(transaction_data)
+end
+
 def test_helper_item_repo
   ItemRepository.new("test_data/item_test.csv")
 end
@@ -94,6 +108,12 @@ def test_helper_invoice_repo
   InvoiceRepository.new("test_data/invoice_test.csv")
 end
 
+def test_helper_invoice_items_repo
+  invoice_item_repo = InvoiceItemRepository.new
+  invoice_item_repo.from_csv("test_data/invoice_item_test.csv")
+  invoice_item_repo
+end
+
 def test_helper_sales_engine
   SalesEngine.new(test_helper_csv_hash)
 end
@@ -101,5 +121,6 @@ end
 def test_helper_csv_hash
   {:merchants => "./test_data/merchant_test.csv",
   :items => "./test_data/item_test.csv",
-  :invoices => "test_data/invoice_test.csv"}
+  :invoices => "test_data/invoice_test.csv",
+  :invoice_items => "./test_data/invoice_item_test.csv"}
 end

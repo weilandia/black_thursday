@@ -21,8 +21,8 @@ class InvoiceRepository
       :customer_id => row[:customer_id].to_i,
       :merchant_id => row[:merchant_id].to_i,
       :status => row[:status].to_sym,
-      :created_at => row[:created_at],
-      :updated_at => row[:updated_at]}
+      :created_at => Time.parse(row[:created_at]),
+      :updated_at => Time.parse(row[:updated_at])}
       @all_invoices << Invoice.new(invoice_data)
     end
   end

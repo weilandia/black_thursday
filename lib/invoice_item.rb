@@ -8,8 +8,8 @@ class InvoiceItem
     @invoice_id = invoice_item_data[:invoice_id]
     @quantity = invoice_item_data[:quantity]
     @unit_price = BigDecimal.new(invoice_item_data[:unit_price].to_f, invoice_item_data[:unit_price].to_s.length)
-    @created_at = Time.parse(invoice_item_data[:created_at])
-    @updated_at = Time.parse(invoice_item_data[:updated_at])
+    @created_at = invoice_item_data[:created_at]
+    @updated_at = invoice_item_data[:updated_at]
   end
 
 end

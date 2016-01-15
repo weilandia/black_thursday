@@ -10,7 +10,7 @@ class ItemTest < Minitest::Test
   end
 
   def test_item_can_query_id
-    assert_equal "0001", @item_one.id
+    assert_equal 1, @item_one.id
   end
 
   def test_item_can_query_name
@@ -22,7 +22,7 @@ class ItemTest < Minitest::Test
   end
 
   def test_item_can_query_merchant_id
-    assert_equal "12334105", @item_one.merchant_id
+    assert_equal 12334105, @item_one.merchant_id
   end
 
   def test_item_can_query_creation_date
