@@ -139,6 +139,12 @@ def test_helper_transaction_repo
   transaction_repo
 end
 
+def test_helper_customer_repo
+  customer_repo = CustomerRepository.new
+  customer_repo.from_csv("test_data/customer_test.csv")
+  customer_repo
+end
+
 def test_helper_sales_engine
   SalesEngine.new(test_helper_csv_hash)
 end
@@ -148,5 +154,6 @@ def test_helper_csv_hash
   :items => "./test_data/item_test.csv",
   :invoices => "test_data/invoice_test.csv",
   :invoice_items => "./test_data/invoice_item_test.csv",
-  :transactions => "./test_data/transaction_test.csv"}
+  :transactions => "./test_data/transaction_test.csv",
+  :customers => "test_data/customer_test.csv"}
 end
