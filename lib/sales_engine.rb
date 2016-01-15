@@ -3,7 +3,7 @@ require_relative '../lib/item_repository'
 require_relative '../lib/invoice_repository'
 require_relative '../lib/invoice_item_repository'
 require_relative '../lib/transaction_repository'
-require_relative '../lib/customer'
+require_relative '../lib/customer_repository'
 require_relative '../lib/sales_analyst'
 
 class SalesEngine
