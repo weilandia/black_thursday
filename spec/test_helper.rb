@@ -80,6 +80,15 @@ def transaction_data
   :updated_at => Time.parse("2012-02-26 20:56:56 UTC")}
 end
 
+def customer_data
+  {:id => 1,
+    :first_name => "Joey",
+    :last_name => "Ondricka",
+    :created_at => Time.parse("2012-03-27 14:54:09 UTC"),
+    :updated_at => Time.parse("2012-03-27 14:54:09 UTC")}
+end
+
+
 def test_helper_invoice_item
   InvoiceItem.new(invoice_item_data)
 end
@@ -94,6 +103,10 @@ end
 
 def test_helper_transaction
   Transaction.new(transaction_data)
+end
+
+def test_helper_customer
+  Customer.new(customer_data)
 end
 
 def test_helper_item_repo
