@@ -1,5 +1,6 @@
 class Invoice
-  attr_accessor  :id, :customer_id,  :merchant_id, :status, :created_at, :updated_at, :merchant
+  attr_accessor :merchant
+  attr_reader  :id, :customer_id,  :merchant_id, :status, :created_at, :updated_at
   def initialize(invoice_data)
     @id = invoice_data[:id]
     @customer_id = invoice_data[:customer_id]

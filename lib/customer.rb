@@ -1,5 +1,5 @@
 class Customer
-  attr_accessor :id, :first_name, :last_name, :created_at, :updated_at
+  attr_reader :id, :first_name, :last_name, :created_at, :updated_at
   def initialize(customer_data)
     @id = customer_data[:id]
     @first_name = customer_data[:first_name]
