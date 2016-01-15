@@ -4,7 +4,7 @@ require_relative '../lib/transaction'
 class TransactionRepository
 
   attr_reader :all_transactions
-  def initialize(transaction_data)
+  def from_csv(transaction_data = "./data/transactions.csv")
     @all_transactions = []
     load_data(transaction_data)
   end
@@ -21,7 +21,7 @@ class TransactionRepository
       :invoice_id => row[:invoice_id].to_i,
       :credit_card_number => row[:credit_card_number],
       :credit_card_expiration_date => row[:credit_card_expiration_date],
-      :result => row[:result]
+      :result => row[:result],
       :created_at => Time.parse(row[:created_at]),
       :updated_at => Time.parse(row[:updated_at])}
       @all_transactions << Transaction.new(transaction_data)
@@ -41,11 +41,11 @@ class TransactionRepository
     all.select {|search| search.invoice_id == invoice_id}
   end
 
-  def find_all_by_find_all_by_credit_card_number(credit_card_number)
+  def find_all_by_credit_card_number(credit_card_number)
     all.select {|search| search.credit_card_number == credit_card_number}
   end
 
-  def find_all_by_invoice_id(result)
+  def find_all_by_result(result)
     all.select {|search| search.result == result}
   end
 
