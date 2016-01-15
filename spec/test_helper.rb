@@ -2,6 +2,7 @@ require 'minitest/autorun'; require 'minitest/pride'
 require 'codeclimate-test-reporter'
 require 'simplecov'
 require 'coveralls'
+require 'bigdecimal'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
   Coveralls::SimpleCov::Formatter,
@@ -57,6 +58,20 @@ def invoice_data
   :status => :pending,
   :created_at => "2016-01-11 10:37:09 UTC",
   :updated_at => "2016-01-11 10:37:09 UTC"}
+end
+
+def invoice_item_data
+  {:id => 3,
+  :item_id => 26351,
+  :invoice_id => 12334771,
+  :quantity => 8,
+  :unit_price => BigDecimal.new(348.73, 5),
+  :created_at => "2016-01-11 10:37:09 UTC",
+  :updated_at => "2016-01-11 10:37:09 UTC"}
+end
+
+def test_helper_invoice_item
+  InvoiceItem.new(invoice_item_data)
 end
 
 def test_helper_merchant
