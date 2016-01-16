@@ -1,6 +1,6 @@
 require 'csv'
 require 'bigdecimal'
-require_relative '../lib/invoice'
+require_relative 'invoice'
 require_relative 'data_parser'
 
 class InvoiceRepository
@@ -46,5 +46,4 @@ class InvoiceRepository
   def find_all_by_status(status)
     all.select {|search| search.status == status}
   end
-
 end

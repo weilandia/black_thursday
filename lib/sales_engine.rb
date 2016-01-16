@@ -22,7 +22,7 @@ class SalesEngine
 
   def initialize(data, file_type)
     instantiate_repositories
-    load_data(data, file_type)
+    load_data(data, file_type) #DataParser module
     relationships
   end
 
