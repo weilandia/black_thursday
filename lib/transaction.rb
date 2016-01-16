@@ -9,6 +9,9 @@ class Transaction
     @created_at = transaction_data[:created_at]
     @updated_at = transaction_data[:updated_at]
   end
+  def inspect
+    "#<#{self.class} ##{id})>"
+  end
 end
 
 

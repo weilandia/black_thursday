@@ -10,7 +10,7 @@ class SalesEngine
   attr_reader :merchants, :items, :invoices, :invoice_items, :transactions, :customers
 
   def self.from_csv(data = data_files_hash)
-    SalesEngine.new(data)
+    @s ||= SalesEngine.new(data)
   end
 
   def self.data_files_hash
@@ -29,12 +29,12 @@ class SalesEngine
   end
 
   def instantiate_repositories
-    @items = ItemRepository.new
-    @merchants = MerchantRepository.new
-    @invoices = InvoiceRepository.new
-    @invoice_items = InvoiceItemRepository.new
-    @transactions = TransactionRepository.new
-    @customers = CustomerRepository.new
+    @items ||= ItemRepository.new
+    @merchants ||= MerchantRepository.new
+    @invoices ||= InvoiceRepository.new
+    @invoice_items ||= InvoiceItemRepository.new
+    @transactions ||= TransactionRepository.new
+    @customers ||= CustomerRepository.new
   end
 
   def load_data(data)
@@ -51,6 +51,7 @@ class SalesEngine
     item_merchant_relationship
     invoice_merchant_relationship
     merchant_invoice_relationship
+    invoice_item_relationship
   end
 
   def merchant_item_relationship
@@ -74,6 +75,15 @@ class SalesEngine
   def invoice_merchant_relationship
     invoices.all.each do |invoice|
       invoice.merchant = merchants.find_by_id(invoice.merchant_id)
+    end
+  end
+
+  def invoice_item_relationship
+    item_ids = []
+    invoices.all.each do |invoice|
+      inv_items = invoice_items.find_all_by_invoice_id(invoice.id)
+    item_ids = inv_items.map { |inv_item| inv_item.item_id}
+    invoice.items = item_ids.map { |item_id| items.find_by_id(item_id)}
     end
   end
 end

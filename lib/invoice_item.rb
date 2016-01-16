@@ -11,7 +11,9 @@ class InvoiceItem
     @created_at = invoice_item_data[:created_at]
     @updated_at = invoice_item_data[:updated_at]
   end
-
+  def inspect
+    "#<InvoiceItem ##{id})>"
+  end
 end
 
 

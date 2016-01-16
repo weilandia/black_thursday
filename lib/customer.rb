@@ -7,4 +7,7 @@ class Customer
     @created_at = customer_data[:created_at]
     @updated_at = customer_data[:updated_at]
   end
+  def inspect
+    "#<Customer ##{id} (#{first_name} #{last_name})>"
+  end
 end

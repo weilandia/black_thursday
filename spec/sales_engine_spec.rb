@@ -143,4 +143,10 @@ class SalesEngineTest < Minitest::Test
     assert_equal Merchant, invoice.merchant.class
     assert_equal "Urcase17", invoice.merchant.name
   end
+
+  def test_sales_engine_object_has_access_to_invoice_object_items
+    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+    items = sales_engine.invoices.all.first.items.map { |i| i.name}
+    assert_equal ["TestItem18", "TestItem28", "TestItem1", "TestItem35", "TestItem26", "TestItem27", "TestItem16", "TestItem10"], items
+  end
 end

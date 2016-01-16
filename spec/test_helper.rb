@@ -4,6 +4,14 @@ require 'simplecov'
 require 'coveralls'
 require 'bigdecimal'
 
+class Minitest::Test
+  def setup
+    super
+    p location
+
+  end
+end
+
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
   Coveralls::SimpleCov::Formatter,
   SimpleCov::Formatter::HTMLFormatter,
