@@ -40,11 +40,11 @@ class CustomerRepository
     exact_search(search_result)
   end
 
-  def find_all_by_first_name(first_name)
-    @all_customers.select {|s| s.first_name.downcase.include? first_name.downcase}
+  def find_all_by_first_name(f_name)
+    @all_customers.select {|s| s.first_name.downcase.include? f_name.downcase}
   end
 
-  def find_all_by_last_name(last_name)
-    @all_customers.select {|s| s.last_name.downcase.include? last_name.downcase}
+  def find_all_by_last_name(l_name)
+    @all_customers.select {|s| s.last_name.downcase.include? l_name.downcase}
   end
 end
