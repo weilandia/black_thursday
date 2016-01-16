@@ -1,29 +1,21 @@
 require "csv"
 require_relative '../lib/customer'
+require_relative 'data_parser'
 
 class CustomerRepository
-
+  include DataParser
   attr_reader :all_customers
-  def from_csv(customer_data = "./data/customers.csv")
+  def initialize
     @all_customers = []
-    load_data(customer_data)
-  end
-
-  def load_data(data)
-    customers = CSV.open data, headers: true, header_converters: :symbol
-    customers.each do |row|
-      customer_data= {:id =>  row[:id].to_i,
-                      :first_name => row[:first_name],
-                      :last_name => row[:last_name],
-                      :created_at => Time.parse(row[:created_at]),
-                      :updated_at => Time.parse(row[:updated_at])
-                    }
-      @all_customers << Customer.new(customer_data)
-    end
   end
 
   def inspect
     "#<#{self.class} #{@all_customers.size} rows>"
+  end
+
+  def create_instance(customer_data)
+    customer = Customer.new(customer_data)
+    @all_customers << customer
   end
 
   def all

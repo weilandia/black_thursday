@@ -7,10 +7,8 @@ class Merchant
     @created_at = merchant_data[:created_at]
     @updated_at = merchant_data[:updated_at]
   end
+
   def inspect
-    "#<#{self.class} ##{id})>"
+    "#<#{self.class}, ##{id}, name: #{name}>"
   end
 end
-
-
-# Invoices => id, merchantid (references id of merchant), customerid,

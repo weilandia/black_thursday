@@ -1,35 +1,23 @@
 require 'csv'
 require 'bigdecimal'
 require_relative '../lib/item'
+require_relative 'data_parser'
 
 class ItemRepository
+  include DataParser
   attr_reader :all_items
 
-  def from_csv(item_data = "./data/items.csv")
+  def initialize
     @all_items = []
-    load_data(item_data)
   end
 
   def inspect
     "#<#{self.class} #{@all_items.size} rows>"
   end
 
-  def load_data(data)
-    items = CSV.open data, headers: true, header_converters: :symbol
-    items.each do |row|
-      item_data = {:id => row[:id].to_i,
-                  :name => row[:name],
-                  :description => row[:description],
-                  :unit_price => make_bigdecimal(row[:unit_price]),
-                  :merchant_id => row[:merchant_id].to_i,
-                  :created_at => Time.parse(row[:created_at]),
-                  :updated_at => Time.parse(row[:updated_at])}
-      @all_items << Item.new(item_data)
-    end
-  end
-
-  def make_bigdecimal(unit_price)
-    BigDecimal.new("#{unit_price[0..-3]}.#{unit_price[-2..-1]}")
+  def create_instance(item_data)
+    item = Item.new(item_data)
+    @all_items << item
   end
 
   def all

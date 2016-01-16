@@ -8,6 +8,6 @@ class Customer
     @updated_at = customer_data[:updated_at]
   end
   def inspect
-    "#<Customer ##{id} (#{first_name} #{last_name})>"
+    "#<#{self.class}, ##{id}, #{first_name} #{last_name}>"
   end
 end

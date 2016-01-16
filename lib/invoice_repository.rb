@@ -1,30 +1,24 @@
 require 'csv'
 require 'bigdecimal'
 require_relative '../lib/invoice'
+require_relative 'data_parser'
+
 class InvoiceRepository
+  include DataParser
 
   attr_reader :all_invoices
-  def from_csv(invoice_data = "./data/invoices.csv")
+
+  def initialize
     @all_invoices = []
-    load_data(invoice_data)
   end
 
   def inspect
     "#<#{self.class} #{@all_invoices.size} rows>"
   end
 
-  def load_data(data)
-    invoices = CSV.open data, headers: true, header_converters: :symbol
-    invoices.each do |row|
-      invoice_data =
-      {:id => row[:id].to_i,
-      :customer_id => row[:customer_id].to_i,
-      :merchant_id => row[:merchant_id].to_i,
-      :status => row[:status].to_sym,
-      :created_at => Time.parse(row[:created_at]),
-      :updated_at => Time.parse(row[:updated_at])}
-      @all_invoices << Invoice.new(invoice_data)
-    end
+  def create_instance(invoice_data)
+    invoice = Invoice.new(invoice_data)
+    @all_invoices << invoice
   end
 
   def all

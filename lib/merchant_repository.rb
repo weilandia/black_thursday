@@ -1,28 +1,22 @@
 require "csv"
 require_relative '../lib/merchant'
+require_relative 'data_parser'
 
 class MerchantRepository
-
+  include DataParser
   attr_reader :all_merchants
-  def from_csv(merchant_data = "./data/merchants.csv")
-    @all_merchants = []
-    load_data(merchant_data)
-  end
 
-  def load_data(data)
-    merchants = CSV.open data, headers: true, header_converters: :symbol
-    merchants.each do |row|
-      merchant_data= {:id =>  row[:id].to_i,
-                      :name => row[:name],
-                      :created_at => Time.parse(row[:created_at]),
-                      :updated_at => Time.parse(row[:updated_at])
-                    }
-      @all_merchants << Merchant.new(merchant_data)
-    end
+  def initialize
+    @all_merchants = []
   end
 
   def inspect
     "#<#{self.class} #{@all_merchants.size} rows>"
+  end
+
+  def create_instance(merchant_data)
+    merchant = Merchant.new(merchant_data)
+    @all_merchants << merchant
   end
 
   def all

@@ -1,31 +1,22 @@
 require 'csv'
 require 'bigdecimal'
 require_relative '../lib/transaction'
-class TransactionRepository
+require_relative 'data_parser'
 
+class TransactionRepository
+  include DataParser
   attr_reader :all_transactions
-  def from_csv(transaction_data = "./data/transactions.csv")
+  def initialize
     @all_transactions = []
-    load_data(transaction_data)
   end
 
   def inspect
-    "#<#{self.class} #{@all_invoices.size} rows>"
+    "#<#{self.class} #{@all_transactions.size} rows>"
   end
 
-  def load_data(data)
-    transactions = CSV.open data, headers: true, header_converters: :symbol
-    transactions.each do |row|
-      transaction_data =
-      {:id => row[:id].to_i,
-      :invoice_id => row[:invoice_id].to_i,
-      :credit_card_number => row[:credit_card_number],
-      :credit_card_expiration_date => row[:credit_card_expiration_date],
-      :result => row[:result],
-      :created_at => Time.parse(row[:created_at]),
-      :updated_at => Time.parse(row[:updated_at])}
-      @all_transactions << Transaction.new(transaction_data)
-    end
+  def create_instance(transaction_data)
+    transaction = Transaction.new(transaction_data)
+    @all_transactions << transaction
   end
 
   def all

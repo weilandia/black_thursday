@@ -5,13 +5,15 @@ require_relative '../lib/invoice_item_repository'
 require_relative '../lib/transaction_repository'
 require_relative '../lib/customer_repository'
 require_relative '../lib/sales_analyst'
+require_relative '../lib/data_parser'
 
 class SalesEngine
+  include DataParser
   attr_reader :merchants, :items, :invoices, :invoice_items, :transactions,
   :customers
 
   def self.from_csv(data = data_files_hash)
-    @s ||= SalesEngine.new(data)
+    SalesEngine.new(data, :csv)
   end
 
   def self.data_files_hash
@@ -23,9 +25,9 @@ class SalesEngine
     :customers => "./data/customers.csv"}
   end
 
-  def initialize(csv_data)
+  def initialize(data, file_type)
     instantiate_repositories
-    load_data(csv_data)
+    load_data(data, file_type)
     relationships
   end
 
@@ -38,13 +40,18 @@ class SalesEngine
     @customers ||= CustomerRepository.new
   end
 
-  def load_data(data)
-    @items.from_csv(data[:items])
-    @merchants.from_csv(data[:merchants])
-    @invoices.from_csv(data[:invoices])
-    @invoice_items.from_csv(data[:invoice_items])
-    @transactions.from_csv(data[:transactions])
-    @customers.from_csv(data[:customers])
+  def load_data(data, file_type)
+    if file_type == :csv then load_csv_data(data)
+    end
+  end
+
+  def load_csv_data(data)
+    from_csv(data[:items], items)
+    from_csv(data[:merchants], merchants)
+    from_csv(data[:invoices], invoices)
+    from_csv(data[:invoice_items], invoice_items)
+    from_csv(data[:transactions], transactions)
+    from_csv(data[:customers], customers)
   end
 
   def relationships

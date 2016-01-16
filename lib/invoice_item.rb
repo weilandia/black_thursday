@@ -1,20 +1,20 @@
-require 'bigdecimal'
-
+require 'make_bigdecimal'
 class InvoiceItem
+  include MakeBigDecimal
   attr_reader :id, :item_id, :invoice_id, :quantity, :unit_price,
   :created_at,:updated_at
   def initialize(invoice_item_data)
     @id = invoice_item_data[:id]
-    @item_id = invoice_item_data[:item_id]
-    @invoice_id = invoice_item_data[:invoice_id]
-    @quantity = invoice_item_data[:quantity]
-    @unit_price = BigDecimal.new(invoice_item_data[:unit_price].to_f,
-    invoice_item_data[:unit_price].to_s.length)
+    @item_id = invoice_item_data[:item_id].to_i
+    @invoice_id = invoice_item_data[:invoice_id].to_i
+    @quantity = invoice_item_data[:quantity].to_i
+    @unit_price = make_bigdecimal(invoice_item_data[:unit_price])
     @created_at = invoice_item_data[:created_at]
     @updated_at = invoice_item_data[:updated_at]
   end
+
   def inspect
-    "#<InvoiceItem ##{id})>"
+    "#<#{self.class}, ##{id}, invoice_id: #{invoice_id}, quant: #{quantity}>"
   end
 end
 

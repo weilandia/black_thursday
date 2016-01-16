@@ -1,5 +1,6 @@
 require_relative 'test_helper'
 require_relative '../lib/item_repository'
+require_relative '../lib/data_parser'
 
 class ItemRepositoryTest < Minitest::Test
   def setup
