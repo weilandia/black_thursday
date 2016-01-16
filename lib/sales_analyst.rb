@@ -14,18 +14,18 @@ class SalesAnalyst
   end
 
   def total(array)
-   array.inject(0){|accum, i| accum + i }
+   array.inject(0) { |a, e| a + e }
   end
 
   def mean(array)
-   total = total(array)
-   total/array.length.to_f
+    total = total(array)
+    total / array.length.to_f
   end
 
   def sample_variance(mean, array)
-   m = mean
-   sum = array.inject(0){|accum, i| accum + (i-m)**2 }
-   sum/(array.length-1).to_f
+    m = mean
+    sum = array.inject(0){|accum, i| accum + (i-m)**2 }
+    sum / (array.length-1).to_f
   end
 
   def standard_deviation(array)
