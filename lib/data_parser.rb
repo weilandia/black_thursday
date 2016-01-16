@@ -1,4 +1,5 @@
 require 'csv'
+require 'json'
 require 'bigdecimal'
 require_relative 'item'
 require_relative 'merchant'
@@ -28,6 +29,12 @@ module DataParser
               :created_at => Time.parse(row[:created_at]),
               :updated_at => Time.parse(row[:updated_at])}
       repository.create_instance(data)
+    end
+  end
+
+  def from_json(data, repository)
+    JSON.parse(data, {:symbolize_names => true}).each do |hash|
+    repository.create_instance(hash)
     end
   end
 end

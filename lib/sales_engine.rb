@@ -1,28 +1,41 @@
-require_relative '../lib/merchant_repository'
-require_relative '../lib/item_repository'
-require_relative '../lib/invoice_repository'
-require_relative '../lib/invoice_item_repository'
-require_relative '../lib/transaction_repository'
-require_relative '../lib/customer_repository'
-require_relative '../lib/sales_analyst'
-require_relative '../lib/data_parser'
+require_relative 'merchant_repository'
+require_relative 'item_repository'
+require_relative 'invoice_repository'
+require_relative 'invoice_item_repository'
+require_relative 'transaction_repository'
+require_relative 'customer_repository'
+require_relative 'sales_analyst'
+require_relative 'data_parser'
 
 class SalesEngine
   include DataParser
   attr_reader :merchants, :items, :invoices, :invoice_items, :transactions,
   :customers
 
-  def self.from_csv(data = data_files_hash)
+  def self.from_csv(data = csv_data_files_hash)
     SalesEngine.new(data, :csv)
   end
 
-  def self.data_files_hash
+  def self.from_json(data = csv_data_files_hash)
+    SalesEngine.new(data, :json)
+  end
+
+  def self.csv_data_files_hash
     {:merchants => "./data/merchants.csv",
     :items => "./data/items.csv",
     :invoices => "./data/invoices.csv",
     :invoice_items => "./data/invoice_items.csv",
     :transactions => "./data/transactions.csv",
     :customers => "./data/customers.csv"}
+  end
+
+  def self.json_data_files_hash
+    {:merchants => "./data/merchants.json",
+    :items => "./data/items.json",
+    :invoices => "./data/invoices.json",
+    :invoice_items => "./data/invoice_items.json",
+    :transactions => "./data/transactions.json",
+    :customers => "./data/customers.json"}
   end
 
   def initialize(data, file_type)
@@ -42,7 +55,7 @@ class SalesEngine
 
   def load_data(data, file_type)
     if file_type == :csv then load_csv_data(data)
-    end
+    else load_json_data(data) end
   end
 
   def load_csv_data(data)
@@ -52,6 +65,19 @@ class SalesEngine
     from_csv(data[:invoice_items], invoice_items)
     from_csv(data[:transactions], transactions)
     from_csv(data[:customers], customers)
+  end
+
+  def load_json_data(data)
+    from_json(json_convert(data[:items]), items)
+    from_json(json_convert(data[:merchants]), merchants)
+    from_json(json_convert(data[:invoices]), invoices)
+    from_json(json_convert(data[:invoice_items]), invoice_items)
+    from_json(json_convert(data[:transactions]), transactions)
+    from_json(json_convert(data[:customers]), customers)
+  end
+
+  def json_convert(file)
+    CSV.open(file, :headers => true).map { |x| x.to_h }.to_json
   end
 
   def relationships

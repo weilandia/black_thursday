@@ -18,11 +18,11 @@ class SalesEngineTest < Minitest::Test
   end
 
   def test_sales_engine_data_files_hash_method_defaults_correct_files
-    assert_equal SalesEngine.data_files_hash[:merchants], "./data/merchants.csv"
+    assert_equal SalesEngine.csv_data_files_hash[:merchants], "./data/merchants.csv"
 
-    assert_equal SalesEngine.data_files_hash[:items], "./data/items.csv"
+    assert_equal SalesEngine.csv_data_files_hash[:items], "./data/items.csv"
 
-    assert_equal SalesEngine.data_files_hash[:invoices], "./data/invoices.csv"
+    assert_equal SalesEngine.csv_data_files_hash[:invoices], "./data/invoices.csv"
   end
 
   # Integrated SalesEngine tests
@@ -148,5 +148,10 @@ class SalesEngineTest < Minitest::Test
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
     items = sales_engine.invoices.all.first.items.map { |i| i.name}
     assert_equal ["TestItem18", "TestItem28", "TestItem1", "TestItem35", "TestItem26", "TestItem27", "TestItem16", "TestItem10"], items
+  end
+
+  def test_sales_engine_from_json
+    sales_engine = SalesEngine.from_json(test_helper_csv_hash)
+    assert_equal MerchantRepository, sales_engine.merchants.class
   end
 end

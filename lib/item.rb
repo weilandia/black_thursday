@@ -13,6 +13,7 @@ class Item
     @created_at = item_data[:created_at]
     @updated_at = item_data[:updated_at]
   end
+
   def inspect
     "#<#{self.class}, ##{id}, name: #{name}, price: #{unit_price.to_f}>"
   end

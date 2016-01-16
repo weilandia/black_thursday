@@ -1,0 +1,1982 @@
+[
+  {
+    "id":1,
+    "item_id":22,
+    "invoice_id":1,
+    "quantity":5,
+    "unit_price":13635,
+    "created_at":"2012-03-27 14:54:09 UTC",
+    "updated_at":"2012-03-27 14:54:09 UTC"
+  },
+  {
+    "id":2,
+    "item_id":32,
+    "invoice_id":1,
+    "quantity":9,
+    "unit_price":23324,
+    "created_at":"2012-03-27 14:54:09 UTC",
+    "updated_at":"2012-03-27 14:54:09 UTC"
+  },
+  {
+    "id":3,
+    "item_id":5,
+    "invoice_id":1,
+    "quantity":8,
+    "unit_price":34873,
+    "created_at":"2012-03-27 14:54:09 UTC",
+    "updated_at":"2012-03-27 14:54:09 UTC"
+  },
+  {
+    "id":4,
+    "item_id":39,
+    "invoice_id":1,
+    "quantity":3,
+    "unit_price":2196,
+    "created_at":"2012-03-27 14:54:09 UTC",
+    "updated_at":"2012-03-27 14:54:09 UTC"
+  },
+  {
+    "id":5,
+    "item_id":30,
+    "invoice_id":1,
+    "quantity":7,
+    "unit_price":79140,
+    "created_at":"2012-03-27 14:54:09 UTC",
+    "updated_at":"2012-03-27 14:54:09 UTC"
+  },
+  {
+    "id":6,
+    "item_id":31,
+    "invoice_id":1,
+    "quantity":5,
+    "unit_price":52100,
+    "created_at":"2012-03-27 14:54:09 UTC",
+    "updated_at":"2012-03-27 14:54:09 UTC"
+  },
+  {
+    "id":7,
+    "item_id":20,
+    "invoice_id":1,
+    "quantity":4,
+    "unit_price":66747,
+    "created_at":"2012-03-27 14:54:09 UTC",
+    "updated_at":"2012-03-27 14:54:09 UTC"
+  },
+  {
+    "id":8,
+    "item_id":14,
+    "invoice_id":1,
+    "quantity":6,
+    "unit_price":76941,
+    "created_at":"2012-03-27 14:54:09 UTC",
+    "updated_at":"2012-03-27 14:54:09 UTC"
+  },
+  {
+    "id":9,
+    "item_id":39,
+    "invoice_id":2,
+    "quantity":6,
+    "unit_price":29973,
+    "created_at":"2012-03-27 14:54:09 UTC",
+    "updated_at":"2012-03-27 14:54:09 UTC"
+  },
+  {
+    "id":10,
+    "item_id":39,
+    "invoice_id":2,
+    "quantity":4,
+    "unit_price":1859,
+    "created_at":"2012-03-27 14:54:09 UTC",
+    "updated_at":"2012-03-27 14:54:09 UTC"
+  },
+  {
+    "id":11,
+    "item_id":32,
+    "invoice_id":2,
+    "quantity":3,
+    "unit_price":30949,
+    "created_at":"2012-03-27 14:54:09 UTC",
+    "updated_at":"2012-03-27 14:54:09 UTC"
+  },
+  {
+    "id":12,
+    "item_id":37,
+    "invoice_id":2,
+    "quantity":8,
+    "unit_price":31099,
+    "created_at":"2012-03-27 14:54:09 UTC",
+    "updated_at":"2012-03-27 14:54:09 UTC"
+  },
+  {
+    "id":13,
+    "item_id":7,
+    "invoice_id":3,
+    "quantity":4,
+    "unit_price":78660,
+    "created_at":"2012-03-27 14:54:09 UTC",
+    "updated_at":"2012-03-27 14:54:09 UTC"
+  },
+  {
+    "id":14,
+    "item_id":36,
+    "invoice_id":3,
+    "quantity":7,
+    "unit_price":4264,
+    "created_at":"2012-03-27 14:54:09 UTC",
+    "updated_at":"2012-03-27 14:54:09 UTC"
+  },
+  {
+    "id":15,
+    "item_id":11,
+    "invoice_id":3,
+    "quantity":5,
+    "unit_price":72018,
+    "created_at":"2012-03-27 14:54:09 UTC",
+    "updated_at":"2012-03-27 14:54:09 UTC"
+  },
+  {
+    "id":16,
+    "item_id":1,
+    "invoice_id":3,
+    "quantity":9,
+    "unit_price":72018,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":17,
+    "item_id":37,
+    "invoice_id":3,
+    "quantity":5,
+    "unit_price":46383,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":18,
+    "item_id":13,
+    "invoice_id":3,
+    "quantity":5,
+    "unit_price":78660,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":19,
+    "item_id":29,
+    "invoice_id":3,
+    "quantity":8,
+    "unit_price":48718,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":20,
+    "item_id":26,
+    "invoice_id":3,
+    "quantity":9,
+    "unit_price":72018,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":21,
+    "item_id":17,
+    "invoice_id":4,
+    "quantity":2,
+    "unit_price":42203,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":22,
+    "item_id":1,
+    "invoice_id":4,
+    "quantity":3,
+    "unit_price":37333,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":23,
+    "item_id":36,
+    "invoice_id":5,
+    "quantity":1,
+    "unit_price":66412,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":24,
+    "item_id":11,
+    "invoice_id":5,
+    "quantity":10,
+    "unit_price":49121,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":25,
+    "item_id":35,
+    "invoice_id":5,
+    "quantity":9,
+    "unit_price":32346,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":26,
+    "item_id":19,
+    "invoice_id":5,
+    "quantity":10,
+    "unit_price":73408,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":27,
+    "item_id":35,
+    "invoice_id":6,
+    "quantity":2,
+    "unit_price":8342,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":28,
+    "item_id":13,
+    "invoice_id":6,
+    "quantity":3,
+    "unit_price":48795,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":29,
+    "item_id":30,
+    "invoice_id":6,
+    "quantity":2,
+    "unit_price":22098,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":30,
+    "item_id":1,
+    "invoice_id":6,
+    "quantity":6,
+    "unit_price":18222,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":31,
+    "item_id":16,
+    "invoice_id":6,
+    "quantity":2,
+    "unit_price":50369,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":32,
+    "item_id":3,
+    "invoice_id":6,
+    "quantity":1,
+    "unit_price":25717,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":33,
+    "item_id":30,
+    "invoice_id":6,
+    "quantity":1,
+    "unit_price":34423,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":34,
+    "item_id":24,
+    "invoice_id":7,
+    "quantity":4,
+    "unit_price":59584,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":35,
+    "item_id":18,
+    "invoice_id":7,
+    "quantity":9,
+    "unit_price":97851,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":36,
+    "item_id":5,
+    "invoice_id":7,
+    "quantity":9,
+    "unit_price":54689,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":37,
+    "item_id":36,
+    "invoice_id":7,
+    "quantity":2,
+    "unit_price":45518,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":38,
+    "item_id":17,
+    "invoice_id":8,
+    "quantity":2,
+    "unit_price":50051,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":39,
+    "item_id":10,
+    "invoice_id":8,
+    "quantity":5,
+    "unit_price":50051,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":40,
+    "item_id":1,
+    "invoice_id":8,
+    "quantity":2,
+    "unit_price":35772,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":41,
+    "item_id":7,
+    "invoice_id":8,
+    "quantity":2,
+    "unit_price":70783,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":42,
+    "item_id":15,
+    "invoice_id":8,
+    "quantity":8,
+    "unit_price":35772,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":43,
+    "item_id":27,
+    "invoice_id":8,
+    "quantity":9,
+    "unit_price":70783,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":44,
+    "item_id":35,
+    "invoice_id":8,
+    "quantity":7,
+    "unit_price":70783,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":45,
+    "item_id":31,
+    "invoice_id":8,
+    "quantity":7,
+    "unit_price":70783,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":46,
+    "item_id":26,
+    "invoice_id":9,
+    "quantity":10,
+    "unit_price":6056,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":47,
+    "item_id":9,
+    "invoice_id":9,
+    "quantity":4,
+    "unit_price":48582,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":48,
+    "item_id":21,
+    "invoice_id":9,
+    "quantity":5,
+    "unit_price":29744,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":49,
+    "item_id":15,
+    "invoice_id":10,
+    "quantity":4,
+    "unit_price":17154,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":50,
+    "item_id":3,
+    "invoice_id":10,
+    "quantity":6,
+    "unit_price":54368,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":51,
+    "item_id":9,
+    "invoice_id":10,
+    "quantity":3,
+    "unit_price":80725,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":52,
+    "item_id":24,
+    "invoice_id":10,
+    "quantity":4,
+    "unit_price":98668,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":53,
+    "item_id":31,
+    "invoice_id":10,
+    "quantity":6,
+    "unit_price":47367,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":54,
+    "item_id":29,
+    "invoice_id":11,
+    "quantity":7,
+    "unit_price":62086,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":55,
+    "item_id":17,
+    "invoice_id":11,
+    "quantity":2,
+    "unit_price":40187,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":56,
+    "item_id":14,
+    "invoice_id":12,
+    "quantity":2,
+    "unit_price":78031,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":57,
+    "item_id":2,
+    "invoice_id":12,
+    "quantity":2,
+    "unit_price":41702,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":58,
+    "item_id":5,
+    "invoice_id":12,
+    "quantity":6,
+    "unit_price":71340,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":59,
+    "item_id":14,
+    "invoice_id":12,
+    "quantity":6,
+    "unit_price":7196,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":60,
+    "item_id":36,
+    "invoice_id":12,
+    "quantity":3,
+    "unit_price":41702,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":61,
+    "item_id":37,
+    "invoice_id":12,
+    "quantity":8,
+    "unit_price":22546,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":62,
+    "item_id":1,
+    "invoice_id":13,
+    "quantity":4,
+    "unit_price":6345,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":63,
+    "item_id":11,
+    "invoice_id":13,
+    "quantity":8,
+    "unit_price":84928,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":64,
+    "item_id":30,
+    "invoice_id":13,
+    "quantity":10,
+    "unit_price":84803,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":65,
+    "item_id":2,
+    "invoice_id":13,
+    "quantity":5,
+    "unit_price":12098,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":66,
+    "item_id":25,
+    "invoice_id":13,
+    "quantity":2,
+    "unit_price":3024,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":67,
+    "item_id":32,
+    "invoice_id":14,
+    "quantity":9,
+    "unit_price":45253,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":68,
+    "item_id":37,
+    "invoice_id":14,
+    "quantity":4,
+    "unit_price":67760,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":69,
+    "item_id":17,
+    "invoice_id":14,
+    "quantity":3,
+    "unit_price":45253,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":70,
+    "item_id":33,
+    "invoice_id":14,
+    "quantity":1,
+    "unit_price":55096,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":71,
+    "item_id":29,
+    "invoice_id":14,
+    "quantity":8,
+    "unit_price":63465,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":72,
+    "item_id":28,
+    "invoice_id":14,
+    "quantity":3,
+    "unit_price":2126,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":73,
+    "item_id":9,
+    "invoice_id":14,
+    "quantity":7,
+    "unit_price":45518,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":74,
+    "item_id":37,
+    "invoice_id":14,
+    "quantity":6,
+    "unit_price":91298,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":75,
+    "item_id":17,
+    "invoice_id":15,
+    "quantity":7,
+    "unit_price":75637,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":76,
+    "item_id":18,
+    "invoice_id":15,
+    "quantity":7,
+    "unit_price":74285,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":77,
+    "item_id":26,
+    "invoice_id":15,
+    "quantity":4,
+    "unit_price":45339,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":78,
+    "item_id":37,
+    "invoice_id":15,
+    "quantity":1,
+    "unit_price":89480,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":79,
+    "item_id":4,
+    "invoice_id":15,
+    "quantity":3,
+    "unit_price":82413,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":80,
+    "item_id":15,
+    "invoice_id":15,
+    "quantity":1,
+    "unit_price":93831,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":81,
+    "item_id":33,
+    "invoice_id":15,
+    "quantity":8,
+    "unit_price":92302,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":82,
+    "item_id":17,
+    "invoice_id":15,
+    "quantity":8,
+    "unit_price":89480,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":83,
+    "item_id":7,
+    "invoice_id":16,
+    "quantity":4,
+    "unit_price":6056,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":84,
+    "item_id":6,
+    "invoice_id":17,
+    "quantity":6,
+    "unit_price":85319,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":85,
+    "item_id":19,
+    "invoice_id":17,
+    "quantity":10,
+    "unit_price":85319,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":86,
+    "item_id":17,
+    "invoice_id":17,
+    "quantity":6,
+    "unit_price":85319,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":87,
+    "item_id":26,
+    "invoice_id":17,
+    "quantity":7,
+    "unit_price":85319,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":88,
+    "item_id":22,
+    "invoice_id":18,
+    "quantity":2,
+    "unit_price":88660,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":89,
+    "item_id":2,
+    "invoice_id":18,
+    "quantity":3,
+    "unit_price":82821,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":90,
+    "item_id":34,
+    "invoice_id":18,
+    "quantity":5,
+    "unit_price":46317,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":91,
+    "item_id":34,
+    "invoice_id":18,
+    "quantity":6,
+    "unit_price":35891,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":92,
+    "item_id":23,
+    "invoice_id":18,
+    "quantity":7,
+    "unit_price":66599,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":93,
+    "item_id":29,
+    "invoice_id":18,
+    "quantity":5,
+    "unit_price":82819,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":94,
+    "item_id":10,
+    "invoice_id":18,
+    "quantity":8,
+    "unit_price":82819,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":95,
+    "item_id":10,
+    "invoice_id":19,
+    "quantity":6,
+    "unit_price":40767,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":96,
+    "item_id":37,
+    "invoice_id":19,
+    "quantity":8,
+    "unit_price":48177,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":97,
+    "item_id":19,
+    "invoice_id":19,
+    "quantity":7,
+    "unit_price":69590,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":98,
+    "item_id":38,
+    "invoice_id":20,
+    "quantity":7,
+    "unit_price":98947,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":99,
+    "item_id":26,
+    "invoice_id":20,
+    "quantity":3,
+    "unit_price":99465,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":100,
+    "item_id":23,
+    "invoice_id":20,
+    "quantity":2,
+    "unit_price":77409,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":101,
+    "item_id":36,
+    "invoice_id":20,
+    "quantity":1,
+    "unit_price":78612,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":102,
+    "item_id":18,
+    "invoice_id":20,
+    "quantity":1,
+    "unit_price":77409,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":103,
+    "item_id":14,
+    "invoice_id":21,
+    "quantity":4,
+    "unit_price":50976,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":104,
+    "item_id":2,
+    "invoice_id":21,
+    "quantity":6,
+    "unit_price":96110,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":105,
+    "item_id":3,
+    "invoice_id":21,
+    "quantity":8,
+    "unit_price":70021,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":106,
+    "item_id":30,
+    "invoice_id":21,
+    "quantity":10,
+    "unit_price":79619,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":107,
+    "item_id":30,
+    "invoice_id":21,
+    "quantity":5,
+    "unit_price":26615,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":108,
+    "item_id":29,
+    "invoice_id":21,
+    "quantity":3,
+    "unit_price":26615,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":109,
+    "item_id":39,
+    "invoice_id":22,
+    "quantity":1,
+    "unit_price":5488,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":110,
+    "item_id":13,
+    "invoice_id":22,
+    "quantity":5,
+    "unit_price":83466,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":111,
+    "item_id":31,
+    "invoice_id":22,
+    "quantity":7,
+    "unit_price":81647,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":112,
+    "item_id":20,
+    "invoice_id":22,
+    "quantity":9,
+    "unit_price":74641,
+    "created_at":"2012-03-27 14:54:10 UTC",
+    "updated_at":"2012-03-27 14:54:10 UTC"
+  },
+  {
+    "id":113,
+    "item_id":21,
+    "invoice_id":22,
+    "quantity":10,
+    "unit_price":88937,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":114,
+    "item_id":20,
+    "invoice_id":22,
+    "quantity":2,
+    "unit_price":70356,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":115,
+    "item_id":36,
+    "invoice_id":22,
+    "quantity":4,
+    "unit_price":70356,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":116,
+    "item_id":19,
+    "invoice_id":23,
+    "quantity":6,
+    "unit_price":90972,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":117,
+    "item_id":34,
+    "invoice_id":24,
+    "quantity":5,
+    "unit_price":33554,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":118,
+    "item_id":26,
+    "invoice_id":24,
+    "quantity":4,
+    "unit_price":49203,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":119,
+    "item_id":22,
+    "invoice_id":25,
+    "quantity":10,
+    "unit_price":20539,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":120,
+    "item_id":17,
+    "invoice_id":25,
+    "quantity":9,
+    "unit_price":75644,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":121,
+    "item_id":9,
+    "invoice_id":25,
+    "quantity":8,
+    "unit_price":94117,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":122,
+    "item_id":7,
+    "invoice_id":26,
+    "quantity":7,
+    "unit_price":28965,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":123,
+    "item_id":24,
+    "invoice_id":26,
+    "quantity":3,
+    "unit_price":21590,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":124,
+    "item_id":1,
+    "invoice_id":26,
+    "quantity":9,
+    "unit_price":70137,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":125,
+    "item_id":31,
+    "invoice_id":26,
+    "quantity":4,
+    "unit_price":10356,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":126,
+    "item_id":11,
+    "invoice_id":26,
+    "quantity":9,
+    "unit_price":65505,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":127,
+    "item_id":6,
+    "invoice_id":26,
+    "quantity":1,
+    "unit_price":65896,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":128,
+    "item_id":10,
+    "invoice_id":26,
+    "quantity":4,
+    "unit_price":74817,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":129,
+    "item_id":31,
+    "invoice_id":27,
+    "quantity":6,
+    "unit_price":35980,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":130,
+    "item_id":38,
+    "invoice_id":28,
+    "quantity":9,
+    "unit_price":56345,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":131,
+    "item_id":27,
+    "invoice_id":28,
+    "quantity":4,
+    "unit_price":96918,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":132,
+    "item_id":2,
+    "invoice_id":28,
+    "quantity":4,
+    "unit_price":36881,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":133,
+    "item_id":28,
+    "invoice_id":29,
+    "quantity":9,
+    "unit_price":22582,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":134,
+    "item_id":11,
+    "invoice_id":29,
+    "quantity":4,
+    "unit_price":4291,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":135,
+    "item_id":31,
+    "invoice_id":29,
+    "quantity":2,
+    "unit_price":75107,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":136,
+    "item_id":22,
+    "invoice_id":29,
+    "quantity":10,
+    "unit_price":67076,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":137,
+    "item_id":8,
+    "invoice_id":29,
+    "quantity":1,
+    "unit_price":4291,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":138,
+    "item_id":9,
+    "invoice_id":29,
+    "quantity":6,
+    "unit_price":15925,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":139,
+    "item_id":1,
+    "invoice_id":29,
+    "quantity":4,
+    "unit_price":31163,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":140,
+    "item_id":17,
+    "invoice_id":29,
+    "quantity":1,
+    "unit_price":15925,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":141,
+    "item_id":35,
+    "invoice_id":30,
+    "quantity":5,
+    "unit_price":49948,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":142,
+    "item_id":39,
+    "invoice_id":30,
+    "quantity":6,
+    "unit_price":1047,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":143,
+    "item_id":6,
+    "invoice_id":31,
+    "quantity":10,
+    "unit_price":74446,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":144,
+    "item_id":28,
+    "invoice_id":31,
+    "quantity":3,
+    "unit_price":74446,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":145,
+    "item_id":36,
+    "invoice_id":31,
+    "quantity":1,
+    "unit_price":94933,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":146,
+    "item_id":26,
+    "invoice_id":31,
+    "quantity":6,
+    "unit_price":94933,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":147,
+    "item_id":1,
+    "invoice_id":31,
+    "quantity":4,
+    "unit_price":24053,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":148,
+    "item_id":23,
+    "invoice_id":31,
+    "quantity":8,
+    "unit_price":65964,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":149,
+    "item_id":12,
+    "invoice_id":31,
+    "quantity":9,
+    "unit_price":65964,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":150,
+    "item_id":12,
+    "invoice_id":32,
+    "quantity":4,
+    "unit_price":14772,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":151,
+    "item_id":30,
+    "invoice_id":32,
+    "quantity":10,
+    "unit_price":14772,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":152,
+    "item_id":9,
+    "invoice_id":32,
+    "quantity":8,
+    "unit_price":14772,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":153,
+    "item_id":12,
+    "invoice_id":32,
+    "quantity":6,
+    "unit_price":60093,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":154,
+    "item_id":38,
+    "invoice_id":32,
+    "quantity":10,
+    "unit_price":77563,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":155,
+    "item_id":35,
+    "invoice_id":32,
+    "quantity":9,
+    "unit_price":1553,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":156,
+    "item_id":18,
+    "invoice_id":32,
+    "quantity":5,
+    "unit_price":60093,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":157,
+    "item_id":8,
+    "invoice_id":32,
+    "quantity":5,
+    "unit_price":87411,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":158,
+    "item_id":6,
+    "invoice_id":33,
+    "quantity":5,
+    "unit_price":10933,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":159,
+    "item_id":16,
+    "invoice_id":33,
+    "quantity":10,
+    "unit_price":10933,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":160,
+    "item_id":10,
+    "invoice_id":33,
+    "quantity":2,
+    "unit_price":30323,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":161,
+    "item_id":22,
+    "invoice_id":33,
+    "quantity":8,
+    "unit_price":29868,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":162,
+    "item_id":26,
+    "invoice_id":33,
+    "quantity":10,
+    "unit_price":82216,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":163,
+    "item_id":2,
+    "invoice_id":34,
+    "quantity":9,
+    "unit_price":90367,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":164,
+    "item_id":7,
+    "invoice_id":34,
+    "quantity":5,
+    "unit_price":94583,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":165,
+    "item_id":12,
+    "invoice_id":34,
+    "quantity":6,
+    "unit_price":68536,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":166,
+    "item_id":21,
+    "invoice_id":34,
+    "quantity":4,
+    "unit_price":68007,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":167,
+    "item_id":21,
+    "invoice_id":34,
+    "quantity":9,
+    "unit_price":48491,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":168,
+    "item_id":30,
+    "invoice_id":34,
+    "quantity":1,
+    "unit_price":91927,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":169,
+    "item_id":30,
+    "invoice_id":35,
+    "quantity":4,
+    "unit_price":17933,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":170,
+    "item_id":32,
+    "invoice_id":35,
+    "quantity":6,
+    "unit_price":45989,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":171,
+    "item_id":26,
+    "invoice_id":35,
+    "quantity":3,
+    "unit_price":45989,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":172,
+    "item_id":2,
+    "invoice_id":36,
+    "quantity":9,
+    "unit_price":88102,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":173,
+    "item_id":7,
+    "invoice_id":36,
+    "quantity":8,
+    "unit_price":30485,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":174,
+    "item_id":33,
+    "invoice_id":36,
+    "quantity":4,
+    "unit_price":52356,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":175,
+    "item_id":5,
+    "invoice_id":37,
+    "quantity":2,
+    "unit_price":37571,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":176,
+    "item_id":8,
+    "invoice_id":38,
+    "quantity":3,
+    "unit_price":65305,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":177,
+    "item_id":25,
+    "invoice_id":38,
+    "quantity":4,
+    "unit_price":63232,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":178,
+    "item_id":22,
+    "invoice_id":39,
+    "quantity":7,
+    "unit_price":57632,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":179,
+    "item_id":8,
+    "invoice_id":39,
+    "quantity":5,
+    "unit_price":38716,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":180,
+    "item_id":39,
+    "invoice_id":39,
+    "quantity":1,
+    "unit_price":32321,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":181,
+    "item_id":20,
+    "invoice_id":39,
+    "quantity":8,
+    "unit_price":45218,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":182,
+    "item_id":34,
+    "invoice_id":39,
+    "quantity":5,
+    "unit_price":38716,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":183,
+    "item_id":22,
+    "invoice_id":39,
+    "quantity":3,
+    "unit_price":40138,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":184,
+    "item_id":9,
+    "invoice_id":40,
+    "quantity":10,
+    "unit_price":17505,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":185,
+    "item_id":6,
+    "invoice_id":40,
+    "quantity":5,
+    "unit_price":63451,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":186,
+    "item_id":30,
+    "invoice_id":40,
+    "quantity":10,
+    "unit_price":82457,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":187,
+    "item_id":8,
+    "invoice_id":40,
+    "quantity":3,
+    "unit_price":53765,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":188,
+    "item_id":35,
+    "invoice_id":40,
+    "quantity":4,
+    "unit_price":37578,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":189,
+    "item_id":14,
+    "invoice_id":41,
+    "quantity":9,
+    "unit_price":56253,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":190,
+    "item_id":33,
+    "invoice_id":42,
+    "quantity":2,
+    "unit_price":15191,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":191,
+    "item_id":35,
+    "invoice_id":42,
+    "quantity":3,
+    "unit_price":68910,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":192,
+    "item_id":5,
+    "invoice_id":42,
+    "quantity":1,
+    "unit_price":91251,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":193,
+    "item_id":3,
+    "invoice_id":42,
+    "quantity":2,
+    "unit_price":14004,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":194,
+    "item_id":30,
+    "invoice_id":42,
+    "quantity":7,
+    "unit_price":22512,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":195,
+    "item_id":5,
+    "invoice_id":42,
+    "quantity":9,
+    "unit_price":15460,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":196,
+    "item_id":24,
+    "invoice_id":43,
+    "quantity":7,
+    "unit_price":2631,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":197,
+    "item_id":13,
+    "invoice_id":43,
+    "quantity":9,
+    "unit_price":30157,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":198,
+    "item_id":30,
+    "invoice_id":43,
+    "quantity":8,
+    "unit_price":85707,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":199,
+    "item_id":35,
+    "invoice_id":43,
+    "quantity":9,
+    "unit_price":62925,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":200,
+    "item_id":13,
+    "invoice_id":43,
+    "quantity":1,
+    "unit_price":40897,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":201,
+    "item_id":14,
+    "invoice_id":44,
+    "quantity":6,
+    "unit_price":6853,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":202,
+    "item_id":1,
+    "invoice_id":44,
+    "quantity":1,
+    "unit_price":88026,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":203,
+    "item_id":36,
+    "invoice_id":45,
+    "quantity":10,
+    "unit_price":10781,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":204,
+    "item_id":13,
+    "invoice_id":45,
+    "quantity":8,
+    "unit_price":85642,
+    "created_at":"2012-03-27 14:54:11 UTC",
+    "updated_at":"2012-03-27 14:54:11 UTC"
+  },
+  {
+    "id":205,
+    "item_id":20,
+    "invoice_id":46,
+    "quantity":1,
+    "unit_price":98668,
+    "created_at":"2012-03-27 14:54:12 UTC",
+    "updated_at":"2012-03-27 14:54:12 UTC"
+  },
+  {
+    "id":206,
+    "item_id":36,
+    "invoice_id":47,
+    "quantity":5,
+    "unit_price":91721,
+    "created_at":"2012-03-27 14:54:12 UTC",
+    "updated_at":"2012-03-27 14:54:12 UTC"
+  },
+  {
+    "id":207,
+    "item_id":8,
+    "invoice_id":48,
+    "quantity":1,
+    "unit_price":54715,
+    "created_at":"2012-03-27 14:54:12 UTC",
+    "updated_at":"2012-03-27 14:54:12 UTC"
+  },
+  {
+    "id":208,
+    "item_id":18,
+    "invoice_id":48,
+    "quantity":1,
+    "unit_price":43691,
+    "created_at":"2012-03-27 14:54:12 UTC",
+    "updated_at":"2012-03-27 14:54:12 UTC"
+  },
+  {
+    "id":209,
+    "item_id":3,
+    "invoice_id":49,
+    "quantity":7,
+    "unit_price":27462,
+    "created_at":"2012-03-27 14:54:12 UTC",
+    "updated_at":"2012-03-27 14:54:12 UTC"
+  },
+  {
+    "id":210,
+    "item_id":24,
+    "invoice_id":49,
+    "quantity":10,
+    "unit_price":62071,
+    "created_at":"2012-03-27 14:54:12 UTC",
+    "updated_at":"2012-03-27 14:54:12 UTC"
+  },
+  {
+    "id":211,
+    "item_id":24,
+    "invoice_id":49,
+    "quantity":7,
+    "unit_price":96859,
+    "created_at":"2012-03-27 14:54:12 UTC",
+    "updated_at":"2012-03-27 14:54:12 UTC"
+  },
+  {
+    "id":212,
+    "item_id":5,
+    "invoice_id":49,
+    "quantity":9,
+    "unit_price":91809,
+    "created_at":"2012-03-27 14:54:12 UTC",
+    "updated_at":"2012-03-27 14:54:12 UTC"
+  },
+  {
+    "id":213,
+    "item_id":4,
+    "invoice_id":49,
+    "quantity":3,
+    "unit_price":91272,
+    "created_at":"2012-03-27 14:54:12 UTC",
+    "updated_at":"2012-03-27 14:54:12 UTC"
+  },
+  {
+    "id":214,
+    "item_id":35,
+    "invoice_id":49,
+    "quantity":4,
+    "unit_price":97280,
+    "created_at":"2012-03-27 14:54:12 UTC",
+    "updated_at":"2012-03-27 14:54:12 UTC"
+  },
+  {
+    "id":215,
+    "item_id":35,
+    "invoice_id":49,
+    "quantity":5,
+    "unit_price":56493,
+    "created_at":"2012-03-27 14:54:12 UTC",
+    "updated_at":"2012-03-27 14:54:12 UTC"
+  },
+  {
+    "id":216,
+    "item_id":18,
+    "invoice_id":50,
+    "quantity":8,
+    "unit_price":86112,
+    "created_at":"2012-03-27 14:54:12 UTC",
+    "updated_at":"2012-03-27 14:54:12 UTC"
+  },
+  {
+    "id":217,
+    "item_id":20,
+    "invoice_id":50,
+    "quantity":10,
+    "unit_price":31650,
+    "created_at":"2012-03-27 14:54:12 UTC",
+    "updated_at":"2012-03-27 14:54:12 UTC"
+  },
+  {
+    "id":218,
+    "item_id":20,
+    "invoice_id":50,
+    "quantity":5,
+    "unit_price":80827,
+    "created_at":"2012-03-27 14:54:12 UTC",
+    "updated_at":"2012-03-27 14:54:12 UTC"
+  },
+  {
+    "id":219,
+    "item_id":21,
+    "invoice_id":50,
+    "quantity":5,
+    "unit_price":65382,
+    "created_at":"2012-03-27 14:54:12 UTC",
+    "updated_at":"2012-03-27 14:54:12 UTC"
+  },
+  {
+    "id":220,
+    "item_id":33,
+    "invoice_id":50,
+    "quantity":1,
+    "unit_price":5003,
+    "created_at":"2012-03-27 14:54:12 UTC",
+    "updated_at":"2012-03-27 14:54:12 UTC"
+  }
+]

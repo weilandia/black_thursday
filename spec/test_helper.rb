@@ -4,13 +4,12 @@ require 'simplecov'
 require 'coveralls'
 require 'bigdecimal'
 
-class Minitest::Test
-  def setup
-    super
-    p location
-
-  end
-end
+# class Minitest::Test
+#   def setup
+#     super
+#     p location
+#   end
+# end
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
   Coveralls::SimpleCov::Formatter,
@@ -164,4 +163,8 @@ def test_helper_csv_hash
   :invoice_items => "./test_data/invoice_item_test.csv",
   :transactions => "./test_data/transaction_test.csv",
   :customers => "test_data/customer_test.csv"}
+end
+
+def test_helper_json_sales_engine
+  SalesEngine.new(test_helper_csv_hash, :json)
 end
