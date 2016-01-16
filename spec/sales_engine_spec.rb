@@ -1,5 +1,6 @@
 require_relative 'test_helper'
 require_relative '../lib/sales_engine'
+require_relative '../lib/data_parser'
 
 class SalesEngineTest < Minitest::Test
   def test_sales_engine_object_has_merchant_repository_object
@@ -15,14 +16,6 @@ class SalesEngineTest < Minitest::Test
   def test_sales_engine_object_has_invoice_repository_object
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
     assert_equal InvoiceRepository, sales_engine.invoices.class
-  end
-
-  def test_sales_engine_data_files_hash_method_defaults_correct_files
-    assert_equal SalesEngine.csv_data_files_hash[:merchants], "./data/merchants.csv"
-
-    assert_equal SalesEngine.csv_data_files_hash[:items], "./data/items.csv"
-
-    assert_equal SalesEngine.csv_data_files_hash[:invoices], "./data/invoices.csv"
   end
 
   # Integrated SalesEngine tests

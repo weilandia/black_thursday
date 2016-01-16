@@ -12,30 +12,12 @@ class SalesEngine
   attr_reader :merchants, :items, :invoices, :invoice_items, :transactions,
   :customers
 
-  def self.from_csv(data = csv_data_files_hash)
+  def self.from_csv(data = data_files_hash)
     SalesEngine.new(data, :csv)
   end
 
-  def self.from_json(data = csv_data_files_hash)
+  def self.from_json(data = data_files_hash)
     SalesEngine.new(data, :json)
-  end
-
-  def self.csv_data_files_hash
-    {:merchants => "./data/merchants.csv",
-    :items => "./data/items.csv",
-    :invoices => "./data/invoices.csv",
-    :invoice_items => "./data/invoice_items.csv",
-    :transactions => "./data/transactions.csv",
-    :customers => "./data/customers.csv"}
-  end
-
-  def self.json_data_files_hash
-    {:merchants => "./data/merchants.json",
-    :items => "./data/items.json",
-    :invoices => "./data/invoices.json",
-    :invoice_items => "./data/invoice_items.json",
-    :transactions => "./data/transactions.json",
-    :customers => "./data/customers.json"}
   end
 
   def initialize(data, file_type)
@@ -51,33 +33,6 @@ class SalesEngine
     @invoice_items ||= InvoiceItemRepository.new
     @transactions ||= TransactionRepository.new
     @customers ||= CustomerRepository.new
-  end
-
-  def load_data(data, file_type)
-    if file_type == :csv then load_csv_data(data)
-    else load_json_data(data) end
-  end
-
-  def load_csv_data(data)
-    from_csv(data[:items], items)
-    from_csv(data[:merchants], merchants)
-    from_csv(data[:invoices], invoices)
-    from_csv(data[:invoice_items], invoice_items)
-    from_csv(data[:transactions], transactions)
-    from_csv(data[:customers], customers)
-  end
-
-  def load_json_data(data)
-    from_json(json_convert(data[:items]), items)
-    from_json(json_convert(data[:merchants]), merchants)
-    from_json(json_convert(data[:invoices]), invoices)
-    from_json(json_convert(data[:invoice_items]), invoice_items)
-    from_json(json_convert(data[:transactions]), transactions)
-    from_json(json_convert(data[:customers]), customers)
-  end
-
-  def json_convert(file)
-    CSV.open(file, :headers => true).map { |x| x.to_h }.to_json
   end
 
   def relationships
