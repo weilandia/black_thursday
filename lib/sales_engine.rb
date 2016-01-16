@@ -20,6 +20,15 @@ class SalesEngine
     SalesEngine.new(data, :json)
   end
 
+  def data_files_hash
+    {:merchants => "./data/merchants.csv",
+    :items => "./data/items.csv",
+    :invoices => "./data/invoices.csv",
+    :invoice_items => "./data/invoice_items.csv",
+    :transactions => "./data/transactions.csv",
+    :customers => "./data/customers.csv"}
+  end
+
   def initialize(data, file_type)
     instantiate_repositories
     load_data(data, file_type) #DataParser module

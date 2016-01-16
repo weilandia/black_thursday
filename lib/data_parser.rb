@@ -9,14 +9,6 @@ require_relative 'invoice_item'
 require_relative 'invoice'
 
 module DataParser
-  def data_files_hash
-    {:merchants => "./data/merchants.csv",
-    :items => "./data/items.csv",
-    :invoices => "./data/invoices.csv",
-    :invoice_items => "./data/invoice_items.csv",
-    :transactions => "./data/transactions.csv",
-    :customers => "./data/customers.csv"}
-  end
 
   def load_data(data, file_type)
     if file_type == :csv then load_csv_data(data)
