@@ -39,12 +39,12 @@ class MerchantRepository
     exact_search(search_result)
   end
 
-  def find_by_name(merchant_name)
-    search_result = @all_merchants.select {|search| search.name.downcase == merchant_name.downcase}[0]
-    exact_search(search_result)
+  def find_by_name(mer_name)
+    result = @all_merchants.select {|s| s.name.downcase == mer_name.downcase}[0]
+    exact_search(result)
   end
 
-  def find_all_by_name(search_fragment)
-    @all_merchants.select {|search| search.name.downcase.include? search_fragment.downcase}
+  def find_all_by_name(search_frag)
+    @all_merchants.select {|s| s.name.downcase.include? search_frag.downcase}
   end
 end

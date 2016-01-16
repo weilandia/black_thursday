@@ -7,7 +7,8 @@ require_relative '../lib/customer_repository'
 require_relative '../lib/sales_analyst'
 
 class SalesEngine
-  attr_reader :merchants, :items, :invoices, :invoice_items, :transactions, :customers
+  attr_reader :merchants, :items, :invoices, :invoice_items, :transactions,
+  :customers
 
   def self.from_csv(data = data_files_hash)
     @s ||= SalesEngine.new(data)

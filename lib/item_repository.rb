@@ -36,9 +36,9 @@ class ItemRepository
     all_items
   end
 
-  def find_by_name(merchant_name)
-    search_result = @all_merchants.select {|search| search.name.downcase == merchant_name.downcase}[0]
-    exact_search(search_result)
+  def find_by_name(merchant)
+    result = @all_merchants.select {|s| s.name.downcase == merchant.downcase}[0]
+    exact_search(result)
   end
 
   def find_by_id(item_id)
@@ -51,8 +51,8 @@ class ItemRepository
   end
 
   def find_by_name(item_name)
-    search_result = @all_items.select {|search| search.name.downcase == item_name.downcase}[0]
-    exact_search(search_result)
+    result = @all_items.select {|s| s.name.downcase == item_name.downcase}[0]
+    exact_search(result)
   end
 
   def exact_search(search_result)
@@ -61,11 +61,11 @@ class ItemRepository
   end
 
   def find_all_by_name(search_fragment)
-    @all_items.select {|search| search.name.downcase.include? search_fragment.downcase}
+    @all_items.select {|s| s.name.downcase.include? search_fragment.downcase}
   end
 
-  def find_all_with_description(search_fragment)
-    @all_items.select {|search| search.description.downcase.include? search_fragment.downcase}
+  def find_all_with_description(search_frag)
+    @all_items.select {|s| s.description.downcase.include? search_frag.downcase}
   end
 
   def find_all_by_price(price)
@@ -73,7 +73,7 @@ class ItemRepository
   end
 
   def find_all_by_price_in_range(range)
-    @all_items.select {|search| search.unit_price <= range.last && search.unit_price >= range.first}
+    @all_items.select {|s| s.unit_price <= range.last && s.unit_price >= range.first}
   end
 
   def find_all_by_merchant_id(merchant_id)
