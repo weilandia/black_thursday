@@ -1,15 +1,9 @@
-require 'minitest/autorun'; require 'minitest/pride'
+require 'minitest/autorun'
+require 'minitest/pride'
 require 'codeclimate-test-reporter'
 require 'simplecov'
 require 'coveralls'
 require 'bigdecimal'
-
-# class Minitest::Test
-#   def setup
-#     super
-#     p location
-#   end
-# end
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
   Coveralls::SimpleCov::Formatter,
@@ -19,101 +13,168 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
 SimpleCov.start
 
 def test_helper_item_one_data
-  {:id => 1,
-  :name => "Test Item 1",
-  :description => "This is our first test item!",
-  :unit_price => "999",
-  :merchant_id => "12334105",
+  {:id => "1",
+  :name => "Item 1",
+  :description => "Item One Description",
+  :unit_price => "99999",
+  :merchant_id => "1",
   :created_at => "2016-01-11 12:22:31 UTC",
   :updated_at => "2012-03-27 14:53:59 UTC"
   }
 end
 
 def test_helper_item_two_data
-  {:id => 2,
-  :name => "Test Item 2",
-  :description => "This is our second test item!",
-  :unit_price => "11111",
-  :merchant_id => "12334105",
+  {:id => "2",
+  :name => "Item 2",
+  :description => "Item Two Description",
+  :unit_price => "9999",
+  :merchant_id => "2",
   :created_at => "2016-01-11 12:22:31 UTC",
   :updated_at => "2012-03-27 14:53:59 UTC"
   }
 end
 
 def test_helper_item_three_data
-  {:id => 3,
-  :name => "Test Item 3",
-  :description => "This is our third test item!",
-  :unit_price => "33333",
-  :merchant_id => "12334105",
+  {:id => "3",
+  :name => "Item 3",
+  :description => "Item Three Description",
+  :unit_price => "999",
+  :merchant_id => "3",
   :created_at => "2016-01-11 12:22:31 UTC",
   :updated_at => "2012-03-27 14:53:59 UTC"
   }
 end
 
-def merchant_data
-  {:id => 12334105,
-    :name => "Shopin1901",
+def test_helper_merchant_one_data
+  {:id => "1",
+    :name => "Merchant One",
     :created_at => "2016-01-11 10:37:09 UTC",
     :updated_at => "2016-01-11 10:37:09 UTC"}
 end
 
-def invoice_data
-  {:id => 11,
-  :customer_id => "2",
-  :merchant_id => "12334771",
+def test_helper_merchant_two_data
+  {:id => "2",
+    :name => "Merchant Two",
+    :created_at => "2016-01-11 10:37:09 UTC",
+    :updated_at => "2016-01-11 10:37:09 UTC"}
+end
+
+def test_helper_merchant_three_data
+  {:id => "3",
+    :name => "Merchant Three",
+    :created_at => "2016-01-11 10:37:09 UTC",
+    :updated_at => "2016-01-11 10:37:09 UTC"}
+end
+
+def test_helper_invoice_one_data
+  {:id => "1",
+  :customer_id => "1",
+  :merchant_id => "1",
   :status => :pending,
   :created_at => "2016-01-11 10:37:09 UTC",
   :updated_at => "2016-01-11 10:37:09 UTC"}
 end
 
-def invoice_item_data
-  {:id => 3,
-  :item_id => "26351",
-  :invoice_id => "12334771",
-  :quantity => "8",
-  :unit_price => "34873",
+def test_helper_invoice_two_data
+  {:id => "2",
+  :customer_id => "2",
+  :merchant_id => "2",
+  :status => :shipped,
   :created_at => "2016-01-11 10:37:09 UTC",
   :updated_at => "2016-01-11 10:37:09 UTC"}
 end
 
-def transaction_data
-  {:id => 3,
+def test_helper_invoice_three_data
+  {:id => "3",
+  :customer_id => "3",
+  :merchant_id => "3",
+  :status => :returned,
+  :created_at => "2016-01-11 10:37:09 UTC",
+  :updated_at => "2016-01-11 10:37:09 UTC"}
+end
+
+def test_helper_invoice_item_one_data
+  {:id => "1",
+  :item_id => "1",
+  :invoice_id => "1",
+  :quantity => "1",
+  :unit_price => "10000",
+  :created_at => "2016-01-11 10:37:09 UTC",
+  :updated_at => "2016-01-11 10:37:09 UTC"}
+end
+
+def test_helper_invoice_item_two_data
+  {:id => "2",
+  :item_id => "2",
+  :invoice_id => "2",
+  :quantity => "2",
+  :unit_price => "20000",
+  :created_at => "2016-01-11 10:37:09 UTC",
+  :updated_at => "2016-01-11 10:37:09 UTC"}
+end
+
+def test_helper_invoice_item_three_data
+  {:id => "3",
+  :item_id => "3",
   :invoice_id => "3",
-  :credit_card_expiration_date => "1220",
-  :credit_card_number => "4271810000000000",
+  :quantity => "3",
+  :unit_price => "30000",
+  :created_at => "2016-01-11 10:37:09 UTC",
+  :updated_at => "2016-01-11 10:37:09 UTC"}
+end
+
+def test_helper_transaction_one_data
+  {:id => "1",
+  :invoice_id => "1",
+  :credit_card_expiration_date => "1111",
+  :credit_card_number => "1111111111111111",
   :result => "success",
   :created_at => "2012-02-26 20:56:56 UTC",
   :updated_at => "2012-02-26 20:56:56 UTC"}
 end
 
-def customer_data
-  {:id => 1,
-    :first_name => "Joey",
-    :last_name => "Ondricka",
+def test_helper_transaction_two_data
+  {:id => "2",
+  :invoice_id => "2",
+  :credit_card_expiration_date => "2222",
+  :credit_card_number => "2222222222222222",
+  :result => "failed",
+  :created_at => "2012-02-26 20:56:56 UTC",
+  :updated_at => "2012-02-26 20:56:56 UTC"}
+end
+
+def test_helper_transaction_three_data
+  {:id => "3",
+  :invoice_id => "3",
+  :credit_card_expiration_date => "3333",
+  :credit_card_number => "3333333333333333",
+  :result => "success",
+  :created_at => "2012-02-26 20:56:56 UTC",
+  :updated_at => "2012-02-26 20:56:56 UTC"}
+end
+
+def test_helper_customer_one_data
+  {:id => "1",
+    :first_name => "One",
+    :last_name => "Uno",
     :created_at => "2012-03-27 14:54:09 UTC",
     :updated_at => "2012-03-27 14:54:09 UTC"}
 end
 
-
-def test_helper_invoice_item
-  InvoiceItem.new(invoice_item_data)
+def test_helper_customer_two_data
+  {:id => "2",
+    :first_name => "Two",
+    :last_name => "Dos",
+    :created_at => "2012-03-27 14:54:09 UTC",
+    :updated_at => "2012-03-27 14:54:09 UTC"}
 end
 
-def test_helper_merchant
-  Merchant.new(merchant_data)
-end
-
-def test_helper_invoice
-  Invoice.new(invoice_data)
-end
-
-def test_helper_transaction
-  Transaction.new(transaction_data)
-end
-
-def test_helper_customer
-  Customer.new(customer_data)
+def test_helper_customer_three_data
+  {:id => "3",
+    :first_name => "Three",
+    :last_name => "Tres",
+    :created_at => "2012-03-27 14:54:09 UTC",
+    :updated_at => "2012-03-27 14:54:09 UTC"}
 end
 
 def test_helper_item_repo

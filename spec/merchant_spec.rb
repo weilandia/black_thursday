@@ -4,23 +4,23 @@ require_relative '../lib/item'
 require_relative '../lib/item_repository'
 
 class MerchantTest < Minitest::Test
-  def setup
-    @merchant = test_helper_merchant
-  end
-
   def test_merchant_can_query_id
-    assert_equal 12334105, @merchant.id
+    merchant = Merchant.new(test_helper_merchant_one_data)
+    assert_equal 1, merchant.id
   end
 
   def test_merchant_can_query_name
-    assert_equal "Shopin1901", @merchant.name
+    merchant = Merchant.new(test_helper_merchant_two_data)
+    assert_equal "Merchant Two", merchant.name
   end
 
   def test_merchant_can_query_creation_date
-    assert_equal Time.parse("2016-01-11 10:37:09 UTC"), @merchant.created_at
+    merchant = Merchant.new(test_helper_merchant_three_data)
+    assert_equal Time.parse("2016-01-11 10:37:09 UTC"), merchant.created_at
   end
 
   def test_merchant_can_query_date_of_last_update
-    assert_equal Time.parse("2016-01-11 10:37:09 UTC"), @merchant.updated_at
+    merchant = Merchant.new(test_helper_merchant_one_data)
+    assert_equal Time.parse("2016-01-11 10:37:09 UTC"), merchant.updated_at
   end
 end
