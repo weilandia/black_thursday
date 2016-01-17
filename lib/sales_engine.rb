@@ -49,6 +49,7 @@ class SalesEngine
     invoice_customer_relationship
     transaction_invoice_relationship
     merchant_customer_relationship
+    customer_merchant_relationship
   end
 
   def merchant_item_relationship
@@ -94,8 +95,17 @@ class SalesEngine
     customer_ids = []
     merchants.all.each do |merchant|
       invs = invoices.find_all_by_merchant_id(merchant.id)
-      customer_ids = invs.map { |inv| inv.customer_id}
+      customer_ids = invs.map { |inv| inv.customer_id}.uniq
       merchant.customers = customer_ids.map { |customer_id| customers.find_by_id(customer_id)}
+    end
+  end
+
+  def customer_merchant_relationship
+    merchant_ids = []
+    customers.all.each do |customer|
+      invs = invoices.find_all_by_customer_id(customer.id)
+      merchant_ids = invs.map { |inv| inv.merchant_id}.uniq
+      customer.merchants = merchant_ids.map { |merchant_id| merchants.find_by_id(merchant_id)}
     end
   end
 

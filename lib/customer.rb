@@ -1,4 +1,5 @@
 class Customer
+  attr_accessor :merchants
   attr_reader :id, :first_name, :last_name, :created_at, :updated_at
 
   def initialize(customer_data)
