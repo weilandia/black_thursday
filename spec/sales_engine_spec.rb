@@ -13,13 +13,23 @@ class SalesEngineTest < Minitest::Test
     assert_equal ItemRepository, sales_engine.items.class
   end
 
-  def test_sales_engine_object_has_invoice_repository_object
+  def test_sales_engine_object_has_customer_repository_object
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
-    assert_equal InvoiceRepository, sales_engine.invoices.class
+    assert_equal CustomerRepository, sales_engine.customers.class
+  end
+
+  def test_sales_engine_object_has_invoice_item_repository_object
+    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+    assert_equal InvoiceItemRepository, sales_engine.invoice_items.class
+  end
+
+  def test_sales_engine_object_has_transaction_repository_object
+    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+    assert_equal TransactionRepository, sales_engine.transactions.class
   end
 
   # Integrated SalesEngine tests
-  def test_sales_engine_object_has_access_to_merhant_id
+  def test_sales_engine_object_can_access_merhant_id
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
 
     merchant_id = sales_engine.merchants.find_by_name("MiniatureBikez").id
@@ -27,7 +37,7 @@ class SalesEngineTest < Minitest::Test
     assert_equal 3, merchant_id
   end
 
-  def test_sales_engine_object_has_access_to_merhant_name
+  def test_sales_engine_object_can_access_merhant_name
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
 
     merchant_name = sales_engine.merchants.find_by_id(3).name
@@ -35,7 +45,7 @@ class SalesEngineTest < Minitest::Test
     assert_equal "MiniatureBikez", merchant_name
   end
 
-  def test_sales_engine_object_has_access_to_item_id
+  def test_sales_engine_object_can_access_item_id
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
 
     item_id = sales_engine.items.find_by_name("Very Magnifique").id
@@ -43,7 +53,7 @@ class SalesEngineTest < Minitest::Test
     assert_equal 2, item_id
   end
 
-  def test_sales_engine_object_has_access_item_name
+  def test_sales_engine_object_can_access_item_name
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
 
     item_name = sales_engine.items.find_by_id(2).name
@@ -51,7 +61,7 @@ class SalesEngineTest < Minitest::Test
     assert_equal "Very Magnifique", item_name
   end
 
-  def test_sales_engine_object_has_access_an_items_merchant_id
+  def test_sales_engine_object_can_access_an_item_merchant_id
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
 
     item_merchant_id = sales_engine.items.find_by_id(2).merchant_id
@@ -59,7 +69,7 @@ class SalesEngineTest < Minitest::Test
     assert_equal 1, item_merchant_id
   end
 
-  def test_sales_engine_object_has_access_an_item_unit_price
+  def test_sales_engine_object_can_access_an_item_unit_price
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
 
     item_unit_price = sales_engine.items.find_by_id(2).unit_price
@@ -67,7 +77,7 @@ class SalesEngineTest < Minitest::Test
     assert_equal 800.0, item_unit_price.to_f
   end
 
-  def test_sales_engine_object_has_access_an_invoice_id
+  def test_sales_engine_object_can_access_an_invoice_id
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
 
     invoice_id = sales_engine.invoices.find_by_id(2).id
@@ -75,7 +85,7 @@ class SalesEngineTest < Minitest::Test
     assert_equal 2, invoice_id
   end
 
-  def test_sales_engine_object_has_access_an_invoice_customer_id
+  def test_sales_engine_object_can_access_an_invoice_customer_id
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
 
     customer_id = sales_engine.invoices.find_by_id(4).customer_id
@@ -83,7 +93,7 @@ class SalesEngineTest < Minitest::Test
     assert_equal 1, customer_id
   end
 
-  def test_sales_engine_object_has_access_an_merchant_id
+  def test_sales_engine_object_can_access_an_invoice_merchant_id
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
 
     merchant_id = sales_engine.invoices.find_by_id(20).merchant_id
@@ -91,7 +101,7 @@ class SalesEngineTest < Minitest::Test
     assert_equal 7, merchant_id
   end
 
-  def test_sales_engine_object_has_access_an_invoice_status
+  def test_sales_engine_object_can_access_an_invoice_status
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
 
     invoice_status = sales_engine.invoices.find_by_id(25).status
