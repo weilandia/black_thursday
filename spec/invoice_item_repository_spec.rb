@@ -4,9 +4,17 @@ require_relative '../lib/invoice_item_repository'
 class InvoiceItemRepositoryTest < Minitest::Test
 
   def test_invoice_items_repo_can_list_all_invoice_items
-    invoice_items = CSV.open "./test_data/invoice_item_test.csv", headers: true, header_converters: :symbol
-    invoice_items_repo = test_helper_invoice_items_repo
-    assert_equal invoice_items.count, invoice_items_repo.all.length
+    #Task: Decouple all repo tests like this test
+    invoice_items_repo = InvoiceItemRepository.new
+    invoice_item_one = InvoiceItem.new(test_helper_invoice_item_one_data)
+    invoice_item_two = InvoiceItem.new(test_helper_invoice_item_two_data)
+    invoice_item_three = InvoiceItem.new(test_helper_invoice_item_three_data)
+
+    invoice_items_repo.all_invoice_items << invoice_item_one
+    invoice_items_repo.all_invoice_items << invoice_item_two
+    invoice_items_repo.all_invoice_items << invoice_item_three
+
+    assert_equal 3, invoice_items_repo.all.length
     assert_equal InvoiceItem, invoice_items_repo.all.first.class
   end
 
