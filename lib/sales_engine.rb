@@ -92,20 +92,20 @@ class SalesEngine
   end
 
   def merchant_customer_relationship
-    customer_ids = []
+    cust_ids = []
     merchants.all.each do |merchant|
       invs = invoices.find_all_by_merchant_id(merchant.id)
-      customer_ids = invs.map { |inv| inv.customer_id}.uniq
-      merchant.customers = customer_ids.map { |customer_id| customers.find_by_id(customer_id)}
+      cust_ids = invs.map { |inv| inv.customer_id}.uniq
+      merchant.customers = cust_ids.map { |id| customers.find_by_id(id)}
     end
   end
 
   def customer_merchant_relationship
-    merchant_ids = []
+    merch_ids = []
     customers.all.each do |customer|
       invs = invoices.find_all_by_customer_id(customer.id)
-      merchant_ids = invs.map { |inv| inv.merchant_id}.uniq
-      customer.merchants = merchant_ids.map { |merchant_id| merchants.find_by_id(merchant_id)}
+      merch_ids = invs.map { |inv| inv.merchant_id}.uniq
+      customer.merchants = merch_ids.map { |id| merchants.find_by_id(id)}
     end
   end
 
