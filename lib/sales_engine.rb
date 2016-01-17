@@ -48,6 +48,7 @@ class SalesEngine
     invoice_transaction_relationship
     invoice_customer_relationship
     transaction_invoice_relationship
+    merchant_customer_relationship
   end
 
   def merchant_item_relationship
@@ -89,6 +90,15 @@ class SalesEngine
     end
   end
 
+  def merchant_customer_relationship
+    customer_ids = []
+    merchants.all.each do |merchant|
+      invs = invoices.find_all_by_merchant_id(merchant.id)
+      customer_ids = invs.map { |inv| inv.customer_id}
+      merchant.customers = customer_ids.map { |customer_id| customers.find_by_id(customer_id)}
+    end
+  end
+
   def invoice_transaction_relationship
     invoices.all.each do |invoice|
       invoice.transactions = transactions.find_all_by_invoice_id(invoice.id)
@@ -100,6 +110,7 @@ class SalesEngine
       transaction.invoice = invoices.find_by_id(transaction.invoice_id)
     end
   end
+
 
   def self.csv_files_hash
     {:merchants => "./data/merchants.csv",

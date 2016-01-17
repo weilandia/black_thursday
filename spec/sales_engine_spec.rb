@@ -204,6 +204,28 @@ class SalesEngineTest < Minitest::Test
     assert_equal 1, sales_engine.transactions.all.first.invoice.id
   end
 
+  def test_sales_engine_object_has_access_to_merchant_object_customers
+    sales_engine = SalesEngine.new
+    merchant = Merchant.new({id: 10, name: "Merch1", created_at:"2016-01-11 11:44:13 UTC", updated_at:"2016-01-11 11:44:13 UTC"})
+    invoice_one = Invoice.new({id: 1, customer_id: 1, merchant_id: 10, status: "shipped", created_at:"2016-01-11 11:44:13 UTC", updated_at:"2016-01-11 11:44:13 UTC"})
+    customer_one = Customer.new({id: 1, created_at:"2016-01-11 11:44:13 UTC", updated_at:"2016-01-11 11:44:13 UTC"})
+    invoice_two = Invoice.new({id: 2, customer_id: 2, merchant_id: 10, status: "shipped", created_at:"2016-01-11 11:44:13 UTC", updated_at:"2016-01-11 11:44:13 UTC"})
+    customer_two = Customer.new({id: 2, created_at:"2016-01-11 11:44:13 UTC", updated_at:"2016-01-11 11:44:13 UTC"})
+    sales_engine.merchants.all << merchant
+    sales_engine.invoices.all << invoice_one
+    sales_engine.customers.all << customer_one
+    sales_engine.invoices.all << invoice_two
+    sales_engine.customers.all << customer_two
+    sales_engine.merchant_customer_relationship
+    customers = sales_engine.merchants.all.first.customers
+    assert_equal [customer_one, customer_two], customers
+  end
+
+  def test_from_file_sales_engine_object_has_access_to_merchant_object_customers
+    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+    assert_equal [], sales_engine.merchants.all.first.customers.map {|c| c.id}
+  end
+
   def test_sales_engine_can_read_from_json
     sales_engine = SalesEngine.from_json(test_helper_json_hash)
     assert_equal MerchantRepository, sales_engine.merchants.class
