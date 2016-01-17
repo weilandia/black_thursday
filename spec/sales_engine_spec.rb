@@ -152,6 +152,12 @@ class SalesEngineTest < Minitest::Test
     assert_equal ["TestItem18", "TestItem28", "TestItem1", "TestItem35", "TestItem26", "TestItem27", "TestItem16", "TestItem10"], items
   end
 
+  def test_sales_engine_object_has_access_to_invoice_object_transactions
+    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+    transactions = sales_engine.invoices.all.first.transactions.map { |t| t.id}
+    assert_equal [1], transactions
+  end
+
   def test_sales_engine_can_read_from_json
     sales_engine = SalesEngine.from_json(test_helper_json_hash)
     assert_equal MerchantRepository, sales_engine.merchants.class

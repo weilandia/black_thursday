@@ -45,6 +45,7 @@ class SalesEngine
     invoice_merchant_relationship
     merchant_invoice_relationship
     invoice_item_relationship
+    invoice_transaction_relationship
   end
 
   def merchant_item_relationship
@@ -80,6 +81,12 @@ class SalesEngine
     end
   end
 
+  def invoice_transaction_relationship
+    invoices.all.each do |invoice|
+      invoice.transactions = transactions.find_all_by_invoice_id(invoice.id)
+    end
+  end
+
   def self.csv_files_hash
     {:merchants => "./data/merchants.csv",
     :items => "./data/items.csv",
@@ -99,6 +106,12 @@ class SalesEngine
   end
 
   def inspect
-    "#<#{self.class}:\nItems: #{@items.all.size}\nMerchants: #{@merchants.all.size}\nInvoices: #{@invoices.all.size}\nInvoice Items: #{@invoice_items.all.size}\nTransactions: #{@transactions.all.size}\nCustomers: #{@customers.all.size}>"
+    "#<#{self.class}:
+    Items: #{@items.all.size}
+    Merchants: #{@merchants.all.size}
+    Invoices: #{@invoices.all.size}
+    Invoice Items: #{@invoice_items.all.size}
+    Transactions: #{@transactions.all.size}
+    Customers: #{@customers.all.size}>"
   end
 end

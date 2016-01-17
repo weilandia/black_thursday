@@ -15,7 +15,7 @@ module DataParser
   end
 
   def from_csv(data, repository)
-    JSON.parse(json_convert(data), { symbolize_names: true }).each do |hash|
+    JSON.parse(csv_json_convert(data), { symbolize_names: true }).each do |hash|
     repository.create_instance(hash)
     end
   end
@@ -26,7 +26,7 @@ module DataParser
     end
   end
 
-  def json_convert(file)
+  def csv_json_convert(file)
     CSV.open(file, headers: true).map { |x| x.to_h }.to_json
   end
 

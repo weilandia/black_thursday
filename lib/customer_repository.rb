@@ -27,15 +27,15 @@ class CustomerRepository
   end
 
   def find_by_id(customer_id)
-    search_result = @all_customers.select {|search| search.id == customer_id}[0]
+    search_result = @all_customers.select {|s| s.id == customer_id}[0]
     exact_search(search_result)
   end
 
-  def find_all_by_first_name(f_name)
-    @all_customers.select {|s| s.first_name.downcase.include? f_name.downcase}
+  def find_all_by_first_name(name)
+    @all_customers.select {|s| s.first_name.downcase.include? name.downcase}
   end
 
-  def find_all_by_last_name(l_name)
-    @all_customers.select {|s| s.last_name.downcase.include? l_name.downcase}
+  def find_all_by_last_name(name)
+    @all_customers.select {|s| s.last_name.downcase.include? name.downcase}
   end
 end
