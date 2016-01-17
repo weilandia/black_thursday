@@ -47,6 +47,7 @@ class SalesEngine
     invoice_item_relationship
     invoice_transaction_relationship
     invoice_customer_relationship
+    transaction_invoice_relationship
   end
 
   def merchant_item_relationship
@@ -91,6 +92,12 @@ class SalesEngine
   def invoice_transaction_relationship
     invoices.all.each do |invoice|
       invoice.transactions = transactions.find_all_by_invoice_id(invoice.id)
+    end
+  end
+
+  def transaction_invoice_relationship
+    transactions.all.each do |transaction|
+      transaction.invoice = invoices.find_by_id(transaction.invoice_id)
     end
   end
 

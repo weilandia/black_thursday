@@ -189,6 +189,21 @@ class SalesEngineTest < Minitest::Test
     assert_equal 1, customer.id
   end
 
+  def test_sales_engine_object_has_access_to_transaction_object_invoice
+    sales_engine = SalesEngine.new
+    invoice = Invoice.new({id: 5, status: "shipped", created_at:"2016-01-11 11:44:13 UTC", updated_at:"2016-01-11 11:44:13 UTC"})
+    transaction = Transaction.new({id: 1, invoice_id: 5, created_at:"2016-01-11 11:44:13 UTC", updated_at:"2016-01-11 11:44:13 UTC"})
+    sales_engine.invoices.all << invoice
+    sales_engine.transactions.all << transaction
+    sales_engine.transaction_invoice_relationship
+    assert_equal invoice, sales_engine.transactions.all.first.invoice
+  end
+
+  def test_from_file_sales_engine_object_has_access_to_transaction_object_invoice
+    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+    assert_equal 1, sales_engine.transactions.all.first.invoice.id
+  end
+
   def test_sales_engine_can_read_from_json
     sales_engine = SalesEngine.from_json(test_helper_json_hash)
     assert_equal MerchantRepository, sales_engine.merchants.class
