@@ -13,17 +13,21 @@ class SalesEngine
   :customers
 
   def self.from_csv(data = csv_files_hash)
-    SalesEngine.new(data, :csv)
+    sales_engine = SalesEngine.new
+    sales_engine.load_data(data, :csv)
+    sales_engine.relationships
+    sales_engine
   end
 
   def self.from_json(data = json_files_hash)
-    SalesEngine.new(data, :json)
+    sales_engine = SalesEngine.new
+    sales_engine.load_data(data, :json)
+    sales_engine.relationships
+    sales_engine
   end
 
-  def initialize(data, file_type)
+  def initialize
     instantiate_repositories
-    load_data(data, file_type) #DataParser module
-    relationships
   end
 
   def instantiate_repositories

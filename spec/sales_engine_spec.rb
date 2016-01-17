@@ -131,7 +131,6 @@ class SalesEngineTest < Minitest::Test
 
   def test_sales_engine_creates_invoices_that_have_access_to_merchants
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
-
     invoice = sales_engine.invoices.find_by_id(18)
     assert_equal Merchant, invoice.merchant.class
     assert_equal "Urcase17", invoice.merchant.name
