@@ -1,4 +1,3 @@
-require 'mathn'
 require_relative 'sales_engine'
 require_relative 'merchant_analysis'
 require_relative 'item_analysis'

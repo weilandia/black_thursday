@@ -12,21 +12,12 @@ class SalesEngine
   attr_reader :merchants, :items, :invoices, :invoice_items, :transactions,
   :customers
 
-  def self.from_csv(data = data_files_hash)
+  def self.from_csv(data = csv_files_hash)
     SalesEngine.new(data, :csv)
   end
 
-  def self.from_json(data = data_files_hash)
+  def self.from_json(data = json_files_hash)
     SalesEngine.new(data, :json)
-  end
-
-  def data_files_hash
-    {:merchants => "./data/merchants.csv",
-    :items => "./data/items.csv",
-    :invoices => "./data/invoices.csv",
-    :invoice_items => "./data/invoice_items.csv",
-    :transactions => "./data/transactions.csv",
-    :customers => "./data/customers.csv"}
   end
 
   def initialize(data, file_type)
@@ -83,5 +74,27 @@ class SalesEngine
     item_ids = inv_items.map { |inv_item| inv_item.item_id}
     invoice.items = item_ids.map { |item_id| items.find_by_id(item_id)}
     end
+  end
+
+  def self.csv_files_hash
+    {:merchants => "./data/merchants.csv",
+    :items => "./data/items.csv",
+    :invoices => "./data/invoices.csv",
+    :invoice_items => "./data/invoice_items.csv",
+    :transactions => "./data/transactions.csv",
+    :customers => "./data/customers.csv"}
+  end
+
+  def self.json_files_hash
+    {:merchants => "./data/merchants.json",
+    :items => "./data/items.json",
+    :invoices => "./data/invoices.json",
+    :invoice_items => "./data/invoice_items.json",
+    :transactions => "./data/transactions.json",
+    :customers => "./data/customers.json"}
+  end
+
+  def inspect
+    "#<#{self.class}:\nItems: #{@items.all.size}\nMerchants: #{@merchants.all.size}\nInvoices: #{@invoices.all.size}\nInvoice Items: #{@invoice_items.all.size}\nTransactions: #{@transactions.all.size}\nCustomers: #{@customers.all.size}>"
   end
 end

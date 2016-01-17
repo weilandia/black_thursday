@@ -1,6 +1,4 @@
-require 'csv'
-require 'bigdecimal'
-require_relative '../lib/transaction'
+require_relative 'transaction'
 require_relative 'data_parser'
 
 class TransactionRepository

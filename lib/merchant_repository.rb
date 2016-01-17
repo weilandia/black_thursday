@@ -1,5 +1,4 @@
-require "csv"
-require_relative '../lib/merchant'
+require_relative 'merchant'
 require_relative 'data_parser'
 
 class MerchantRepository

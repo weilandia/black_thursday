@@ -1,5 +1,3 @@
-require 'csv'
-require 'bigdecimal'
 require_relative 'invoice'
 require_relative 'data_parser'
 

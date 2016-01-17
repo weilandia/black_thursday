@@ -1,6 +1,4 @@
-require 'csv'
-require 'bigdecimal'
-require_relative '../lib/invoice_item'
+require_relative 'invoice_item'
 require_relative 'data_parser'
 
 class InvoiceItemRepository

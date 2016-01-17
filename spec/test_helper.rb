@@ -24,8 +24,8 @@ def test_helper_item_one_data
   :description => "This is our first test item!",
   :unit_price => "999",
   :merchant_id => "12334105",
-  :created_at => Time.parse("2016-01-11 12:22:31 UTC"),
-  :updated_at => Time.parse("2012-03-27 14:53:59 UTC")
+  :created_at => "2016-01-11 12:22:31 UTC",
+  :updated_at => "2012-03-27 14:53:59 UTC"
   }
 end
 
@@ -35,8 +35,8 @@ def test_helper_item_two_data
   :description => "This is our second test item!",
   :unit_price => "11111",
   :merchant_id => "12334105",
-  :created_at => Time.parse("2016-01-11 12:22:31 UTC"),
-  :updated_at => Time.parse("2012-03-27 14:53:59 UTC")
+  :created_at => "2016-01-11 12:22:31 UTC",
+  :updated_at => "2012-03-27 14:53:59 UTC"
   }
 end
 
@@ -46,16 +46,16 @@ def test_helper_item_three_data
   :description => "This is our third test item!",
   :unit_price => "33333",
   :merchant_id => "12334105",
-  :created_at => Time.parse("2016-01-11 12:22:31 UTC"),
-  :updated_at => Time.parse("2012-03-27 14:53:59 UTC")
+  :created_at => "2016-01-11 12:22:31 UTC",
+  :updated_at => "2012-03-27 14:53:59 UTC"
   }
 end
 
 def merchant_data
   {:id => 12334105,
     :name => "Shopin1901",
-    :created_at => Time.parse("2016-01-11 10:37:09 UTC"),
-    :updated_at => Time.parse("2016-01-11 10:37:09 UTC")}
+    :created_at => "2016-01-11 10:37:09 UTC",
+    :updated_at => "2016-01-11 10:37:09 UTC"}
 end
 
 def invoice_data
@@ -63,8 +63,8 @@ def invoice_data
   :customer_id => "2",
   :merchant_id => "12334771",
   :status => :pending,
-  :created_at => Time.parse("2016-01-11 10:37:09 UTC"),
-  :updated_at => Time.parse("2016-01-11 10:37:09 UTC")}
+  :created_at => "2016-01-11 10:37:09 UTC",
+  :updated_at => "2016-01-11 10:37:09 UTC"}
 end
 
 def invoice_item_data
@@ -73,8 +73,8 @@ def invoice_item_data
   :invoice_id => "12334771",
   :quantity => "8",
   :unit_price => "34873",
-  :created_at => Time.parse("2016-01-11 10:37:09 UTC"),
-  :updated_at => Time.parse("2016-01-11 10:37:09 UTC")}
+  :created_at => "2016-01-11 10:37:09 UTC",
+  :updated_at => "2016-01-11 10:37:09 UTC"}
 end
 
 def transaction_data
@@ -83,16 +83,16 @@ def transaction_data
   :credit_card_expiration_date => "1220",
   :credit_card_number => "4271810000000000",
   :result => "success",
-  :created_at => Time.parse("2012-02-26 20:56:56 UTC"),
-  :updated_at => Time.parse("2012-02-26 20:56:56 UTC")}
+  :created_at => "2012-02-26 20:56:56 UTC",
+  :updated_at => "2012-02-26 20:56:56 UTC"}
 end
 
 def customer_data
   {:id => 1,
     :first_name => "Joey",
     :last_name => "Ondricka",
-    :created_at => Time.parse("2012-03-27 14:54:09 UTC"),
-    :updated_at => Time.parse("2012-03-27 14:54:09 UTC")}
+    :created_at => "2012-03-27 14:54:09 UTC",
+    :updated_at => "2012-03-27 14:54:09 UTC"}
 end
 
 
@@ -165,6 +165,15 @@ def test_helper_csv_hash
   :customers => "test_data/customer_test.csv"}
 end
 
+def test_helper_json_hash
+  {:merchants => "./test_data/merchant_test.json",
+  :items => "./test_data/item_test.json",
+  :invoices => "test_data/invoice_test.json",
+  :invoice_items => "./test_data/invoice_item_test.json",
+  :transactions => "./test_data/transaction_test.json",
+  :customers => "test_data/customer_test.json"}
+end
+
 def test_helper_json_sales_engine
-  SalesEngine.new(test_helper_csv_hash, :json)
+  SalesEngine.new(test_helper_json_hash, :json)
 end
