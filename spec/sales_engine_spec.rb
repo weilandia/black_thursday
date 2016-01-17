@@ -158,7 +158,7 @@ class SalesEngineTest < Minitest::Test
     assert_equal [1], transactions
   end
 
-  def test_sales_engine_object_has_access_to_invoice_object_transactions_multiple
+  def test_UNIT_sales_engine_object_has_access_to_invoice_object_transactions_multiple
     sales_engine = SalesEngine.new
     invoice = Invoice.new({id: 5, status: "shipped", created_at:"2016-01-11 11:44:13 UTC", updated_at:"2016-01-11 11:44:13 UTC"})
     transaction_one = Transaction.new({id: 1, invoice_id: 5, created_at:"2016-01-11 11:44:13 UTC", updated_at:"2016-01-11 11:44:13 UTC"})

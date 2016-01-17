@@ -87,7 +87,7 @@ class SalesEngine
     invoices.all.each do |invoice|
       inv_items = invoice_items.find_all_by_invoice_id(invoice.id)
     item_ids = inv_items.map { |inv_item| inv_item.item_id}
-    invoice.items = item_ids.map { |item_id| items.find_by_id(item_id)}
+    invoice.items = item_ids.map { |item_id| items.find_by_id(item_id) }
     end
   end
 
@@ -96,7 +96,7 @@ class SalesEngine
     merchants.all.each do |merchant|
       invs = invoices.find_all_by_merchant_id(merchant.id)
       cust_ids = invs.map { |inv| inv.customer_id}.uniq
-      merchant.customers = cust_ids.map { |id| customers.find_by_id(id)}
+      merchant.customers = cust_ids.map { |id| customers.find_by_id(id) }
     end
   end
 
@@ -105,7 +105,7 @@ class SalesEngine
     customers.all.each do |customer|
       invs = invoices.find_all_by_customer_id(customer.id)
       merch_ids = invs.map { |inv| inv.merchant_id}.uniq
-      customer.merchants = merch_ids.map { |id| merchants.find_by_id(id)}
+      customer.merchants = merch_ids.map { |id| merchants.find_by_id(id) }
     end
   end
 
@@ -123,21 +123,21 @@ class SalesEngine
 
 
   def self.csv_files_hash
-    {:merchants => "./data/merchants.csv",
-    :items => "./data/items.csv",
-    :invoices => "./data/invoices.csv",
-    :invoice_items => "./data/invoice_items.csv",
-    :transactions => "./data/transactions.csv",
-    :customers => "./data/customers.csv"}
+    { :merchants => './data/merchants.csv',
+      :items => './data/items.csv',
+      :invoices => './data/invoices.csv',
+      :invoice_items => './data/invoice_items.csv',
+      :transactions => './data/transactions.csv',
+      :customers => './data/customers.csv' }
   end
 
   def self.json_files_hash
-    {:merchants => "./data/merchants.json",
-    :items => "./data/items.json",
-    :invoices => "./data/invoices.json",
-    :invoice_items => "./data/invoice_items.json",
-    :transactions => "./data/transactions.json",
-    :customers => "./data/customers.json"}
+    { :merchants => './data/merchants.json',
+      :items => './data/items.json',
+      :invoices => './data/invoices.json',
+      :invoice_items => './data/invoice_items.json',
+      :transactions => './data/transactions.json',
+      :customers => './data/customers.json' }
   end
 
   def inspect
