@@ -158,6 +158,37 @@ class SalesEngineTest < Minitest::Test
     assert_equal [1], transactions
   end
 
+  def test_sales_engine_object_has_access_to_invoice_object_transactions_multiple
+    sales_engine = SalesEngine.new
+    invoice = Invoice.new({id: 5, status: "shipped", created_at:"2016-01-11 11:44:13 UTC", updated_at:"2016-01-11 11:44:13 UTC"})
+    transaction_one = Transaction.new({id: 1, invoice_id: 5, created_at:"2016-01-11 11:44:13 UTC", updated_at:"2016-01-11 11:44:13 UTC"})
+    transaction_two = Transaction.new({id: 2, invoice_id: 5, created_at:"2016-01-11 11:44:13 UTC", updated_at:"2016-01-11 11:44:13 UTC"})
+    transaction_three = Transaction.new({id: 3, invoice_id: 5, created_at:"2016-01-11 11:44:13 UTC", updated_at:"2016-01-11 11:44:13 UTC"})
+    sales_engine.invoices.all << invoice
+    sales_engine.transactions.all << transaction_one
+    sales_engine.transactions.all << transaction_two
+    sales_engine.transactions.all << transaction_three
+    sales_engine.invoice_transaction_relationship
+    transactions = sales_engine.invoices.all.first.transactions
+    assert_equal [transaction_one, transaction_two, transaction_three], transactions
+  end
+
+  def test_sales_engine_object_has_access_to_invoice_object_customer
+    sales_engine = SalesEngine.new
+    invoice = Invoice.new({id: 5, customer_id: 1, status: "shipped", created_at:"2016-01-11 11:44:13 UTC", updated_at:"2016-01-11 11:44:13 UTC"})
+    customer = Customer.new({id: 1, created_at:"2016-01-11 11:44:13 UTC", updated_at:"2016-01-11 11:44:13 UTC"})
+    sales_engine.invoices.all << invoice
+    sales_engine.customers.all << customer
+    sales_engine.invoice_customer_relationship
+    assert_equal customer, sales_engine.invoices.all.first.customer
+  end
+
+  def test_from_file_sales_engine_object_has_access_to_invoice_object_transactions
+    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+    customer = sales_engine.invoices.all.first.customer
+    assert_equal 1, customer.id
+  end
+
   def test_sales_engine_can_read_from_json
     sales_engine = SalesEngine.from_json(test_helper_json_hash)
     assert_equal MerchantRepository, sales_engine.merchants.class
