@@ -244,6 +244,64 @@ class SalesEngineTest < Minitest::Test
     assert_equal [merchant_one, merchant_two], merchants
   end
 
+  def test_sales_engine_can_assert_invoice_is_paid_in_full
+    sales_engine = SalesEngine.new
+    invoice = Invoice.new({id: 1})
+    transaction_one = Transaction.new({id:100, invoice_id: 1, result: "success"})
+    transaction_two = Transaction.new({id:200, invoice_id: 1, result: "success"})
+    sales_engine.invoices.all << invoice
+    sales_engine.transactions.all << transaction_one
+    sales_engine.transactions.all << transaction_two
+    sales_engine.relationships
+
+    assert sales_engine.invoices.find_by_id(1).paid_in_full?
+  end
+
+  def test_sales_engine_can_refute_invoice_is_paid_in_full
+    sales_engine = SalesEngine.new
+    invoice = Invoice.new({id: 1})
+    transaction_one = Transaction.new({id:100, invoice_id: 1, result: "failed"})
+    transaction_two = Transaction.new({id:200, invoice_id: 1, result: "success"})
+    sales_engine.invoices.all << invoice
+    sales_engine.transactions.all << transaction_one
+    sales_engine.transactions.all << transaction_two
+    sales_engine.relationships
+
+    refute sales_engine.invoices.find_by_id(1).paid_in_full?
+  end
+
+  def test_INTEGRATION_sales_engine_can_assert_invoice_is_paid_in_full
+    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+    assert sales_engine.invoices.find_by_id(2).paid_in_full?
+  end
+
+  def test_INTEGRATION_sales_engine_can_refute_invoice_is_paid_in_full
+    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+    refute sales_engine.invoices.find_by_id(9).paid_in_full?
+  end
+
+  def test_sales_engine_can_query_invoice_total
+    sales_engine = SalesEngine.new
+    invoice = Invoice.new({id: 1})
+    invoice_item_one = InvoiceItem.new({id: 1, invoice_id: 1, unit_price: 5000, quantity: 2})
+    invoice_item_two = InvoiceItem.new({id: 2, invoice_id: 1, unit_price: 2000, quantity: 5})
+    sales_engine.invoices.all << invoice
+    sales_engine.invoice_items.all << invoice_item_one
+    sales_engine.invoice_items.all << invoice_item_two
+    sales_engine.invoice_invoice_item_relationship
+
+    assert_equal 20000.00, sales_engine.invoices.find_by_id(1).total
+    assert_equal BigDecimal, sales_engine.invoices.find_by_id(1).total.class
+  end
+
+  def test_INTEGRATION_sales_engine_can_query_invoice_total
+    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+
+    assert_equal 403608.0, sales_engine.invoices.find_by_id(9).total
+    assert_equal 2106777.0, sales_engine.invoices.find_by_id(1).total
+    assert_equal 1702232.0, sales_engine.invoices.find_by_id(7).total
+  end
+
   def test_sales_engine_can_read_from_json
     sales_engine = SalesEngine.from_json(test_helper_json_hash)
     assert_equal MerchantRepository, sales_engine.merchants.class

@@ -50,6 +50,7 @@ class SalesEngine
     transaction_invoice_relationship
     merchant_customer_relationship
     customer_merchant_relationship
+    invoice_invoice_item_relationship
   end
 
   def merchant_item_relationship
@@ -88,6 +89,12 @@ class SalesEngine
       inv_items = invoice_items.find_all_by_invoice_id(invoice.id)
     item_ids = inv_items.map { |inv_item| inv_item.item_id}
     invoice.items = item_ids.map { |item_id| items.find_by_id(item_id) }
+    end
+  end
+
+  def invoice_invoice_item_relationship
+    invoices.all.each do |invoice|
+      invoice.invoice_items = invoice_items.find_all_by_invoice_id(invoice.id)
     end
   end
 
