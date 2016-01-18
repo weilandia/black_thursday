@@ -9,7 +9,7 @@ class InvoiceItem
   :created_at,:updated_at
   def initialize(invoice_item_data)
     @id = validate_integer(invoice_item_data[:id])
-    @item_id = invoice_item_data[:item_id].to_i
+    @item_id = validate_integer(invoice_item_data[:item_id])
     @invoice_id = validate_integer(invoice_item_data[:invoice_id])
     @quantity = validate_integer(invoice_item_data[:quantity])
     @unit_price = unit_price_bigdecimal(invoice_item_data[:unit_price])

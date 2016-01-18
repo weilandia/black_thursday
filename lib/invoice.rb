@@ -9,7 +9,7 @@ class Invoice
     @id = validate_integer(invoice_data[:id])
     @customer_id = validate_integer(invoice_data[:customer_id])
     @merchant_id = validate_integer(invoice_data[:merchant_id])
-    @status = validate_symbol(invoice_data[:status].to_sym)
+    @status = validate_symbol(invoice_data[:status])
     @created_at = time_object(invoice_data[:created_at])
     @updated_at = time_object(invoice_data[:updated_at])
   end
