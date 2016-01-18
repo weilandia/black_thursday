@@ -3,28 +3,29 @@ require_relative '../lib/sales_engine'
 require_relative '../lib/data_parser'
 
 class SalesEngineTest < Minitest::Test
+
   def test_sales_engine_object_has_merchant_repository_object
-    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+    sales_engine = SalesEngine.new
     assert_equal MerchantRepository, sales_engine.merchants.class
   end
 
   def test_sales_engine_object_has_item_repository_object
-    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+    sales_engine = SalesEngine.new
     assert_equal ItemRepository, sales_engine.items.class
   end
 
   def test_sales_engine_object_has_customer_repository_object
-    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+    sales_engine = SalesEngine.new
     assert_equal CustomerRepository, sales_engine.customers.class
   end
 
   def test_sales_engine_object_has_invoice_item_repository_object
-    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+    sales_engine = SalesEngine.new
     assert_equal InvoiceItemRepository, sales_engine.invoice_items.class
   end
 
   def test_sales_engine_object_has_transaction_repository_object
-    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+    sales_engine = SalesEngine.new
     assert_equal TransactionRepository, sales_engine.transactions.class
   end
 
