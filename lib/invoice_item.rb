@@ -1,6 +1,8 @@
 require 'unit_price'
+require 'date_validation'
 class InvoiceItem
   include UnitPrice
+  include DateValidation
   attr_reader :id, :item_id, :invoice_id, :quantity, :unit_price, :unit_price_to_dollars,
   :created_at,:updated_at
   def initialize(invoice_item_data)
@@ -10,8 +12,8 @@ class InvoiceItem
     @quantity = invoice_item_data[:quantity].to_i
     @unit_price = unit_price_bigdecimal(invoice_item_data[:unit_price])
     @unit_price_to_dollars = unit_price_in_dollars
-    @created_at = Time.parse(invoice_item_data[:created_at])
-    @updated_at = Time.parse(invoice_item_data[:updated_at])
+    @created_at = time_object(invoice_item_data[:created_at])
+    @updated_at = time_object(invoice_item_data[:updated_at])
   end
 
   def inspect

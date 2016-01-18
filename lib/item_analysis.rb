@@ -21,10 +21,4 @@ module ItemAnalysis
     end.compact
     gold_items
   end
-
-  def average_price_per_merchant
-    all_prices = all_prices_array.map { |item| item.unit_price }
-    average_price = (all_prices.inject(:+) / all_prices.count) / 100
-    average_price.round(2)
-  end
 end

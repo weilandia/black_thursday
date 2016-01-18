@@ -31,13 +31,22 @@ module MerchantAnalysis
      low_items_merchants
   end
 
+  def average_average_price_per_merchant
+    merchant_count = total_merchant_count
+    merchants = @engine.merchants.all
+    average_item_prices = merchants.map do |merchant|
+      average_item_price_for_merchant(merchant.id)
+    end
+    (average_item_prices.inject(:+) / merchant_count).round(2)
+  end
+
   def average_item_price_for_merchant(merchant_id)
     merchant = @engine.merchants.find_by_id(merchant_id)
     item_prices = []
     merchant.items.each do |item|
       item_prices << item.unit_price
     end
-    average_price = (item_prices.inject(:+) / merchant.items.count) / 100
+    average_price = (item_prices.compact.inject(:+) / merchant.items.count) / 100
     average_price.round(2)
   end
 

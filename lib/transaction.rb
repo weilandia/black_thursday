@@ -1,4 +1,6 @@
+require 'date_validation'
 class Transaction
+  include DateValidation
   attr_accessor :invoice
   attr_reader  :id, :invoice_id, :credit_card_number,
   :credit_card_expiration_date, :result, :created_at, :updated_at
@@ -9,8 +11,8 @@ class Transaction
     @credit_card_expiration_date =
     transaction_data[:credit_card_expiration_date]
     @result = transaction_data[:result]
-    @created_at = Time.parse(transaction_data[:created_at])
-    @updated_at = Time.parse(transaction_data[:updated_at])
+    @created_at = time_object(transaction_data[:created_at])
+    @updated_at = time_object(transaction_data[:updated_at])
   end
 
   def inspect
