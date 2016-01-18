@@ -145,4 +145,25 @@ class SalesAnalystTest < Minitest::Test
 
     assert_equal 0.0, sales_analyst.total_revenue_by_date(Time.parse("2014-01-26"))
   end
+
+  def test_sales_anaylst_calculates_array_of_top_revenue_merchants_one
+    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+    sales_analyst = SalesAnalyst.new(sales_engine)
+
+    assert_equal ["Helm"], sales_analyst.top_revenue_earners(1).map { |m| m.name }
+  end
+
+  def test_sales_anaylst_calculates_array_of_top_revenue_merchants_multiple
+    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+    sales_analyst = SalesAnalyst.new(sales_engine)
+
+    assert_equal ["Helm", "Skype", "GoldenRayPress", "Johnson", "Lair"], sales_analyst.top_revenue_earners(5).map { |m| m.name }
+  end
+
+  def test_sales_anaylst_calculates_array_of_top_revenue_merchants_defaults_twenty
+    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+    sales_analyst = SalesAnalyst.new(sales_engine)
+
+    assert_equal ["Helm", "Skype", "GoldenRayPress", "Johnson", "Lair", "Bhyd", "Ello", "MiniatureBikez", "Candisart", "Hidy", "Urcase17", "Venmo", "GoldenHelmets", "Got"], sales_analyst.top_revenue_earners.map { |m| m.name }
+  end
 end

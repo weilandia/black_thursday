@@ -39,11 +39,4 @@ class SalesAnalyst
     return 0.0 if invoices.empty?
     invoices.map { |i| i.total }.inject(:+) / 100
   end
-
-  def merchants_with_pending_invoices
-    #iterate through merchants
-      #iterate through merchant invoices
-        #New Method: iterate through invoice.paid_in_full?; take only false
-        #false => merhchant with pending invoice
-  end
 end
