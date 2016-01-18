@@ -1,7 +1,5 @@
-require 'date_validation'
 require 'validate_input'
 class Invoice
-  include DateValidation
   include ValidateInput
   attr_accessor :merchant, :items, :transactions, :customer, :invoice_items
   attr_reader :id, :customer_id, :merchant_id, :status, :created_at, :updated_at
@@ -17,7 +15,7 @@ class Invoice
     "#<#{self.class} ##{id} #{status}>"
   end
 
-  def paid_in_full?
+  def is_paid_in_full?
     !transactions.any? { |t| t.result == "failed" }
   end
 

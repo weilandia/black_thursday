@@ -1,7 +1,5 @@
-require 'date_validation'
 require 'validate_input'
 class Transaction
-  include DateValidation
   include ValidateInput
   attr_accessor :invoice
   attr_reader  :id, :invoice_id, :credit_card_number,

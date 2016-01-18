@@ -1,9 +1,5 @@
-require 'unit_price'
-require 'date_validation'
 require 'validate_input'
 class InvoiceItem
-  include UnitPrice
-  include DateValidation
   include ValidateInput
   attr_reader :id, :item_id, :invoice_id, :quantity, :unit_price, :unit_price_to_dollars,
   :created_at,:updated_at

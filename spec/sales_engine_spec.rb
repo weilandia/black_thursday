@@ -255,7 +255,7 @@ class SalesEngineTest < Minitest::Test
     sales_engine.transactions.all << transaction_two
     sales_engine.relationships
 
-    assert sales_engine.invoices.find_by_id(1).paid_in_full?
+    assert sales_engine.invoices.find_by_id(1).is_paid_in_full?
   end
 
   def test_sales_engine_can_refute_invoice_is_paid_in_full
@@ -268,17 +268,17 @@ class SalesEngineTest < Minitest::Test
     sales_engine.transactions.all << transaction_two
     sales_engine.relationships
 
-    refute sales_engine.invoices.find_by_id(1).paid_in_full?
+    refute sales_engine.invoices.find_by_id(1).is_paid_in_full?
   end
 
   def test_INTEGRATION_sales_engine_can_assert_invoice_is_paid_in_full
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
-    assert sales_engine.invoices.find_by_id(2).paid_in_full?
+    assert sales_engine.invoices.find_by_id(2).is_paid_in_full?
   end
 
   def test_INTEGRATION_sales_engine_can_refute_invoice_is_paid_in_full
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
-    refute sales_engine.invoices.find_by_id(9).paid_in_full?
+    refute sales_engine.invoices.find_by_id(9).is_paid_in_full?
   end
 
   def test_sales_engine_can_query_invoice_total

@@ -1,9 +1,5 @@
-require 'unit_price'
-require 'date_validation'
 require 'validate_input'
 class Item
-  include UnitPrice
-  include DateValidation
   include ValidateInput
   attr_accessor :merchant
   attr_reader :id, :name, :description, :unit_price, :unit_price_to_dollars, :merchant_id, :created_at,

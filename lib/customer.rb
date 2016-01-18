@@ -1,7 +1,5 @@
-require 'date_validation'
 require 'validate_input'
 class Customer
-  include DateValidation
   include ValidateInput
   attr_accessor :merchants
   attr_reader :id, :first_name, :last_name, :created_at, :updated_at
