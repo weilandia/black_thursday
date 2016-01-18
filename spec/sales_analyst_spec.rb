@@ -131,4 +131,18 @@ class SalesAnalystTest < Minitest::Test
 
     assert_equal 38.0, sales_analyst.invoice_status(:pending)
   end
+
+  def test_sales_analyst_calculates_total_revenue_by_date
+    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+    sales_analyst = SalesAnalyst.new(sales_engine)
+
+    assert_equal 29776.22, sales_analyst.total_revenue_by_date(Time.parse("2012-02-26"))
+  end
+
+  def test_sales_analyst_calculates_total_revenue_by_date_zero_revenue
+    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+    sales_analyst = SalesAnalyst.new(sales_engine)
+
+    assert_equal 0.0, sales_analyst.total_revenue_by_date(Time.parse("2014-01-26"))
+  end
 end

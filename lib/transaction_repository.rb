@@ -38,6 +38,10 @@ class TransactionRepository
     all.select {|s| s.result == result}
   end
 
+  def find_all_by_date(date)
+    all.select {|s| s.created_at.to_s[0..9] == date.to_s[0..9]}
+  end
+
   def exact_search(search_result)
     return nil if search_result.nil?
     search_result

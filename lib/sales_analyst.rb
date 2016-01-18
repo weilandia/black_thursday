@@ -32,4 +32,18 @@ class SalesAnalyst
     variance = sample_variance(mean, array)
     Math.sqrt(variance).round(2)
   end
+
+  def total_revenue_by_date(date)
+    invoices = @engine.invoices.find_all_by_date(date)
+    invoices = invoices.select { |i| i.is_paid_in_full? }
+    return 0.0 if invoices.empty?
+    invoices.map { |i| i.total }.inject(:+) / 100
+  end
+
+  def merchants_with_pending_invoices
+    #iterate through merchants
+      #iterate through merchant invoices
+        #New Method: iterate through invoice.paid_in_full?; take only false
+        #false => merhchant with pending invoice
+  end
 end

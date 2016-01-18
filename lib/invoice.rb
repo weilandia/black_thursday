@@ -22,5 +22,4 @@ class Invoice
   def total
     invoice_items.map { |i| i.unit_price * i.quantity }.inject(:+)
   end
-
 end

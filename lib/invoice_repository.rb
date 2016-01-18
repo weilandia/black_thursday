@@ -44,4 +44,8 @@ class InvoiceRepository
   def find_all_by_status(status)
     all.select {|search| search.status == status}
   end
+
+  def find_all_by_date(date)
+    all.select {|s| s.created_at.to_s[0..9] == date.to_s[0..9]}
+  end
 end
