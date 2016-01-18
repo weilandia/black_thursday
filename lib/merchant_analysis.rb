@@ -31,6 +31,18 @@ module MerchantAnalysis
      low_items_merchants
   end
 
+  def merchants_with_high_item_count
+    sd = average_items_per_merchant_standard_deviation
+    avg = average_items_per_merchant
+    high_items_merchants = []
+     @engine.merchants.all.each do |merchant|
+       if merchant.items.count >=  avg + sd
+         high_items_merchants << merchant
+       end
+     end
+     high_items_merchants
+  end
+
   def average_average_price_per_merchant
     merchant_count = total_merchant_count
     merchants = @engine.merchants.all
@@ -43,11 +55,10 @@ module MerchantAnalysis
   def average_item_price_for_merchant(merchant_id)
     merchant = @engine.merchants.find_by_id(merchant_id)
     item_prices = []
-    merchant.items.each do |item|
-      item_prices << item.unit_price
-    end
-    average_price = (item_prices.compact.inject(:+) / merchant.items.count) / 100
-    average_price.round(2)
+    merchant.items.each { |i| item_prices << i.unit_price }
+    return 0.0 if item_prices.empty?
+    average = (item_prices.compact.inject(:+) / merchant.items.count) / 100
+    average.round(2)
   end
 
   def top_merchants_by_invoice_count

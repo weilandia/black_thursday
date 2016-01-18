@@ -18,9 +18,9 @@ class TransactionRepositoryTest < Minitest::Test
 
   def test_transaction_repo_can_find_all_by_credit_card_number
     transaction_repo = test_helper_transaction_repo
-    assert_equal Array, transaction_repo.find_all_by_credit_card_number("4558370000000000").class
-    assert_equal Transaction, transaction_repo.find_all_by_credit_card_number("4558370000000000").first.class
-    assert_equal "4558370000000000", transaction_repo.find_all_by_credit_card_number("4558370000000000").first.credit_card_number
+    assert_equal Array, transaction_repo.find_all_by_credit_card_number(4558370000000000).class
+    assert_equal Transaction, transaction_repo.find_all_by_credit_card_number(4558370000000000).first.class
+    assert_equal 4558370000000000, transaction_repo.find_all_by_credit_card_number(4558370000000000).first.credit_card_number
   end
 
   def test_transaction_repo_can_find_all_by_result

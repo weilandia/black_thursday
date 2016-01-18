@@ -39,6 +39,13 @@ class SalesAnalystTest < Minitest::Test
     assert_equal [], merchants.map { |m| m.name }
   end
 
+  def test_sales_analyst_can_identify_merchants_with_high_item_counts
+    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+    sales_analyst = SalesAnalyst.new(sales_engine)
+    merchants = sales_analyst.merchants_with_high_item_count
+    assert_equal ["Shopin1901", "Got"], merchants.map { |m| m.name }
+  end
+
   def test_sales_analyst_identifies_average_item_price_per_merchant
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
     sales_analyst = SalesAnalyst.new(sales_engine)
@@ -122,6 +129,6 @@ class SalesAnalystTest < Minitest::Test
     sales_analyst = SalesAnalyst.new(sales_engine)
     assert_equal Float, sales_analyst.invoice_status(:pending).class
 
-    assert_equal 2.63, sales_analyst.invoice_status(:pending)
+    assert_equal 38.0, sales_analyst.invoice_status(:pending)
   end
 end

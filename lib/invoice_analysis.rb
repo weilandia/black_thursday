@@ -56,7 +56,7 @@ module InvoiceAnalysis
 
   def invoice_status(status)
     return 0.0 if invoice_count_by_status(status) == 0
-    (total_invoice_count.to_f / invoice_count_by_status(status)).round(2)
+    ((invoice_count_by_status(status) / total_invoice_count.to_f) * 100).round(2)
   end
 
 

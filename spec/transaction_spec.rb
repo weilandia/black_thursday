@@ -15,7 +15,7 @@ class TransactionTest < Minitest::Test
 
   def test_transaction_can_query_credit_card_number
     transaction = Transaction.new(test_helper_transaction_three_data)
-    assert_equal "3333333333333333", transaction.credit_card_number
+    assert_equal 3333333333333333, transaction.credit_card_number
   end
 
   def test_transaction_can_query_credit_card_expiration_date

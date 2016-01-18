@@ -22,20 +22,20 @@ class TransactionRepository
   end
 
   def find_by_id(transaction_id)
-    search_result = all.select {|search| search.id == transaction_id}[0]
+    search_result = all.select {|s| s.id == transaction_id}[0]
     exact_search(search_result)
   end
 
   def find_all_by_invoice_id(invoice_id)
-    all.select {|search| search.invoice_id == invoice_id}
+    all.select {|s| s.invoice_id == invoice_id}
   end
 
   def find_all_by_credit_card_number(credit_card_number)
-    all.select {|search| search.credit_card_number == credit_card_number}
+    all.select { |s| s.credit_card_number == credit_card_number}
   end
 
   def find_all_by_result(result)
-    all.select {|search| search.result == result}
+    all.select {|s| s.result == result}
   end
 
   def exact_search(search_result)
