@@ -35,7 +35,7 @@ module MerchantAnalysis
     merchant = @engine.merchants.find_by_id(merchant_id)
     item_prices = []
     merchant.items.each do |item|
-      item_prices << item.unit_price.to_f
+      item_prices << item.unit_price
     end
     average_price = (item_prices.inject(:+) / merchant.items.count) / 100
     average_price.round(2)

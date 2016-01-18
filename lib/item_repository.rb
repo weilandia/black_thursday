@@ -55,12 +55,12 @@ class ItemRepository
   end
 
   def find_all_by_price(price)
-    @all_items.select {|search| search.unit_price_to_dollars == price}
+    @all_items.select {|search| search.unit_price == price}
   end
 
   def find_all_by_price_in_range(range)
     @all_items.select do |s|
-      s.unit_price_to_dollars <= range.last && s.unit_price_to_dollars >= range.first
+      s.unit_price <= range.last && s.unit_price >= range.first
     end
   end
 

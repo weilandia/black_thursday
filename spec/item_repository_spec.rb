@@ -64,14 +64,14 @@ class ItemRepositoryTest < Minitest::Test
   end
 
   def test_item_repo_finds_array_of_items_mathcing_price
-    search_array_price = @item_repo.find_all_by_price(800.00).map do |item|
+    search_array_price = @item_repo.find_all_by_price(80000).map do |item|
       item.name
     end
     assert_equal ["Very Magnifique", "TestItem28", "TestItem29"], search_array_price
   end
 
   def test_item_repo_finds_array_of_all_items_in_price_range
-    search_array_price = @item_repo.find_all_by_price_in_range(750.0..850.0).map do |item|
+    search_array_price = @item_repo.find_all_by_price_in_range(75000..85000).map do |item|
       item.name
     end
 
