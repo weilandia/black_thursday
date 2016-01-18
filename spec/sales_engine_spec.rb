@@ -72,9 +72,10 @@ class SalesEngineTest < Minitest::Test
   def test_sales_engine_object_can_access_an_item_unit_price
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
 
-    item_unit_price = sales_engine.items.find_by_id(2).unit_price
+    item = sales_engine.items.find_by_id(2)
 
-    assert_equal 800.0, item_unit_price.to_f
+    assert_equal 80000.0, item.unit_price
+    assert_equal 800.00, item.unit_price_to_dollars
   end
 
   def test_sales_engine_object_can_access_an_invoice_id

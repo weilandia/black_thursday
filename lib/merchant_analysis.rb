@@ -37,8 +37,8 @@ module MerchantAnalysis
     merchant.items.each do |item|
       item_prices << item.unit_price.to_f
     end
-    average_price = item_prices.inject(:+) / merchant.items.count
-    BigDecimal.new("#{average_price.round(2)}")
+    average_price = (item_prices.inject(:+) / merchant.items.count) / 100
+    average_price.round(2)
   end
 
   def top_merchants_by_invoice_count

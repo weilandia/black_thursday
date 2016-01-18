@@ -48,7 +48,7 @@ class SalesAnalystTest < Minitest::Test
   def test_sales_analyst_can_calculate_average_price_per_merchant
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
     sales_analyst = SalesAnalyst.new(sales_engine)
-    assert_equal 185.64, sales_analyst.average_price_per_merchant.to_f
+    assert_equal 185.64, sales_analyst.average_price_per_merchant
   end
 
   def test_sales_analyst_calculate_golden_items_two_standard_devs

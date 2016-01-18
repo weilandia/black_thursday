@@ -25,7 +25,8 @@ class InvoiceItemTest < Minitest::Test
 
   def test_invoice_item_can_query_unit_price
     invoice_item = InvoiceItem.new(test_helper_invoice_item_two_data)
-    assert_equal 200.00, invoice_item.unit_price.to_f
+    assert_equal 20000.0, invoice_item.unit_price
+    assert_equal 200.00, invoice_item.unit_price_to_dollars
   end
 
   def test_invoice_item_can_query_creation_date

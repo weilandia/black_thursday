@@ -23,8 +23,8 @@ module ItemAnalysis
   end
 
   def average_price_per_merchant
-    all_prices = all_prices_array.map { |item| item.unit_price.to_f }
-    average_price = all_prices.inject(:+) / all_prices.count
-    BigDecimal.new("#{average_price.round(2)}")
+    all_prices = all_prices_array.map { |item| item.unit_price }
+    average_price = (all_prices.inject(:+) / all_prices.count) / 100
+    average_price.round(2)
   end
 end
