@@ -1,13 +1,15 @@
 require 'date_validation'
+require 'validate_input'
 class Transaction
   include DateValidation
+  include ValidateInput
   attr_accessor :invoice
   attr_reader  :id, :invoice_id, :credit_card_number,
   :credit_card_expiration_date, :result, :created_at, :updated_at
   def initialize(transaction_data)
-    @id = transaction_data[:id].to_i
-    @invoice_id = transaction_data[:invoice_id].to_i
-    @credit_card_number = transaction_data[:credit_card_number].to_i
+    @id = validate_integer(transaction_data[:id])
+    @invoice_id = validate_integer(transaction_data[:invoice_id])
+    @credit_card_number = validate_integer(transaction_data[:credit_card_number])
     @credit_card_expiration_date =
     transaction_data[:credit_card_expiration_date]
     @result = transaction_data[:result]

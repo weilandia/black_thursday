@@ -1,10 +1,12 @@
 require 'date_validation'
+require 'validate_input'
 class Merchant
   include DateValidation
+  include ValidateInput
   attr_accessor :items, :invoices, :customers
   attr_reader :id, :name, :created_at, :updated_at
   def initialize(merchant_data)
-    @id = merchant_data[:id].to_i
+    @id = validate_integer(merchant_data[:id])
     @name = merchant_data[:name]
     @created_at = time_object(merchant_data[:created_at])
     @updated_at = time_object(merchant_data[:updated_at])
