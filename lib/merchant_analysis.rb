@@ -87,22 +87,21 @@ module MerchantAnalysis
 
   def top_revenue_earners(x = 20)
     merchant_earnings= @engine.merchants.all.map do |merchant|
-      rev = merchant.invoices.map do |invoice|
-        invoice.total
-      end.inject(:+)
+      rev = merchant.invoices.map { |i| i.total }.inject(:+)
       [merchant, rev]
     end
     merchant_earnings = merchant_earnings.select { |a| !a[1].nil? }
     merchant_earnings = merchant_earnings.sort_by { |m| m[1] }
     merchant_earnings[0..(x-1)].map { |m| m[0] }
-    #iterate through merchants and sort by revenue
-    #take x number merchants
   end
 
   def merchants_with_pending_invoices
-    #iterate through merchants
-      #iterate through merchant invoices
-        #New Method: iterate through invoice.paid_in_full?; take only false
-        #false => merhchant with pending invoice
+    merchants = []
+    @engine.merchants.all.map do |merchant|
+      if !merchant.invoices.select { |i| !i.is_paid_in_full? }.empty?
+        merchants << merchant
+      end
+    end
+    merchants
   end
 end
