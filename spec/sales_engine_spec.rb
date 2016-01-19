@@ -160,7 +160,7 @@ class SalesEngineTest < Minitest::Test
     assert_equal [1], transactions
   end
 
-  def test_UNIT_sales_engine_object_has_access_to_invoice_object_transactions_multiple
+  def test_sales_engine_object_has_access_to_invoice_object_transactions_multiple
     sales_engine = SalesEngine.new
     invoice = Invoice.new({id: 5, status: "shipped", created_at:"2016-01-11 11:44:13 UTC", updated_at:"2016-01-11 11:44:13 UTC"})
     transaction_one = Transaction.new({id: 1, invoice_id: 5, created_at:"2016-01-11 11:44:13 UTC", updated_at:"2016-01-11 11:44:13 UTC"})
@@ -201,7 +201,7 @@ class SalesEngineTest < Minitest::Test
     assert_equal invoice, sales_engine.transactions.all.first.invoice
   end
 
-  def test_from_file_sales_engine_object_has_access_to_transaction_object_invoice
+  def test_sales_engine_integration_object_has_access_to_transaction_object_invoice
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
     assert_equal 1, sales_engine.transactions.all.first.invoice.id
   end
@@ -223,7 +223,7 @@ class SalesEngineTest < Minitest::Test
     assert_equal [customer_one, customer_two], customers
   end
 
-  def test_from_file_sales_engine_object_has_access_to_merchant_object_customers
+  def test_sales_engine_integration_object_has_access_to_merchant_object_customers
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
     assert_equal [9, 10], sales_engine.merchants.all.last.customers.map {|c| c.id}
   end
@@ -270,12 +270,12 @@ class SalesEngineTest < Minitest::Test
     refute sales_engine.invoices.find_by_id(1).is_paid_in_full?
   end
 
-  def test_INTEGRATION_sales_engine_can_assert_invoice_is_paid_in_full
+  def test_sales_engine_integration_can_assert_invoice_is_paid_in_full
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
     assert sales_engine.invoices.find_by_id(2).is_paid_in_full?
   end
 
-  def test_INTEGRATION_sales_engine_can_refute_invoice_is_paid_in_full
+  def test_sales_engine_integration_can_refute_invoice_is_paid_in_full
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
     refute sales_engine.invoices.find_by_id(48).is_paid_in_full?
   end
@@ -294,7 +294,7 @@ class SalesEngineTest < Minitest::Test
     assert_equal BigDecimal, sales_engine.invoices.find_by_id(1).total.class
   end
 
-  def test_INTEGRATION_sales_engine_can_query_invoice_total
+  def test_sales_engine_integration_can_query_invoice_total
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
 
     assert_equal 403608.0, sales_engine.invoices.find_by_id(9).total
