@@ -136,7 +136,7 @@ class SalesAnalystTest < Minitest::Test
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
     sales_analyst = SalesAnalyst.new(sales_engine)
 
-    assert_equal 29776.22, sales_analyst.total_revenue_by_date(Time.parse("2012-02-26"))
+    assert_equal 74307.72, sales_analyst.total_revenue_by_date(Time.parse("2012-02-26"))
   end
 
   def test_sales_analyst_calculates_total_revenue_by_date_zero_revenue

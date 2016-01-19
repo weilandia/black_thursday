@@ -48,4 +48,8 @@ class InvoiceRepository
   def find_all_by_date(date)
     all.select {|s| s.created_at.to_s[0..9] == date.to_s[0..9]}
   end
+
+  def find_all_by_updated_at_date(date)
+    all.select {|s| s.updated_at.to_s[0..9] == date.to_s[0..9]}
+  end
 end
