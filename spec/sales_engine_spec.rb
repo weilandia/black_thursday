@@ -290,16 +290,16 @@ class SalesEngineTest < Minitest::Test
     sales_engine.invoice_items.all << invoice_item_two
     sales_engine.invoice_invoice_item_relationship
 
-    assert_equal 20000.00, sales_engine.invoices.find_by_id(1).total
+    assert_equal 200.00, sales_engine.invoices.find_by_id(1).total
     assert_equal BigDecimal, sales_engine.invoices.find_by_id(1).total.class
   end
 
   def test_sales_engine_integration_can_query_invoice_total
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
 
-    assert_equal 403608.0, sales_engine.invoices.find_by_id(9).total
-    assert_equal 2106777.0, sales_engine.invoices.find_by_id(1).total
-    assert_equal 1702232.0, sales_engine.invoices.find_by_id(7).total
+    assert_equal 4036.08, sales_engine.invoices.find_by_id(9).total
+    assert_equal 21067.77, sales_engine.invoices.find_by_id(1).total
+    assert_equal 17022.32, sales_engine.invoices.find_by_id(7).total
   end
 
   def test_sales_engine_can_read_from_json

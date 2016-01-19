@@ -20,6 +20,7 @@ class Invoice
   end
 
   def total
-    invoice_items.map { |i| i.unit_price * i.quantity }.inject(:+)
+    total = invoice_items.map { |i| i.unit_price * i.quantity }.inject(:+)
+    (total / 100).round(2)
   end
 end
