@@ -104,4 +104,8 @@ module MerchantAnalysis
     end
     merchants
   end
+
+  def merchants_with_only_one_item
+    @engine.merchants.all.select { |m| m.items.count == 1 }
+  end
 end

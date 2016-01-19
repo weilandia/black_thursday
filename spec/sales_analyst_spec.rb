@@ -173,4 +173,29 @@ class SalesAnalystTest < Minitest::Test
 
     assert_equal ["Got"], sales_analyst.merchants_with_pending_invoices.map { |m| m.name }
   end
+
+  def test_sales_anaylst_calculates_merchants_with_one_item
+    sales_engine = SalesEngine.new
+    merchant_one = Merchant.new({id: 1})
+    merchant_two = Merchant.new({id: 2})
+    item_one = Item.new({id: 1, merchant_id: 1})
+    item_two = Item.new({id: 2, merchant_id: 2})
+    item_three = Item.new({id: 3, merchant_id: 2})
+    sales_engine.merchants.all << merchant_one
+    sales_engine.merchants.all << merchant_two
+    sales_engine.items.all << item_one
+    sales_engine.items.all << item_two
+    sales_engine.items.all << item_three
+    sales_engine.merchant_item_relationship
+    sales_analyst = SalesAnalyst.new(sales_engine)
+
+    assert_equal [merchant_one], sales_analyst.merchants_with_only_one_item
+  end
+
+  def test_sales_anaylst_integration_calculates_merchants_with_one_item
+    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+    sales_analyst = SalesAnalyst.new(sales_engine)
+
+    assert_equal [2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], sales_analyst.merchants_with_only_one_item.map { |m| m.id }
+  end
 end
