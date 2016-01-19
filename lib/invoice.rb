@@ -16,7 +16,7 @@ class Invoice
   end
 
   def is_paid_in_full?
-    !transactions.any? { |t| t.result == "failed" }
+    transactions.any? { |t| t.result == "success" }
   end
 
   def total

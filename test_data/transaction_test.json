@@ -490,7 +490,7 @@
     "invoice_id": "48",
     "credit_card_number": "4714660000000000",
     "credit_card_expiration_date": "117",
-    "result": "success",
+    "result": "failed",
     "created_at": "2012-02-26 20:56:58 UTC",
     "updated_at": "2012-02-26 20:56:58 UTC"
   },

@@ -248,7 +248,7 @@ class SalesEngineTest < Minitest::Test
   def test_sales_engine_can_assert_invoice_is_paid_in_full
     sales_engine = SalesEngine.new
     invoice = Invoice.new({id: 1})
-    transaction_one = Transaction.new({id:100, invoice_id: 1, result: "success"})
+    transaction_one = Transaction.new({id:100, invoice_id: 1, result: "failed"})
     transaction_two = Transaction.new({id:200, invoice_id: 1, result: "success"})
     sales_engine.invoices.all << invoice
     sales_engine.transactions.all << transaction_one
@@ -262,12 +262,11 @@ class SalesEngineTest < Minitest::Test
     sales_engine = SalesEngine.new
     invoice = Invoice.new({id: 1})
     transaction_one = Transaction.new({id:100, invoice_id: 1, result: "failed"})
-    transaction_two = Transaction.new({id:200, invoice_id: 1, result: "success"})
+    transaction_two = Transaction.new({id:200, invoice_id: 1, result: "failed"})
     sales_engine.invoices.all << invoice
     sales_engine.transactions.all << transaction_one
     sales_engine.transactions.all << transaction_two
     sales_engine.relationships
-
     refute sales_engine.invoices.find_by_id(1).is_paid_in_full?
   end
 
@@ -278,7 +277,7 @@ class SalesEngineTest < Minitest::Test
 
   def test_INTEGRATION_sales_engine_can_refute_invoice_is_paid_in_full
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
-    refute sales_engine.invoices.find_by_id(9).is_paid_in_full?
+    refute sales_engine.invoices.find_by_id(48).is_paid_in_full?
   end
 
   def test_sales_engine_can_query_invoice_total

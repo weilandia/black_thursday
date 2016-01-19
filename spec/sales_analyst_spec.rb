@@ -170,8 +170,7 @@ class SalesAnalystTest < Minitest::Test
   def test_sales_anaylst_calculates_array_of_merchants_with_pending_invoices
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
     sales_analyst = SalesAnalyst.new(sales_engine)
-    require "pry"; binding.pry
 
-    assert_equal ["MiniatureBikez", "GoldenHelmets", "Urcase17", "Venmo", "Skype", "Got"], sales_analyst.merchants_with_pending_invoices.map { |m| m.name }
+    assert_equal ["Got"], sales_analyst.merchants_with_pending_invoices.map { |m| m.name }
   end
 end

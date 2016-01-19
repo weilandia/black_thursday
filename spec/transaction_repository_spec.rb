@@ -27,7 +27,7 @@ class TransactionRepositoryTest < Minitest::Test
     transaction_repo = test_helper_transaction_repo
     assert_equal Array, transaction_repo.find_all_by_result("failed").class
     assert_equal Transaction, transaction_repo.find_all_by_result("success").first.class
-    assert_equal 9, transaction_repo.find_all_by_result("failed").length
+    assert_equal 10, transaction_repo.find_all_by_result("failed").length
   end
 
   def test_transaction_repo_can_find_all_by_date
