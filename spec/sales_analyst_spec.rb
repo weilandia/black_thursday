@@ -198,4 +198,40 @@ class SalesAnalystTest < Minitest::Test
 
     assert_equal [2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], sales_analyst.merchants_with_only_one_item.map { |m| m.id }
   end
+
+  def test_sales_anaylst_identifies_merchants_with_one_item_registered_in_particular_month
+    sales_engine = SalesEngine.new
+    merchant_one = Merchant.new({id: 1, created_at: "2012-12-27 14:54:09 UTC"})
+    merchant_two = Merchant.new({id: 2, created_at: "2012-12-27 14:54:09 UTC"})
+    merchant_three = Merchant.new({id: 3, created_at: "2012-12-27 14:54:09 UTC"})
+    item_one = Item.new({id: 1, merchant_id: 1})
+    item_two = Item.new({id: 2, merchant_id: 1})
+    item_three = Item.new({id: 3, merchant_id: 1})
+    item_four = Item.new({id: 4, merchant_id: 2})
+    item_five = Item.new({id: 5, merchant_id: 3})
+    item_six = Item.new({id: 6, merchant_id: 1})
+
+    sales_engine.merchants.all << merchant_one
+    sales_engine.merchants.all << merchant_two
+    sales_engine.merchants.all << merchant_three
+    sales_engine.items.all << item_one
+    sales_engine.items.all << item_two
+    sales_engine.items.all << item_three
+    sales_engine.items.all << item_four
+    sales_engine.items.all << item_five
+    sales_engine.items.all << item_six
+    sales_engine.merchant_item_relationship
+    sales_analyst = SalesAnalyst.new(sales_engine)
+
+    assert_equal Merchant, sales_analyst.merchants_with_only_one_item_registered_in_month("december").first.class
+
+    assert_equal [2, 3], sales_analyst.merchants_with_only_one_item_registered_in_month("december").map { |m| m.id }
+  end
+
+  def test_sales_anaylst_integration_identifies_merchants_with_one_item_registered_in_particular_month
+    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+    sales_analyst = SalesAnalyst.new(sales_engine)
+
+    assert_equal [6], sales_analyst.merchants_with_only_one_item_registered_in_month("june").map { |m| m.id }
+  end
 end

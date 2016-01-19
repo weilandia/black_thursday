@@ -108,4 +108,8 @@ module MerchantAnalysis
   def merchants_with_only_one_item
     @engine.merchants.all.select { |m| m.items.count == 1 }
   end
+
+  def merchants_with_only_one_item_registered_in_month(month)
+    merchants_with_only_one_item.select { |m| m.created_at.month == Time.parse(month).month }
+  end
 end
