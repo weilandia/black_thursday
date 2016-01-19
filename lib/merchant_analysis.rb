@@ -118,4 +118,13 @@ module MerchantAnalysis
     invoices = merchant.invoices.select { |i| i.is_paid_in_full? }
     invoices.map { |i| i.total }.inject(:+)
   end
+
+  def most_sold_item_for_merchant(merchant_id)
+    merch = @engine.merchants.find_by_id(merchant_id)
+    invoices = merch.invoices.select { |i| i.is_paid_in_full? }
+    inv_itms = invoices.map { |i| i.invoice_items }.flatten
+    most_sold = inv_itms.sort_by { |i| i.quantity }.last
+    return nil if most_sold.nil?
+    @engine.items.find_by_id(most_sold.item_id)
+  end
 end
