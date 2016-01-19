@@ -112,4 +112,10 @@ module MerchantAnalysis
   def merchants_with_only_one_item_registered_in_month(month)
     merchants_with_only_one_item.select { |m| m.created_at.month == Time.parse(month).month }
   end
+
+  def revenue_by_merchant(merchant_id)
+    merchant = @engine.merchants.find_by_id(merchant_id)
+    invoices = merchant.invoices.select { |i| i.is_paid_in_full? }
+    invoices.map { |i| i.total }.inject(:+)
+  end
 end

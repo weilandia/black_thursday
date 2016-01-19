@@ -234,4 +234,33 @@ class SalesAnalystTest < Minitest::Test
 
     assert_equal [6], sales_analyst.merchants_with_only_one_item_registered_in_month("june").map { |m| m.id }
   end
+
+  def test_sales_anaylst_calculates_revenue_by_merchant_id
+    sales_engine = SalesEngine.new
+    merchant = Merchant.new({id: 1})
+    invoice_one = Invoice.new({id: 1, merchant_id: 1})
+    invoice_two = Invoice.new({id: 2, merchant_id: 1})
+    invoice_three = Invoice.new({id: 3, merchant_id: 1})
+    invoice_item_one = InvoiceItem.new({id: 1, invoice_id: 1, quantity: 3, unit_price: 4000})
+    invoice_item_two = InvoiceItem.new({id: 2, invoice_id: 2, quantity: 1, unit_price: 1000})
+    invoice_item_three = InvoiceItem.new({id: 3, invoice_id: 3, quantity: 5, unit_price: 2000})
+    transaction_one = Transaction.new({id: 1, invoice_id: 1, result: "success"})
+    transaction_two = Transaction.new({id: 2, invoice_id: 2, result: "success"})
+    transaction_three = Transaction.new({id: 3, invoice_id: 3, result: "failed"})
+    sales_engine.merchants.all << merchant
+    sales_engine.invoices.all << invoice_one
+    sales_engine.invoices.all << invoice_two
+    sales_engine.invoices.all << invoice_three
+    sales_engine.invoice_items.all << invoice_item_one
+    sales_engine.invoice_items.all << invoice_item_two
+    sales_engine.invoice_items.all << invoice_item_three
+    sales_engine.transactions.all << transaction_one
+    sales_engine.transactions.all << transaction_two
+    sales_engine.transactions.all << transaction_three
+    sales_engine.relationships
+
+    sales_analyst = SalesAnalyst.new(sales_engine)
+
+    assert_equal 13000.0, sales_analyst.revenue_by_merchant(1)
+  end
 end
