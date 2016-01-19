@@ -312,4 +312,80 @@ class SalesAnalystTest < Minitest::Test
 
     assert_equal nil, sales_analyst.most_sold_item_for_merchant(1)
   end
+
+  def test_sales_analyst_calculates_most_sold_item_for_merchant
+    sales_engine = SalesEngine.new
+    merchant = Merchant.new({id: 1})
+    invoice_one = Invoice.new({id: 1, merchant_id: 1})
+    invoice_two = Invoice.new({id: 2, merchant_id: 1})
+    invoice_three = Invoice.new({id: 3, merchant_id: 1})
+    invoice_item_one = InvoiceItem.new({id: 1, invoice_id: 1, quantity: 3, unit_price: 4000, item_id: 1})
+    invoice_item_two = InvoiceItem.new({id: 2, invoice_id: 2, quantity: 1, unit_price: 50000, item_id: 2})
+    invoice_item_three = InvoiceItem.new({id: 3, invoice_id: 3, quantity: 5, unit_price: 2000, item_id: 3})
+    item_one = Item.new({id: 1, unit_price: 4000, merchant_id: 1})
+    item_two = Item.new({id: 2, unit_price: 50000, merchant_id: 1})
+    item_three = Item.new({id: 3, unit_price: 2000, merchant_id: 1})
+    transaction_one = Transaction.new({id: 1, invoice_id: 1, result: "success"})
+    transaction_two = Transaction.new({id: 2, invoice_id: 2, result: "success"})
+    transaction_three = Transaction.new({id: 3, invoice_id: 3, result: "failed"})
+    sales_engine.merchants.all << merchant
+    sales_engine.invoices.all << invoice_one
+    sales_engine.invoices.all << invoice_two
+    sales_engine.invoices.all << invoice_three
+    sales_engine.invoice_items.all << invoice_item_one
+    sales_engine.invoice_items.all << invoice_item_two
+    sales_engine.invoice_items.all << invoice_item_three
+    sales_engine.transactions.all << transaction_one
+    sales_engine.transactions.all << transaction_two
+    sales_engine.transactions.all << transaction_three
+    sales_engine.items.all << item_one
+    sales_engine.items.all << item_two
+    sales_engine.items.all << item_three
+    sales_engine.relationships
+
+    sales_analyst = SalesAnalyst.new(sales_engine)
+
+    assert_equal item_two, sales_analyst.best_item_for_merchant(1)
+  end
+
+  def test_sales_analyst_calculates_most_sold_item_for_merchant_with_quant
+    sales_engine = SalesEngine.new
+    merchant = Merchant.new({id: 1})
+    invoice_one = Invoice.new({id: 1, merchant_id: 1})
+    invoice_two = Invoice.new({id: 2, merchant_id: 1})
+    invoice_item_one = InvoiceItem.new({id: 1, invoice_id: 1, quantity: 20, unit_price: 4000, item_id: 1})
+    invoice_item_two = InvoiceItem.new({id: 2, invoice_id: 2, quantity: 1, unit_price: 50000, item_id: 2})
+    item_one = Item.new({id: 1, unit_price: 4000, merchant_id: 1})
+    item_two = Item.new({id: 2, unit_price: 50000, merchant_id: 1})
+    transaction_one = Transaction.new({id: 1, invoice_id: 1, result: "success"})
+    transaction_two = Transaction.new({id: 2, invoice_id: 2, result: "success"})
+    sales_engine.merchants.all << merchant
+    sales_engine.invoices.all << invoice_one
+    sales_engine.invoices.all << invoice_two
+    sales_engine.invoice_items.all << invoice_item_one
+    sales_engine.invoice_items.all << invoice_item_two
+    sales_engine.transactions.all << transaction_one
+    sales_engine.transactions.all << transaction_two
+    sales_engine.items.all << item_one
+    sales_engine.items.all << item_two
+    sales_engine.relationships
+
+    sales_analyst = SalesAnalyst.new(sales_engine)
+
+    assert_equal item_one, sales_analyst.best_item_for_merchant(1)
+  end
+
+  def test_sales_anaylst_integration_calculates_best_item_for_merchant
+    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+    sales_analyst = SalesAnalyst.new(sales_engine)
+
+    assert_equal "TestItem1", sales_analyst.best_item_for_merchant(15).name
+  end
+
+  def test_sales_anaylst_integration_calculates_best_item_for_merchant_nil
+    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+    sales_analyst = SalesAnalyst.new(sales_engine)
+
+    assert_equal nil, sales_analyst.best_item_for_merchant(1)
+  end
 end

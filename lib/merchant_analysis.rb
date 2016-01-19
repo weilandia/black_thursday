@@ -127,4 +127,13 @@ module MerchantAnalysis
     return nil if most_sold.nil?
     @engine.items.find_by_id(most_sold.item_id)
   end
+
+  def best_item_for_merchant(merchant_id)
+    merch = @engine.merchants.find_by_id(merchant_id)
+    invoices = merch.invoices.select { |i| i.is_paid_in_full? }
+    inv_itms = invoices.map { |i| i.invoice_items }.flatten
+    best_item = inv_itms.sort_by { |i| i.unit_price * i.quantity }.last
+    return nil if best_item.nil?
+    @engine.items.find_by_id(best_item.item_id)
+  end
 end
