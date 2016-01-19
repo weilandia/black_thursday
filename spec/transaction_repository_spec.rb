@@ -4,10 +4,18 @@ require_relative '../lib/transaction_repository'
 class TransactionRepositoryTest < Minitest::Test
 
   def test_transaction_repo_can_list_all_transaction
-    transaction = CSV.open "./test_data/transaction_test.csv", headers: true, header_converters: :symbol
-    transaction_repo = test_helper_transaction_repo
-    assert_equal transaction.count, transaction_repo.all.length
-    assert_equal Transaction, transaction_repo.all.first.class
+    t = TransactionRepository.new
+
+    transaction_one = Transaction.new(test_helper_transaction_one_data)
+    transaction_two = Transaction.new(test_helper_transaction_two_data)
+    transaction_three = Transaction.new(test_helper_transaction_three_data)
+
+    t.all_transactions << transaction_one
+    t.all_transactions << transaction_two
+    t.all_transactions << transaction_three
+
+    assert_equal 3, t.all.length
+    assert_equal Transaction, t.all.first.class
   end
 
   def test_transaction_repo_can_find_invoice_item_by_id

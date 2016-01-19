@@ -3,10 +3,18 @@ require_relative '../lib/invoice_repository'
 
 class InvoiceRepositoryTest < Minitest::Test
   def test_invoice_repo_can_list_all_invoices
-    invoices = CSV.open "./test_data/invoice_test.csv", headers: true, header_converters: :symbol
-    invoice_repo = test_helper_invoice_repo
-    assert_equal invoices.count, invoice_repo.all.length
-    assert_equal Invoice, invoice_repo.all.first.class
+    i = InvoiceRepository.new
+
+    invoice_one = Invoice.new(test_helper_invoice_one_data)
+    invoice_two = Invoice.new(test_helper_invoice_two_data)
+    invoice_three = Invoice.new(test_helper_invoice_three_data)
+
+    i.all_invoices << invoice_one
+    i.all_invoices << invoice_two
+    i.all_invoices << invoice_three
+
+    assert_equal 3, i.all.length
+    assert_equal Invoice, i.all.first.class
   end
 
   def test_invoice_repo_can_find_invoice_by_id

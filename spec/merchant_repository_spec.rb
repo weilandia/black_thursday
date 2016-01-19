@@ -9,11 +9,18 @@ class MerchantRepositoryTest < Minitest::Test
   end
 
   def test_merchant_repo_can_list_all_merchants
-    merchants = CSV.open "./test_data/merchant_test.csv", headers: true, header_converters: :symbol
-    assert_equal merchants.count, @merchant_repo.all.length
-    assert_equal Array, @merchant_repo.all.class
-    assert_equal Merchant, @merchant_repo.all[0].class
-    assert_equal Merchant, @merchant_repo.all[1].class
+    m = MerchantRepository.new
+
+    merchant_one = Merchant.new(test_helper_merchant_one_data)
+    merchant_two = Merchant.new(test_helper_merchant_two_data)
+    merchant_three = Merchant.new(test_helper_merchant_three_data)
+
+    m.all_merchants << merchant_one
+    m.all_merchants << merchant_two
+    m.all_merchants << merchant_three
+
+    assert_equal 3, m.all.length
+    assert_equal Merchant, m.all.first.class
   end
 
   def test_merchant_repo_can_find_merchant_by_id

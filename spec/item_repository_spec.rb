@@ -8,12 +8,18 @@ class ItemRepositoryTest < Minitest::Test
   end
 
   def test_item_repo_queries_all_items
-    items = CSV.open "./test_data/item_test.csv", headers: true, header_converters: :symbol
-    assert_equal items.count, @item_repo.all.length
-    assert_equal Array, @item_repo.all.class
-    assert_equal Item, @item_repo.all[0].class
-    assert_equal Item, @item_repo.all[1].class
-    assert_equal Item, @item_repo.all[2].class
+    i = ItemRepository.new
+
+    item_one = Item.new(test_helper_item_one_data)
+    item_two = Item.new(test_helper_item_two_data)
+    item_three = Item.new(test_helper_item_three_data)
+
+    i.all_items << item_one
+    i.all_items << item_two
+    i.all_items << item_three
+
+    assert_equal 3, i.all.length
+    assert_equal Item, i.all.first.class
   end
 
   def test_item_repo_finds_item_by_id
