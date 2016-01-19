@@ -71,9 +71,9 @@ class TransactionRepositoryTest < Minitest::Test
   def test_transaction_repo_can_find_all_by_date
     t = TransactionRepository.new
 
-    transaction_one = Transaction.new({id: 1, created_at: "2012-02-25 20:56:56 UTC"})
-    transaction_two = Transaction.new({id: 2, created_at: "2012-02-26 20:56:56 UTC"})
-    transaction_three = Transaction.new({id: 3, created_at: "2012-02-26 20:56:56 UTC"})
+    transaction_one = Transaction.new({id: 1, created_at: "2012-02-25"})
+    transaction_two = Transaction.new({id: 2, created_at: "2012-02-26"})
+    transaction_three = Transaction.new({id: 3, created_at: "2012-02-26"})
 
     t.all_transactions << transaction_one
     t.all_transactions << transaction_two
