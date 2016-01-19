@@ -18,37 +18,57 @@ class InvoiceRepositoryTest < Minitest::Test
   end
 
   def test_invoice_repo_can_find_invoice_by_id
-    invoice_repo = test_helper_invoice_repo
-    assert_equal Invoice, invoice_repo.find_by_id(1).class
-    assert_equal 2, invoice_repo.find_by_id(2).id
+    i = InvoiceRepository.new
+
+    invoice_one = Invoice.new({id: 1})
+    invoice_two = Invoice.new({id: 2})
+
+    i.all_invoices << invoice_one
+    i.all_invoices << invoice_two
+
+    assert_equal invoice_one, i.find_by_id(1)
+    assert_equal invoice_two, i.find_by_id(2)
   end
 
   def test_invoice_repo_can_find_invoice_by_customer_id
-    invoice_repo = test_helper_invoice_repo
-    assert_equal Array, invoice_repo.find_all_by_customer_id(1).class
-    assert_equal Invoice, invoice_repo.find_all_by_customer_id(1).first.class
-    assert_equal 8, invoice_repo.find_all_by_customer_id(1).length
+    i = InvoiceRepository.new
+
+    invoice_one = Invoice.new({id: 1, customer_id: 10})
+    invoice_two = Invoice.new({id: 2, customer_id: 10})
+
+    i.all_invoices << invoice_one
+    i.all_invoices << invoice_two
+
+    assert_equal [invoice_one, invoice_two], i.find_all_by_customer_id(10)
   end
 
   def test_invoice_repo_can_find_invoice_by_merchant_id
-    invoice_repo = test_helper_invoice_repo
-    assert_equal Array, invoice_repo.find_all_by_merchant_id(15).class
-    assert_equal Invoice, invoice_repo.find_all_by_merchant_id(15).first.class
-    assert_equal 8, invoice_repo.find_all_by_merchant_id(15).length
+    i = InvoiceRepository.new
+
+    invoice_one = Invoice.new({id: 1, merchant_id: 20})
+    invoice_two = Invoice.new({id: 2, merchant_id: 20})
+    invoice_three = Invoice.new({id: 3, merchant_id: 21})
+
+    i.all_invoices << invoice_one
+    i.all_invoices << invoice_two
+    i.all_invoices << invoice_three
+
+    assert_equal [invoice_one, invoice_two], i.find_all_by_merchant_id(20)
+    assert_equal [invoice_three], i.find_all_by_merchant_id(21)
   end
 
   def test_invoice_repo_can_find_invoice_by_status
-    invoice_repo = test_helper_invoice_repo
-    assert_equal Array, invoice_repo.find_all_by_status(:pending).class
-    assert_equal Invoice, invoice_repo.find_all_by_status(:pending).first.class
-    assert_equal 19, invoice_repo.find_all_by_status(:pending).length
-  end
+    i = InvoiceRepository.new
 
-  def test_invoice_repo_can_find_invoice_by_status_all_statuses
-    invoice_repo = test_helper_invoice_repo
-    assert_equal 19, invoice_repo.find_all_by_status(:pending).length
-    assert_equal 22, invoice_repo.find_all_by_status(:shipped).length
-    assert_equal 9, invoice_repo.find_all_by_status(:returned).length
-    assert_equal 0, invoice_repo.find_all_by_status(:status).length
+    invoice_one = Invoice.new({id: 1, status: :pending})
+    invoice_two = Invoice.new({id: 2, status: :pending})
+    invoice_three = Invoice.new({id: 3, status: :shipped})
+
+    i.all_invoices << invoice_one
+    i.all_invoices << invoice_two
+    i.all_invoices << invoice_three
+
+    assert_equal [invoice_one, invoice_two], i.find_all_by_status(:pending)
+    assert_equal [invoice_three], i.find_all_by_status(:shipped)
   end
 end
