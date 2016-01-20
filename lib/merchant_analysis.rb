@@ -57,7 +57,7 @@ module MerchantAnalysis
   end
 
   def merchants_with_revenue
-    all_merchants.reject { |m| m.revenue.nil? || m.revenue == 0 }
+    all_merchants.reject { |m| m.revenue == nil || m.revenue == 0 }
   end
 
   def merchants_ranked_by_revenue
@@ -69,13 +69,9 @@ module MerchantAnalysis
   end
 
   def merchants_with_pending_invoices
-    merchants = []
-    all_merchants.map do |merchant|
-      if !merchant.invoices.select { |i| !i.is_paid_in_full? }.empty?
-        merchants << merchant
-      end
-    end
-    merchants
+    pending_invs = engine.invoices.all.select(&:is_pending?)
+    merchants = pending_invs.map(&:merchant_id).uniq
+    merchants.map { |m| engine.merchants.find_by_id(m) }
   end
 
   def merchants_with_only_one_item

@@ -25,7 +25,7 @@ module MerchantRelationships
 
   def merchant_revenue_relationship #dependent relationship
     merchants.all.each do |merchant|
-      invs = merchant.invoices.select { |i| i.is_paid_in_full? == true }
+      invs = merchant.invoices.select { |i| i.is_paid_in_full? }
       merchant.revenue = invs.map { |i| i.total }.inject(0,:+)
     end
   end

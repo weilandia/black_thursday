@@ -55,11 +55,11 @@ class SalesEngine
   end
 
   def relationships
-    merchant_relationships
     item_relationships
     invoice_relationships
     transaction_relationships
     customer_relationships
+    merchant_relationships
     dependent_relationships #!!keep at bottom of relationships
   end
 

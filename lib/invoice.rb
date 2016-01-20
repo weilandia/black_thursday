@@ -29,6 +29,10 @@ class Invoice
     transactions.any? { |t| t.result == "success" }
   end
 
+  def is_pending?
+    !transactions.map(&:result).include?("success")
+  end
+
   def total
     total = invoice_items.map { |i| i.unit_price * i.quantity }.inject(:+)
     (total / 100).round(2)
