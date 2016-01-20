@@ -90,10 +90,14 @@ module MerchantAnalysis
     invoices.map(&:total).inject(:+)
   end
 
-  def most_sold_item_for_merchant(merchant_id)
+  def paid_inv_itms(merchant_id)
     merch = engine.merchants.find_by_id(merchant_id)
     invoices = merch.invoices.select(&:is_paid_in_full?)
-    inv_itms = invoices.map(&:invoice_items).flatten
+    invoices.map(&:invoice_items).flatten
+  end
+
+  def most_sold_item_for_merchant(merchant_id)
+    inv_itms = paid_inv_itms(merchant_id)
     srted_itms = inv_itms.sort_by(&:quantity)
     most_sold = srted_itms.select { |i| i.quantity == srted_itms.last.quantity}
     return nil if most_sold.empty?
@@ -101,9 +105,7 @@ module MerchantAnalysis
   end
 
   def best_item_for_merchant(merchant_id)
-    merch = engine.merchants.find_by_id(merchant_id)
-    invoices = merch.invoices.select(&:is_paid_in_full?)
-    inv_itms = invoices.map(&:invoice_items).flatten
+    inv_itms = paid_inv_itms(merchant_id)
     best_item = inv_itms.sort_by { |i| i.unit_price * i.quantity }.last
     return nil if best_item.nil?
     engine.items.find_by_id(best_item.item_id)
