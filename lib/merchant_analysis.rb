@@ -96,7 +96,7 @@ module MerchantAnalysis
     inv_itms = invoices.map(&:invoice_items).flatten
     srted_itms = inv_itms.sort_by(&:quantity)
     most_sold = srted_itms.select { |i| i.quantity == srted_itms.last.quantity}
-    return nil if most_sold.nil?
+    return nil if most_sold.empty?
     most_sold.map { |i| engine.items.find_by_id(i.item_id) }
   end
 

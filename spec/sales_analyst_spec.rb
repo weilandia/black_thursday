@@ -302,7 +302,7 @@ class SalesAnalystTest < Minitest::Test
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
     sales_analyst = SalesAnalyst.new(sales_engine)
 
-    assert_equal [], sales_analyst.most_sold_item_for_merchant(1)
+    assert_equal nil, sales_analyst.most_sold_item_for_merchant(1)
   end
 
   def test_sales_analyst_calculates_most_sold_item_for_merchant
