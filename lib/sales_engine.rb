@@ -6,11 +6,25 @@ require_relative 'transaction_repository'
 require_relative 'customer_repository'
 require_relative 'sales_analyst'
 require_relative 'data_parser'
+require_relative 'merchant_relationships'
+require_relative 'item_relationships'
+require_relative 'invoice_relationships'
+require_relative 'transaction_relationships'
+require_relative 'customer_relationships'
 
 class SalesEngine
   include DataParser
-  attr_reader :merchants, :items, :invoices, :invoice_items, :transactions,
-  :customers
+  include MerchantRelationships
+  include ItemRelationships
+  include InvoiceRelationships
+  include TransactionRelationships
+  include CustomerRelationships
+  attr_reader :items,
+              :invoices,
+              :customers,
+              :merchants,
+              :transactions,
+              :invoice_items
 
   def self.from_csv(data = csv_files_hash)
     sales_engine = SalesEngine.new
@@ -41,102 +55,17 @@ class SalesEngine
   end
 
   def relationships
-    merchant_item_relationship
-    item_merchant_relationship
-    invoice_merchant_relationship
-    merchant_invoice_relationship
-    invoice_item_relationship
-    invoice_transaction_relationship
-    invoice_customer_relationship
-    transaction_invoice_relationship
-    merchant_customer_relationship
-    customer_merchant_relationship
-    invoice_invoice_item_relationship
-    merchant_revenue_relationship #!!keep at bottom after main rels
+    merchant_relationships
+    item_relationships
+    invoice_relationships
+    transaction_relationships
+    customer_relationships
+    dependent_relationships #!!keep at bottom of relationships
   end
 
-  def merchant_item_relationship
-    merchants.all.each do |merchant|
-      merchant.items = items.find_all_by_merchant_id(merchant.id)
-    end
+  def dependent_relationships
+    merchant_revenue_relationship
   end
-
-  def item_merchant_relationship
-    items.all.each do |item|
-      item.merchant = merchants.find_by_id(item.merchant_id)
-    end
-  end
-
-  def merchant_invoice_relationship
-    merchants.all.each do |merchant|
-      merchant.invoices = invoices.find_all_by_merchant_id(merchant.id)
-    end
-  end
-
-  def invoice_merchant_relationship
-    invoices.all.each do |invoice|
-      invoice.merchant = merchants.find_by_id(invoice.merchant_id)
-    end
-  end
-
-  def invoice_customer_relationship
-    invoices.all.each do |invoice|
-      invoice.customer = customers.find_by_id(invoice.customer_id)
-    end
-  end
-
-  def invoice_item_relationship
-    item_ids = []
-    invoices.all.each do |invoice|
-      inv_items = invoice_items.find_all_by_invoice_id(invoice.id)
-    item_ids = inv_items.map { |inv_item| inv_item.item_id}
-    invoice.items = item_ids.map { |item_id| items.find_by_id(item_id) }
-    end
-  end
-
-  def invoice_invoice_item_relationship
-    invoices.all.each do |invoice|
-      invoice.invoice_items = invoice_items.find_all_by_invoice_id(invoice.id)
-    end
-  end
-
-  def merchant_revenue_relationship
-    merchants.all.each do |merchant|
-      invs = merchant.invoices.select { |i| i.is_paid_in_full? == true }
-      merchant.revenue = invs.map { |i| i.total }.inject(0,:+)
-    end
-  end
-
-  def merchant_customer_relationship
-    cust_ids = []
-    merchants.all.each do |merchant|
-      invs = invoices.find_all_by_merchant_id(merchant.id)
-      cust_ids = invs.map { |inv| inv.customer_id}.uniq
-      merchant.customers = cust_ids.map { |id| customers.find_by_id(id) }
-    end
-  end
-
-  def customer_merchant_relationship
-    merch_ids = []
-    customers.all.each do |customer|
-      invs = invoices.find_all_by_customer_id(customer.id)
-      merch_ids = invs.map { |inv| inv.merchant_id}.uniq
-      customer.merchants = merch_ids.map { |id| merchants.find_by_id(id) }
-    end
-  end
-
-  def invoice_transaction_relationship
-    invoices.all.each do |invoice|
-      invoice.transactions = transactions.find_all_by_invoice_id(invoice.id)
-    end
-  end
-
-  def transaction_invoice_relationship
-    transactions.all.each do |transaction|
-      transaction.invoice = invoices.find_by_id(transaction.invoice_id)
-    end
-  end
-
 
   def self.csv_files_hash
     { :merchants => './data/merchants.csv',

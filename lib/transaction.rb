@@ -10,15 +10,15 @@ class Transaction
                 :credit_card_number,
                 :credit_card_expiration_date
 
-  def initialize(transaction_data)
-    @id = validate_int(transaction_data[:id])
-    @invoice_id = validate_int(transaction_data[:invoice_id])
-    @credit_card_number = validate_int(transaction_data[:credit_card_number])
+  def initialize(tx_data)
+    @id = validate_int(tx_data[:id])
+    @invoice_id = validate_int(tx_data[:invoice_id])
+    @credit_card_number = validate_int(tx_data[:credit_card_number])
     @credit_card_expiration_date =
-    transaction_data[:credit_card_expiration_date]
-    @result = transaction_data[:result]
-    @created_at = time_object(transaction_data[:created_at])
-    @updated_at = time_object(transaction_data[:updated_at])
+    tx_data[:credit_card_expiration_date]
+    @result = tx_data[:result]
+    @created_at = time_object(tx_data[:created_at])
+    @updated_at = time_object(tx_data[:updated_at])
   end
 
   def inspect

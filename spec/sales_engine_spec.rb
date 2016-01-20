@@ -185,7 +185,7 @@ class SalesEngineTest < Minitest::Test
     assert_equal customer, sales_engine.invoices.all.first.customer
   end
 
-  def test_from_file_sales_engine_object_has_access_to_invoice_object_transactions
+  def test_sales_engine_integration_object_has_access_to_invoice_object_transactions
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
     customer = sales_engine.invoices.all.first.customer
     assert_equal 1, customer.id
