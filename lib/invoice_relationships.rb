@@ -8,29 +8,28 @@ module InvoiceRelationships
   end
 
   def invoice_merchant_relationship
-    invoices.all.each do |invoice|
-      invoice.merchant = merchants.find_by_id(invoice.merchant_id)
+    invoices.all.each do |i|
+      i.merchant = merchants.find_by_id(i.merchant_id)
     end
   end
 
   def invoice_customer_relationship
-    invoices.all.each do |invoice|
-      invoice.customer = customers.find_by_id(invoice.customer_id)
+    invoices.all.each do |i|
+      i.customer = customers.find_by_id(i.customer_id)
     end
   end
 
   def invoice_item_relationship
-    item_ids = []
-    invoices.all.each do |invoice|
-      inv_items = invoice_items.find_all_by_invoice_id(invoice.id)
+    invoices.all.each do |i|
+      inv_items = invoice_items.find_all_by_invoice_id(i.id)
     item_ids = inv_items.map { |inv_item| inv_item.item_id}
-    invoice.items = item_ids.map { |item_id| items.find_by_id(item_id) }
+    i.items = item_ids.map { |item_id| items.find_by_id(item_id) }
     end
   end
 
   def invoice_invoice_item_relationship
-    invoices.all.each do |invoice|
-      invoice.invoice_items = invoice_items.find_all_by_invoice_id(invoice.id)
+    invoices.all.each do |i|
+      i.invoice_items = invoice_items.find_all_by_invoice_id(i.id)
     end
   end
 

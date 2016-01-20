@@ -1,14 +1,14 @@
 module MerchantAnalysis
+  def all_merchants
+    engine.merchants.all
+  end
+
   def total_merchant_count
     engine.merchants.all.count
   end
 
   def item_count_per_merchant
-   items_per_merchant = []
-   engine.merchants.all.each do |merchant|
-     items_per_merchant << merchant.items.count
-   end
-   items_per_merchant
+   engine.merchants.all.map { |m| m.items.count }
   end
 
   def average_items_per_merchant
@@ -25,10 +25,6 @@ module MerchantAnalysis
     all_merchants.map { |m| m if m.items.count <=  avg - sd }.compact
   end
 
-  def all_merchants
-    engine.merchants.all
-  end
-
   def merchants_with_high_item_count
     sd = average_items_per_merchant_standard_deviation
     avg = average_items_per_merchant
@@ -36,10 +32,8 @@ module MerchantAnalysis
   end
 
   def average_average_price_per_merchant
-    avg_itm_prices = all_merchants.map do |m|
-      average_item_price_for_merchant(m.id)
-    end
-    (avg_itm_prices.inject(:+) / total_merchant_count).round(2)
+    avg_prices = all_merchants.map { |m| average_item_price_for_merchant(m.id) }
+    (avg_prices.inject(:+) / total_merchant_count).round(2)
   end
 
   def average_item_price_for_merchant(merchant_id)

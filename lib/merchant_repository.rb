@@ -5,7 +5,7 @@ require_relative 'repositories'
 class MerchantRepository
   include DataParser
   include Repositories
-  attr_reader :all_merchants, :all
+  attr_reader :all
 
   def initialize(all=[])
     instantiate_repos(all)

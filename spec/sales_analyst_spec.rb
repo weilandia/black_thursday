@@ -199,7 +199,7 @@ class SalesAnalystTest < Minitest::Test
     assert_equal [2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], sales_analyst.merchants_with_only_one_item.map { |m| m.id }
   end
 
-  def test_sales_anaylst_identifies_merchants_with_one_item_registered_month
+  def test_sales_anaylst_identifies_merchants_with_one_item_registered_in_month
     sales_engine = SalesEngine.new
     merchant_one = Merchant.new({id: 1, created_at: "2012-12-27 14:54:09 UTC"})
     merchant_two = Merchant.new({id: 2, created_at: "2012-12-27 14:54:09 UTC"})
@@ -228,7 +228,7 @@ class SalesAnalystTest < Minitest::Test
     assert_equal [2, 3], sales_analyst.merchants_with_only_one_item_registered_in_month("december").map { |m| m.id }
   end
 
-  def test_sales_anaylst_integration_identifies_merchants_with_one_item_registered_in_particular_month
+  def test_sales_anaylst_integration_identifies_merchants_with_one_item_registered_month
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
     sales_analyst = SalesAnalyst.new(sales_engine)
 

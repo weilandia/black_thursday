@@ -10,8 +10,7 @@ require_relative 'invoice'
 module DataParser
   def load_data(data, file_type)
     if file_type == :csv then load_csv_data(data)
-    else load_json_data(data)
-    end
+    else load_json_data(data) end
   end
 
   def from_csv(data, repository)

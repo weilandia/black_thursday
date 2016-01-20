@@ -5,7 +5,7 @@ require_relative 'repositories'
 class ItemRepository
   include DataParser
   include Repositories
-  attr_reader :all_items, :all
+  attr_reader :all
 
   def initialize(all=[])
     instantiate_repos(all)
@@ -29,7 +29,7 @@ class ItemRepository
   end
 
   def find_all_by_price(price)
-    all_items.select {|search| search.unit_price == price}
+    all_items.select {|s| s.unit_price == price}
   end
 
   def find_all_by_price_in_range(range)
@@ -39,6 +39,6 @@ class ItemRepository
   end
 
   def find_all_by_merchant_id(merchant_id)
-    all_items.select {|search| search.merchant_id == merchant_id}
+    all_items.select {|s| s.merchant_id == merchant_id}
   end
 end

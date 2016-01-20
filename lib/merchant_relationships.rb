@@ -6,19 +6,16 @@ module MerchantRelationships
   end
 
   def merchant_item_relationship
-    merchants.all.each do |merchant|
-      merchant.items = items.find_all_by_merchant_id(merchant.id)
-    end
+    merchants.all.each { |m| m.items = items.find_all_by_merchant_id(m.id) }
   end
 
   def merchant_invoice_relationship
-    merchants.all.each do |merchant|
-      merchant.invoices = invoices.find_all_by_merchant_id(merchant.id)
+    merchants.all.each do |m|
+      m.invoices = invoices.find_all_by_merchant_id(m.id)
     end
   end
 
   def merchant_customer_relationship
-    cust_ids = []
     merchants.all.each do |merchant|
       invs = invoices.find_all_by_merchant_id(merchant.id)
       cust_ids = invs.map { |inv| inv.customer_id}.uniq

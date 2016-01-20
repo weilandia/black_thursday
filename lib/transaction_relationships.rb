@@ -4,8 +4,6 @@ module TransactionRelationships
   end
 
   def transaction_invoice_relationship
-    transactions.all.each do |transaction|
-      transaction.invoice = invoices.find_by_id(transaction.invoice_id)
-    end
+    transactions.all.each { |t| t.invoice = invoices.find_by_id(t.invoice_id) }
   end
 end

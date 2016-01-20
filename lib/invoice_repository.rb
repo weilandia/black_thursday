@@ -5,7 +5,8 @@ require_relative 'repositories'
 class InvoiceRepository
   include DataParser
   include Repositories
-  attr_reader :all_invoices, :all
+  attr_reader :all
+
   def initialize(all=[])
     instantiate_repos(all)
   end
@@ -24,15 +25,15 @@ class InvoiceRepository
   end
 
   def find_all_by_merchant_id(merchant_id)
-    all.select {|search| search.merchant_id == merchant_id}
+    all.select {|s| s.merchant_id == merchant_id}
   end
 
   def find_all_by_customer_id(customer_id)
-    all.select {|search| search.customer_id == customer_id}
+    all.select {|s| s.customer_id == customer_id}
   end
 
   def find_all_by_status(status)
-    all.select {|search| search.status == status}
+    all.select {|s| s.status == status}
   end
 
   def find_all_by_date(date)

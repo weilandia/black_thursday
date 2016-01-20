@@ -4,8 +4,6 @@ module ItemRelationships
   end
 
   def item_merchant_relationship
-    items.all.each do |item|
-      item.merchant = merchants.find_by_id(item.merchant_id)
-    end
+    items.all.each { |i| i.merchant = merchants.find_by_id(i.merchant_id) }
   end
 end

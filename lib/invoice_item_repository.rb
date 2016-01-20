@@ -5,7 +5,7 @@ require_relative 'repositories'
 class InvoiceItemRepository
   include DataParser
   include Repositories
-  attr_reader :all_invoice_items, :all
+  attr_reader :all
 
   def initialize(all=[])
     instantiate_repos(all)
@@ -25,10 +25,10 @@ class InvoiceItemRepository
   end
 
   def find_all_by_item_id(item_id)
-    all.select {|search| search.item_id == item_id}
+    all.select {|s| s.item_id == item_id}
   end
 
   def find_all_by_invoice_id(invoice_id)
-    all.select {|search| search.invoice_id == invoice_id}
+    all.select {|s| s.invoice_id == invoice_id}
   end
 end

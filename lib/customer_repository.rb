@@ -5,8 +5,7 @@ require_relative 'repositories'
 class CustomerRepository
   include DataParser
   include Repositories
-  attr_reader :all_customers,
-              :all
+  attr_reader :all
 
   def initialize(all=[])
     instantiate_repos(all)
