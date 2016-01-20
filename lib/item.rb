@@ -12,12 +12,12 @@ class Item
                 :unit_price_to_dollars
 
   def initialize(item_data)
-    @id = validate_integer(item_data[:id])
+    @id = validate_int(item_data[:id])
     @name = item_data[:name]
     @description = item_data[:description]
-    @unit_price = unit_price_bigdecimal(item_data[:unit_price])
+    @unit_price = unit_price_bigdec(item_data[:unit_price])
     @unit_price_to_dollars = unit_price_in_dollars
-    @merchant_id = validate_integer(item_data[:merchant_id])
+    @merchant_id = validate_int(item_data[:merchant_id])
     @created_at = time_object(item_data[:created_at])
     @updated_at = time_object(item_data[:updated_at])
   end

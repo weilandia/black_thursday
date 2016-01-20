@@ -11,7 +11,7 @@ class Merchant
                 :updated_at
 
   def initialize(merchant_data)
-    @id = validate_integer(merchant_data[:id])
+    @id = validate_int(merchant_data[:id])
     @name = merchant_data[:name]
     @created_at = time_object(merchant_data[:created_at])
     @updated_at = time_object(merchant_data[:updated_at])

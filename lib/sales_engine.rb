@@ -31,13 +31,13 @@ class SalesEngine
     relationships
   end
 
-  def instantiate_repositories(initial_records)
-    @items ||= ItemRepository.new(initial_records[:items] || [])
-    @merchants ||= MerchantRepository.new(initial_records[:merchants] || [])
-    @invoices ||= InvoiceRepository.new(initial_records[:invoices] || [])
-    @invoice_items ||= InvoiceItemRepository.new(initial_records[:invoice_items] || [])
-    @transactions ||= TransactionRepository.new(initial_records[:transactions] || [])
-    @customers ||= CustomerRepository.new(initial_records[:customers] || [])
+  def instantiate_repositories(tst_data)
+    @items ||= ItemRepository.new(tst_data[:items] || [])
+    @merchants ||= MerchantRepository.new(tst_data[:merchants] || [])
+    @invoices ||= InvoiceRepository.new(tst_data[:invoices] || [])
+    @invoice_items ||= InvoiceItemRepository.new(tst_data[:invoice_items] || [])
+    @transactions ||= TransactionRepository.new(tst_data[:transactions] || [])
+    @customers ||= CustomerRepository.new(tst_data[:customers] || [])
   end
 
   def relationships

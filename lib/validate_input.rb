@@ -1,11 +1,11 @@
 require 'bigdecimal'
 module ValidateInput
-  def validate_integer(string_to_integer_input)
+  def validate_int(string_to_integer_input)
     return if string_to_integer_input.nil?
     string_to_integer_input.to_i
   end
 
-  def validate_symbol(string_to_symbol_input)
+  def validate_sym(string_to_symbol_input)
     return if string_to_symbol_input.nil?
     string_to_symbol_input.to_sym
   end
@@ -15,7 +15,7 @@ module ValidateInput
     else Time.parse(date_string) end
   end
 
-  def unit_price_bigdecimal(unit_price)
+  def unit_price_bigdec(unit_price)
     return if unit_price.nil?
     BigDecimal.new(unit_price)
   end

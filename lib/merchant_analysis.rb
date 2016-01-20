@@ -89,7 +89,9 @@ module MerchantAnalysis
   end
 
   def merchants_with_only_one_item_registered_in_month(month)
-    merchants_with_only_one_item.select { |m| m.created_at.month == Time.parse(month).month }
+    merchants_with_only_one_item.select do |m|
+      m.created_at.month == Time.parse(month).month
+    end
   end
 
   def revenue_by_merchant(merchant_id)

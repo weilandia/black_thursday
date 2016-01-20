@@ -11,9 +11,9 @@ class Transaction
                 :credit_card_expiration_date
 
   def initialize(transaction_data)
-    @id = validate_integer(transaction_data[:id])
-    @invoice_id = validate_integer(transaction_data[:invoice_id])
-    @credit_card_number = validate_integer(transaction_data[:credit_card_number])
+    @id = validate_int(transaction_data[:id])
+    @invoice_id = validate_int(transaction_data[:invoice_id])
+    @credit_card_number = validate_int(transaction_data[:credit_card_number])
     @credit_card_expiration_date =
     transaction_data[:credit_card_expiration_date]
     @result = transaction_data[:result]

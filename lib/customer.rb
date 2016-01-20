@@ -9,7 +9,7 @@ class Customer
                 :updated_at
 
   def initialize(customer_data)
-    @id = validate_integer(customer_data[:id])
+    @id = validate_int(customer_data[:id])
     @first_name = customer_data[:first_name]
     @last_name = customer_data[:last_name]
     @created_at = time_object(customer_data[:created_at])

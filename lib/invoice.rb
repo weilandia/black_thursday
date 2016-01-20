@@ -14,10 +14,10 @@ class Invoice
                 :merchant_id
 
   def initialize(invoice_data)
-    @id = validate_integer(invoice_data[:id])
-    @customer_id = validate_integer(invoice_data[:customer_id])
-    @merchant_id = validate_integer(invoice_data[:merchant_id])
-    @status = validate_symbol(invoice_data[:status])
+    @id = validate_int(invoice_data[:id])
+    @customer_id = validate_int(invoice_data[:customer_id])
+    @merchant_id = validate_int(invoice_data[:merchant_id])
+    @status = validate_sym(invoice_data[:status])
     @created_at = time_object(invoice_data[:created_at])
     @updated_at = time_object(invoice_data[:updated_at])
   end
