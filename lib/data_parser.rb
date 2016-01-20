@@ -10,17 +10,18 @@ require_relative 'invoice'
 module DataParser
   def load_data(data, file_type)
     if file_type == :csv then load_csv_data(data)
-    else load_json_data(data) end
+    else load_json_data(data)
+    end
   end
 
   def from_csv(data, repository)
-    CSV.open(data, headers: true, :header_converters => :symbol).each do |row|
-    repository.create_instance(row.to_hash)
+    CSV.open(data, headers: true, header_converters: :symbol).each do |row|
+      repository.create_instance(row.to_hash)
     end
   end
 
   def from_json(data, repository)
-    JSON.parse(File.read(data), { symbolize_names: true }).each do |hash|
+    JSON.parse(File.read(data), symbolize_names: true).each do |hash|
       repository.create_instance(hash)
     end
   end
