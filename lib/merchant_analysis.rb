@@ -22,82 +22,57 @@ module MerchantAnalysis
   def merchants_with_low_item_count
     sd = average_items_per_merchant_standard_deviation
     avg = average_items_per_merchant
-    low_items_merchants = []
-     @engine.merchants.all.each do |merchant|
-       if merchant.items.count <=  avg - sd
-         low_items_merchants << merchant
-       end
-     end
-     low_items_merchants
+    all_merchants.map { |m| m if m.items.count <=  avg - sd }.compact
+  end
+
+  def all_merchants
+    @engine.merchants.all
   end
 
   def merchants_with_high_item_count
     sd = average_items_per_merchant_standard_deviation
     avg = average_items_per_merchant
-    high_items_merchants = []
-     @engine.merchants.all.each do |merchant|
-       if merchant.items.count >=  avg + sd
-         high_items_merchants << merchant
-       end
-     end
-     high_items_merchants
+    all_merchants.map { |m| m if m.items.count >=  avg + sd }.compact
   end
 
   def average_average_price_per_merchant
-    merchant_count = total_merchant_count
-    merchants = @engine.merchants.all
-    average_item_prices = merchants.map do |merchant|
-      average_item_price_for_merchant(merchant.id)
+    avg_itm_prices = all_merchants.map do |m|
+      average_item_price_for_merchant(m.id)
     end
-    (average_item_prices.inject(:+) / merchant_count).round(2)
+    (avg_itm_prices.inject(:+) / total_merchant_count).round(2)
   end
 
   def average_item_price_for_merchant(merchant_id)
     merchant = @engine.merchants.find_by_id(merchant_id)
-    item_prices = []
-    merchant.items.each { |i| item_prices << i.unit_price }
-    return 0.0 if item_prices.empty?
-    average = (item_prices.compact.inject(:+) / merchant.items.count) / 100
-    average.round(2)
+    itm_prices = merchant.items.map { |i| i.unit_price }.compact
+    return 0.0 if itm_prices.empty?
+    average = (itm_prices.inject(0, :+) / merchant.items.count)
+    (average / 100).round(2)
   end
 
   def top_merchants_by_invoice_count
     sd = average_invoices_per_merchant_standard_deviation
     avg = average_invoices_per_merchant
-    high_invoices_merchants = []
-     @engine.merchants.all.each do |merchant|
-       if merchant.invoices.count >=  avg + (2 * sd)
-         high_invoices_merchants << merchant
-       end
-     end
-     high_invoices_merchants
+    all_merchants.map { |m| m if m.invoices.count >=  avg + (2 * sd) }.compact
   end
 
   def bottom_merchants_by_invoice_count
     sd = average_invoices_per_merchant_standard_deviation
     avg = average_invoices_per_merchant
-    low_invoices_merchants = []
-     @engine.merchants.all.each do |merchant|
-       if merchant.invoices.count <=  avg - (2 * sd)
-         low_invoices_merchants << merchant
-       end
-     end
-     low_invoices_merchants
+    all_merchants.map { |m| m if m.invoices.count <=  avg - (2 * sd) }.compact
+  end
+
+  def merchants_ranked_by_revenue
+    all_merchants.sort_by { |m| m.revenue }.reverse
   end
 
   def top_revenue_earners(x = 20)
-    merchant_earnings= @engine.merchants.all.map do |merchant|
-      rev = merchant.invoices.map { |i| i.total }.inject(:+)
-      [merchant, rev]
-    end
-    merchant_earnings = merchant_earnings.select { |a| !a[1].nil? }
-    merchant_earnings = merchant_earnings.sort_by { |m| m[1] }
-    merchant_earnings[0..(x-1)].map { |m| m[0] }
+    merchants_ranked_by_revenue[0..(x - 1)]
   end
 
   def merchants_with_pending_invoices
     merchants = []
-    @engine.merchants.all.map do |merchant|
+    all_merchants.map do |merchant|
       if !merchant.invoices.select { |i| !i.is_paid_in_full? }.empty?
         merchants << merchant
       end

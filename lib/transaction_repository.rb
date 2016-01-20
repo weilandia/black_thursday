@@ -1,11 +1,13 @@
 require_relative 'transaction'
 require_relative 'data_parser'
+require_relative 'instantiate_repos'
 
 class TransactionRepository
   include DataParser
-  attr_reader :all_transactions
-  def initialize
-    @all_transactions = []
+  include InstantiateRepos
+  attr_reader :all_transactions, :all
+  def initialize(all=[])
+    instantiate_repos(all)
   end
 
   def inspect
@@ -14,11 +16,11 @@ class TransactionRepository
 
   def create_instance(transaction_data)
     transaction = Transaction.new(transaction_data)
-    @all_transactions << transaction
+    @all << transaction
   end
 
-  def all
-    all_transactions
+  def all_transactions
+    @all
   end
 
   def find_by_id(transaction_id)

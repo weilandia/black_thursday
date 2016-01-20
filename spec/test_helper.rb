@@ -5,11 +5,11 @@ require 'simplecov'
 require 'coveralls'
 require 'bigdecimal'
 
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   Coveralls::SimpleCov::Formatter,
   SimpleCov::Formatter::HTMLFormatter,
   CodeClimate::TestReporter::Formatter
-]
+])
 SimpleCov.start
 
 def test_helper_item_one_data

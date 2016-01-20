@@ -136,7 +136,7 @@ class SalesAnalystTest < Minitest::Test
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
     sales_analyst = SalesAnalyst.new(sales_engine)
 
-    assert_equal 743.08, sales_analyst.total_revenue_by_date(Time.parse("2012-02-26"))
+    assert_equal 74307.72, sales_analyst.total_revenue_by_date(Time.parse("2012-02-26"))
   end
 
   def test_sales_analyst_calculates_total_revenue_by_date_zero_revenue
@@ -150,21 +150,21 @@ class SalesAnalystTest < Minitest::Test
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
     sales_analyst = SalesAnalyst.new(sales_engine)
 
-    assert_equal ["Helm"], sales_analyst.top_revenue_earners(1).map { |m| m.name }
+    assert_equal ["Got"], sales_analyst.top_revenue_earners(1).map { |m| m.name }
   end
 
   def test_sales_anaylst_calculates_array_of_top_revenue_merchants_multiple
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
     sales_analyst = SalesAnalyst.new(sales_engine)
 
-    assert_equal ["Helm", "Skype", "GoldenRayPress", "Johnson", "Lair"], sales_analyst.top_revenue_earners(5).map { |m| m.name }
+    assert_equal ["Got", "GoldenHelmets", "Venmo", "Urcase17", "Hidy"], sales_analyst.top_revenue_earners(5).map { |m| m.name }
   end
 
   def test_sales_anaylst_calculates_array_of_top_revenue_merchants_defaults_twenty
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
     sales_analyst = SalesAnalyst.new(sales_engine)
 
-    assert_equal ["Helm", "Skype", "GoldenRayPress", "Johnson", "Lair", "Bhyd", "Ello", "MiniatureBikez", "Candisart", "Hidy", "Urcase17", "Venmo", "GoldenHelmets", "Got"], sales_analyst.top_revenue_earners.map { |m| m.name }
+    assert_equal ["Got", "GoldenHelmets", "Venmo", "Urcase17", "Hidy", "Candisart", "MiniatureBikez", "Ello", "Bhyd", "Lair", "Johnson", "GoldenRayPress", "Skype", "Helm", "Shopin1901"], sales_analyst.top_revenue_earners.map { |m| m.name }
   end
 
   def test_sales_anaylst_calculates_array_of_merchants_with_pending_invoices
@@ -349,30 +349,26 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_sales_analyst_calculates_most_sold_item_for_merchant_with_quant
-    sales_engine = SalesEngine.new
-    merchant = Merchant.new({id: 1})
-    invoice_one = Invoice.new({id: 1, merchant_id: 1})
-    invoice_two = Invoice.new({id: 2, merchant_id: 1})
-    invoice_item_one = InvoiceItem.new({id: 1, invoice_id: 1, quantity: 20, unit_price: 4000, item_id: 1})
-    invoice_item_two = InvoiceItem.new({id: 2, invoice_id: 2, quantity: 1, unit_price: 50000, item_id: 2})
-    item_one = Item.new({id: 1, unit_price: 4000, merchant_id: 1})
-    item_two = Item.new({id: 2, unit_price: 50000, merchant_id: 1})
-    transaction_one = Transaction.new({id: 1, invoice_id: 1, result: "success"})
-    transaction_two = Transaction.new({id: 2, invoice_id: 2, result: "success"})
-    sales_engine.merchants.all << merchant
-    sales_engine.invoices.all << invoice_one
-    sales_engine.invoices.all << invoice_two
-    sales_engine.invoice_items.all << invoice_item_one
-    sales_engine.invoice_items.all << invoice_item_two
-    sales_engine.transactions.all << transaction_one
-    sales_engine.transactions.all << transaction_two
-    sales_engine.items.all << item_one
-    sales_engine.items.all << item_two
-    sales_engine.relationships
-
-    sales_analyst = SalesAnalyst.new(sales_engine)
-
-    assert_equal item_one, sales_analyst.best_item_for_merchant(1)
+    sales_engine = SalesEngine.new(
+      merchants: [{id: 1}],
+      invoices:  [{id: 1, merchant_id: 1}, {id: 2, merchant_id: 1}],
+      invoice_items: [
+        {id: 1, invoice_id: 1, quantity: 20, unit_price:  4000, item_id: 1},
+        {id: 2, invoice_id: 2, quantity:  1, unit_price: 50000, item_id: 2},
+      ],
+      items: [
+        {id: 1, unit_price:  4_000, merchant_id: 1},
+        {id: 2, unit_price: 50_000, merchant_id: 1},
+      ],
+      transactions: [
+        {id: 1, invoice_id: 1, result: "success"},
+        {id: 2, invoice_id: 2, result: "success"},
+      ],
+    )
+    assert_equal 1, SalesAnalyst
+                      .new(sales_engine)
+                      .best_item_for_merchant(1)
+                      .id
   end
 
   def test_sales_anaylst_integration_calculates_best_item_for_merchant
@@ -387,5 +383,23 @@ class SalesAnalystTest < Minitest::Test
     sales_analyst = SalesAnalyst.new(sales_engine)
 
     assert_equal nil, sales_analyst.best_item_for_merchant(1)
+  end
+
+  def test_sales_analyst_ranks_merchants_by_revenue
+    sales_engine = SalesEngine.new
+    merchant_one = Merchant.new({id: 1})
+    merchant_two = Merchant.new({id: 2})
+    merchant_three = Merchant.new({id: 3})
+    merchant_one.revenue = 50000
+    merchant_two.revenue = 60000
+    merchant_three.revenue = 70000
+
+    sales_engine.merchants.all << merchant_one
+    sales_engine.merchants.all << merchant_two
+    sales_engine.merchants.all << merchant_three
+
+    sales_analyst = SalesAnalyst.new(sales_engine)
+
+    assert_equal [merchant_three, merchant_two, merchant_one], sales_analyst.merchants_ranked_by_revenue
   end
 end

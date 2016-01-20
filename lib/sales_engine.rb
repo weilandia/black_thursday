@@ -26,17 +26,18 @@ class SalesEngine
     sales_engine
   end
 
-  def initialize
-    instantiate_repositories
+  def initialize(data={})
+    instantiate_repositories(data)
+    relationships
   end
 
-  def instantiate_repositories
-    @items ||= ItemRepository.new
-    @merchants ||= MerchantRepository.new
-    @invoices ||= InvoiceRepository.new
-    @invoice_items ||= InvoiceItemRepository.new
-    @transactions ||= TransactionRepository.new
-    @customers ||= CustomerRepository.new
+  def instantiate_repositories(initial_records)
+    @items ||= ItemRepository.new(initial_records[:items] || [])
+    @merchants ||= MerchantRepository.new(initial_records[:merchants] || [])
+    @invoices ||= InvoiceRepository.new(initial_records[:invoices] || [])
+    @invoice_items ||= InvoiceItemRepository.new(initial_records[:invoice_items] || [])
+    @transactions ||= TransactionRepository.new(initial_records[:transactions] || [])
+    @customers ||= CustomerRepository.new(initial_records[:customers] || [])
   end
 
   def relationships
@@ -51,6 +52,7 @@ class SalesEngine
     merchant_customer_relationship
     customer_merchant_relationship
     invoice_invoice_item_relationship
+    merchant_revenue_relationship #!!keep at bottom after main rels
   end
 
   def merchant_item_relationship
@@ -95,6 +97,13 @@ class SalesEngine
   def invoice_invoice_item_relationship
     invoices.all.each do |invoice|
       invoice.invoice_items = invoice_items.find_all_by_invoice_id(invoice.id)
+    end
+  end
+
+  def merchant_revenue_relationship
+    merchants.all.each do |merchant|
+      invs = merchant.invoices.select { |i| i.is_paid_in_full? == true }
+      merchant.revenue = invs.map { |i| i.total }.inject(0,:+)
     end
   end
 

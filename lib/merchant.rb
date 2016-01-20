@@ -1,7 +1,7 @@
 require 'validate_input'
 class Merchant
   include ValidateInput
-  attr_accessor :items, :invoices, :customers
+  attr_accessor :items, :invoices, :customers, :revenue
   attr_reader :id, :name, :created_at, :updated_at
   def initialize(merchant_data)
     @id = validate_integer(merchant_data[:id])

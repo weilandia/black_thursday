@@ -37,7 +37,6 @@ class SalesAnalyst
     invoices = @engine.invoices.find_all_by_updated_at_date(date)
     invoices = invoices.select { |i| i.is_paid_in_full? }
     return 0.0 if invoices.empty?
-    total = invoices.map { |i| i.total }.inject(:+) / 100
-    total.round(2)
+    invoices.map { |i| i.total }.inject(:+)
   end
 end

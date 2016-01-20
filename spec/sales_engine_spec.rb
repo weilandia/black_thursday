@@ -302,6 +302,12 @@ class SalesEngineTest < Minitest::Test
     assert_equal 17022.32, sales_engine.invoices.find_by_id(7).total
   end
 
+  def test_sales_engine_integration_merchant_can_query_revenue
+    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+
+    assert_equal 80661.54, sales_engine.merchants.all.last.revenue.to_f
+  end
+
   def test_sales_engine_can_read_from_json
     sales_engine = SalesEngine.from_json(test_helper_json_hash)
     assert_equal MerchantRepository, sales_engine.merchants.class

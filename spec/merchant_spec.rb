@@ -23,4 +23,10 @@ class MerchantTest < Minitest::Test
     merchant = Merchant.new(test_helper_merchant_one_data)
     assert_equal Time.parse("2016-01-11 10:37:09 UTC"), merchant.updated_at
   end
+
+  def test_merchant_can_query_revenue
+    merchant = Merchant.new({id: 1})
+    merchant.revenue = 4
+    assert_equal 4, merchant.revenue
+  end
 end

@@ -1,26 +1,26 @@
 require_relative 'invoice'
 require_relative 'data_parser'
+require_relative 'instantiate_repos'
 
 class InvoiceRepository
   include DataParser
-
-  attr_reader :all_invoices
-
-  def initialize
-    @all_invoices = []
+  include InstantiateRepos
+  attr_reader :all_invoices, :all
+  def initialize(all=[])
+    instantiate_repos(all)
   end
 
   def inspect
-    "#<#{self.class} #{@all_invoices.size} rows>"
+    "#<#{self.class} #{all_invoices.size} rows>"
   end
 
   def create_instance(invoice_data)
     invoice = Invoice.new(invoice_data)
-    @all_invoices << invoice
+    @all << invoice
   end
 
-  def all
-    all_invoices
+  def all_invoices
+    @all
   end
 
   def find_by_id(invoice_id)
