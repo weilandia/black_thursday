@@ -164,7 +164,7 @@ class SalesAnalystTest < Minitest::Test
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
     sales_analyst = SalesAnalyst.new(sales_engine)
 
-    assert_equal ["Got", "GoldenHelmets", "Venmo", "Urcase17", "Hidy", "Candisart", "MiniatureBikez", "Ello", "Bhyd", "Lair", "Johnson", "GoldenRayPress", "Skype", "Helm", "Shopin1901"], sales_analyst.top_revenue_earners.map { |m| m.name }
+    assert_equal ["Got", "GoldenHelmets", "Venmo", "Urcase17", "Hidy", "Candisart", "MiniatureBikez", "Ello", "Bhyd", "Lair", "Johnson", "GoldenRayPress", "Skype", "Helm"], sales_analyst.top_revenue_earners.map { |m| m.name }
   end
 
   def test_sales_anaylst_calculates_array_of_merchants_with_pending_invoices

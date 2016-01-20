@@ -1,6 +1,6 @@
 module InvoiceAnalysis
   def total_invoice_count
-    @engine.invoices.all.count
+    engine.invoices.all.count
   end
 
   def average_invoices_per_merchant
@@ -9,7 +9,7 @@ module InvoiceAnalysis
 
   def invoice_count_per_merchant
    invoices_per_merchant = []
-   @engine.merchants.all.each do |merchant|
+   engine.merchants.all.each do |merchant|
      invoices_per_merchant << merchant.invoices.count
    end
    invoices_per_merchant
@@ -37,7 +37,7 @@ module InvoiceAnalysis
 
   def invoice_count_hash_by_day
     all_invoice_days = []
-    @engine.invoices.all.each do |invoice|
+    engine.invoices.all.each do |invoice|
       all_invoice_days << invoice.created_at.strftime("%A")
     end
     all_invoice_days.group_by { |day| day }
@@ -51,17 +51,18 @@ module InvoiceAnalysis
   end
 
   def total_invoice_count
-    @engine.invoices.all.count
+    engine.invoices.all.count
   end
 
   def invoice_status(status)
     return 0.0 if invoice_count_by_status(status) == 0
-    ((invoice_count_by_status(status) / total_invoice_count.to_f) * 100).round(2)
+    avg = invoice_count_by_status(status) / total_invoice_count.to_f
+    (avg * 100).round(2)
   end
 
 
   def invoice_count_by_status(status)
-    @engine.invoices.all.select do |invoice|
+    engine.invoices.all.select do |invoice|
       if invoice.status == status
         invoice
       end

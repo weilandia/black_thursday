@@ -2,8 +2,14 @@ require 'validate_input'
 class Transaction
   include ValidateInput
   attr_accessor :invoice
-  attr_reader  :id, :invoice_id, :credit_card_number,
-  :credit_card_expiration_date, :result, :created_at, :updated_at
+  attr_reader   :id,
+                :result,
+                :invoice_id,
+                :created_at,
+                :updated_at,
+                :credit_card_number,
+                :credit_card_expiration_date
+
   def initialize(transaction_data)
     @id = validate_integer(transaction_data[:id])
     @invoice_id = validate_integer(transaction_data[:invoice_id])

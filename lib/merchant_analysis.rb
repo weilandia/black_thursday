@@ -1,11 +1,11 @@
 module MerchantAnalysis
   def total_merchant_count
-    @engine.merchants.all.count
+    engine.merchants.all.count
   end
 
   def item_count_per_merchant
    items_per_merchant = []
-   @engine.merchants.all.each do |merchant|
+   engine.merchants.all.each do |merchant|
      items_per_merchant << merchant.items.count
    end
    items_per_merchant
@@ -26,7 +26,7 @@ module MerchantAnalysis
   end
 
   def all_merchants
-    @engine.merchants.all
+    engine.merchants.all
   end
 
   def merchants_with_high_item_count
@@ -43,7 +43,7 @@ module MerchantAnalysis
   end
 
   def average_item_price_for_merchant(merchant_id)
-    merchant = @engine.merchants.find_by_id(merchant_id)
+    merchant = engine.merchants.find_by_id(merchant_id)
     itm_prices = merchant.items.map { |i| i.unit_price }.compact
     return 0.0 if itm_prices.empty?
     average = (itm_prices.inject(0, :+) / merchant.items.count)
@@ -62,8 +62,12 @@ module MerchantAnalysis
     all_merchants.map { |m| m if m.invoices.count <=  avg - (2 * sd) }.compact
   end
 
+  def merchants_with_revenue
+    all_merchants.reject { |m| m.revenue == nil || m.revenue == 0 }
+  end
+
   def merchants_ranked_by_revenue
-    all_merchants.sort_by { |m| m.revenue }.reverse
+    merchants_with_revenue.sort_by { |m| m.revenue }.reverse
   end
 
   def top_revenue_earners(x = 20)
@@ -81,7 +85,7 @@ module MerchantAnalysis
   end
 
   def merchants_with_only_one_item
-    @engine.merchants.all.select { |m| m.items.count == 1 }
+    engine.merchants.all.select { |m| m.items.count == 1 }
   end
 
   def merchants_with_only_one_item_registered_in_month(month)
@@ -89,26 +93,26 @@ module MerchantAnalysis
   end
 
   def revenue_by_merchant(merchant_id)
-    merchant = @engine.merchants.find_by_id(merchant_id)
+    merchant = engine.merchants.find_by_id(merchant_id)
     invoices = merchant.invoices.select { |i| i.is_paid_in_full? }
     invoices.map { |i| i.total }.inject(:+)
   end
 
   def most_sold_item_for_merchant(merchant_id)
-    merch = @engine.merchants.find_by_id(merchant_id)
+    merch = engine.merchants.find_by_id(merchant_id)
     invoices = merch.invoices.select { |i| i.is_paid_in_full? }
     inv_itms = invoices.map { |i| i.invoice_items }.flatten
     most_sold = inv_itms.sort_by { |i| i.quantity }.last
     return nil if most_sold.nil?
-    @engine.items.find_by_id(most_sold.item_id)
+    engine.items.find_by_id(most_sold.item_id)
   end
 
   def best_item_for_merchant(merchant_id)
-    merch = @engine.merchants.find_by_id(merchant_id)
+    merch = engine.merchants.find_by_id(merchant_id)
     invoices = merch.invoices.select { |i| i.is_paid_in_full? }
     inv_itms = invoices.map { |i| i.invoice_items }.flatten
     best_item = inv_itms.sort_by { |i| i.unit_price * i.quantity }.last
     return nil if best_item.nil?
-    @engine.items.find_by_id(best_item.item_id)
+    engine.items.find_by_id(best_item.item_id)
   end
 end

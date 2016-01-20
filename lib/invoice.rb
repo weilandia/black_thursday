@@ -1,8 +1,18 @@
 require 'validate_input'
 class Invoice
   include ValidateInput
-  attr_accessor :merchant, :items, :transactions, :customer, :invoice_items
-  attr_reader :id, :customer_id, :merchant_id, :status, :created_at, :updated_at
+  attr_accessor :items,
+                :customer,
+                :merchant,
+                :transactions,
+                :invoice_items
+  attr_reader   :id,
+                :status,
+                :created_at,
+                :updated_at,
+                :customer_id,
+                :merchant_id
+
   def initialize(invoice_data)
     @id = validate_integer(invoice_data[:id])
     @customer_id = validate_integer(invoice_data[:customer_id])

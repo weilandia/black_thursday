@@ -2,8 +2,15 @@ require 'validate_input'
 class Item
   include ValidateInput
   attr_accessor :merchant
-  attr_reader :id, :name, :description, :unit_price, :unit_price_to_dollars, :merchant_id, :created_at,
-  :updated_at
+  attr_reader   :id,
+                :name,
+                :created_at,
+                :updated_at,
+                :unit_price,
+                :description,
+                :merchant_id,
+                :unit_price_to_dollars
+
   def initialize(item_data)
     @id = validate_integer(item_data[:id])
     @name = item_data[:name]

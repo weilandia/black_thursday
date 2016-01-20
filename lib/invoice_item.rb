@@ -1,8 +1,15 @@
 require 'validate_input'
 class InvoiceItem
   include ValidateInput
-  attr_reader :id, :item_id, :invoice_id, :quantity, :unit_price, :unit_price_to_dollars,
-  :created_at,:updated_at
+  attr_reader :id,
+              :item_id,
+              :invoice_id,
+              :quantity,
+              :unit_price,
+              :unit_price_to_dollars,
+              :created_at,
+              :updated_at
+
   def initialize(invoice_item_data)
     @id = validate_integer(invoice_item_data[:id])
     @item_id = validate_integer(invoice_item_data[:item_id])

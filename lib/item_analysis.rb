@@ -1,11 +1,11 @@
 module ItemAnalysis
   def total_item_count
-    @engine.items.all.count
+    engine.items.all.count
   end
 
   def all_prices_array
     all_prices = []
-    @engine.merchants.all.each do |merchant|
+    engine.merchants.all.each do |merchant|
       merchant.items.each { |item| all_prices << item }
     end
     all_prices
