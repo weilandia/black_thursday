@@ -1,10 +1,10 @@
 require_relative 'invoice'
 require_relative 'data_parser'
-require_relative 'instantiate_repos'
+require_relative 'repositories'
 
 class InvoiceRepository
   include DataParser
-  include InstantiateRepos
+  include Repositories
   attr_reader :all_invoices, :all
   def initialize(all=[])
     instantiate_repos(all)
@@ -23,18 +23,8 @@ class InvoiceRepository
     @all
   end
 
-  def find_by_id(invoice_id)
-    search_result = all.select {|search| search.id == invoice_id}[0]
-    exact_search(search_result)
-  end
-
   def find_all_by_merchant_id(merchant_id)
     all.select {|search| search.merchant_id == merchant_id}
-  end
-
-  def exact_search(search_result)
-    return nil if search_result.nil?
-    search_result
   end
 
   def find_all_by_customer_id(customer_id)

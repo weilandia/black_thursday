@@ -1,10 +1,10 @@
 require_relative 'transaction'
 require_relative 'data_parser'
-require_relative 'instantiate_repos'
+require_relative 'repositories'
 
 class TransactionRepository
   include DataParser
-  include InstantiateRepos
+  include Repositories
   attr_reader :all_transactions, :all
   def initialize(all=[])
     instantiate_repos(all)
@@ -23,11 +23,6 @@ class TransactionRepository
     @all
   end
 
-  def find_by_id(transaction_id)
-    search_result = all.select {|s| s.id == transaction_id}[0]
-    exact_search(search_result)
-  end
-
   def find_all_by_invoice_id(invoice_id)
     all.select {|s| s.invoice_id == invoice_id}
   end
@@ -43,12 +38,4 @@ class TransactionRepository
   def find_all_by_date(date)
     all.select {|s| s.created_at.to_s[0..9] == date.to_s[0..9]}
   end
-
-  def exact_search(search_result)
-    return nil if search_result.nil?
-    search_result
-  end
 end
-
-
-# Collection of transactions

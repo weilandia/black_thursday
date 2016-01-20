@@ -1,10 +1,10 @@
 require_relative 'item'
 require_relative 'data_parser'
-require_relative 'instantiate_repos'
+require_relative 'repositories'
 
 class ItemRepository
   include DataParser
-  include InstantiateRepos
+  include Repositories
   attr_reader :all_items, :all
 
   def initialize(all=[])
@@ -22,34 +22,6 @@ class ItemRepository
 
   def all_items
     @all
-  end
-
-  def find_by_name(merchant)
-    result = @all_merchants.select {|s| s.name.downcase == merchant.downcase}[0]
-    exact_search(result)
-  end
-
-  def find_by_id(item_id)
-    search_result = all_items.select {|search| search.id == item_id}[0]
-    exact_search(search_result)
-  end
-
-  def find_by_merchant_id(merchant_id)
-    all_items.select {|search| search.merchant_id == merchant_id}
-  end
-
-  def find_by_name(item_name)
-    result = all_items.select {|s| s.name.downcase == item_name.downcase}[0]
-    exact_search(result)
-  end
-
-  def exact_search(search_result)
-    return nil if search_result.nil?
-    search_result
-  end
-
-  def find_all_by_name(search_fragment)
-    all_items.select {|s| s.name.downcase.include? search_fragment.downcase}
   end
 
   def find_all_with_description(search_frag)
