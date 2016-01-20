@@ -394,4 +394,14 @@ class SalesAnalystTest < Minitest::Test
 
     assert_equal [merchant_three, merchant_two, merchant_one], sales_analyst.merchants_ranked_by_revenue
   end
+
+  # def test_sales_analyst_creates_graphs
+  #   sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+  #   sales_analyst = SalesAnalyst.new(sales_engine)
+  #   sales_analyst.g_merchant_rev
+  #   sales_analyst.g_merchants_with_pending_invs
+  #
+  #   assert File.exist?('./graphs/all_merchants_by_revenue')
+  #   assert File.exist?('./graphs/merchants_with_pending_invoices')
+  # end
 end
