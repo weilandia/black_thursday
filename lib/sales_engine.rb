@@ -68,21 +68,21 @@ class SalesEngine
   end
 
   def self.csv_files_hash
-    { :merchants => './data/merchants.csv',
-      :items => './data/items.csv',
-      :invoices => './data/invoices.csv',
-      :invoice_items => './data/invoice_items.csv',
-      :transactions => './data/transactions.csv',
-      :customers => './data/customers.csv' }
+    { merchants: './data/merchants.csv',
+      items: './data/items.csv',
+      invoices: './data/invoices.csv',
+      invoice_items: './data/invoice_items.csv',
+      transactions: './data/transactions.csv',
+      customers: './data/customers.csv' }
   end
 
   def self.json_files_hash
-    { :merchants => './data/merchants.json',
-      :items => './data/items.json',
-      :invoices => './data/invoices.json',
-      :invoice_items => './data/invoice_items.json',
-      :transactions => './data/transactions.json',
-      :customers => './data/customers.json' }
+    { merchants: './data/merchants.json',
+      items: './data/items.json',
+      invoices: './data/invoices.json',
+      invoice_items: './data/invoice_items.json',
+      transactions: './data/transactions.json',
+      customers: './data/customers.json' }
   end
 
   def inspect
