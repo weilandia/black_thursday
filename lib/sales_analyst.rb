@@ -2,11 +2,13 @@ require_relative 'sales_engine'
 require_relative 'merchant_analysis'
 require_relative 'item_analysis'
 require_relative 'invoice_analysis'
+# require_relative 'graph_package'
 
 class SalesAnalyst
   include MerchantAnalysis
   include ItemAnalysis
   include InvoiceAnalysis
+  # include GraphPackage
   attr_reader :engine
   def initialize(sales_engine)
     @engine = sales_engine

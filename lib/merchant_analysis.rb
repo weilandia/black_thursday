@@ -57,7 +57,7 @@ module MerchantAnalysis
   end
 
   def merchants_with_revenue
-    all_merchants.reject { |m| m.revenue == nil || m.revenue == 0 }
+    all_merchants.reject { |m| m.revenue.nil? || m.revenue == 0 }
   end
 
   def merchants_ranked_by_revenue

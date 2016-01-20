@@ -6,6 +6,7 @@ gem 'rake'
 gem 'minitest'
 gem 'mrspec'
 gem 'pry'
+gem 'googlecharts'
 gem 'simplecov'
 gem "codeclimate-test-reporter", group: :test, require: nil
 gem 'coveralls', require: false

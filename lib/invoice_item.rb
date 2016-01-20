@@ -22,6 +22,6 @@ class InvoiceItem
   end
 
   def inspect
-    "#<#{self.class}, ##{id}, invoice_id: #{invoice_id}, item_id: #{item_id}, quant: #{quantity}>"
+    "#<#{self.class},##{id},inv:#{invoice_id},itm:#{item_id},qty:#{quantity}>"
   end
 end

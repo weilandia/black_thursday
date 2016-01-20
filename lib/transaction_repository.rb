@@ -6,7 +6,7 @@ class TransactionRepository
   include DataParser
   include Repositories
   attr_reader :all
-  
+
   def initialize(all=[])
     instantiate_repos(all)
   end
