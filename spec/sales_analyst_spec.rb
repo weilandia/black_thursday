@@ -306,6 +306,13 @@ class SalesAnalystTest < Minitest::Test
     assert_equal "TestItem20", sales_analyst.most_sold_item_for_merchant(15).name
   end
 
+  def test_sales_anaylst_integration_calculates_most_sold_item_for_merchant_nil
+    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+    sales_analyst = SalesAnalyst.new(sales_engine)
+
+    assert_equal nil, sales_analyst.most_sold_item_for_merchant(1)
+  end
+
   def test_sales_analyst_calculates_most_sold_item_for_merchant
     sales_engine = SalesEngine.new
     merchant = Merchant.new({id: 1})
