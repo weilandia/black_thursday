@@ -2,6 +2,167 @@ require_relative 'test_helper'
 require_relative '../lib/sales_analyst'
 
 class SalesAnalystTest < Minitest::Test
+  def test_sales_anaylst_calculates_merchants_with_one_item
+    sales_engine = SalesEngine.new(
+      merchants:  [
+        {id: 1},
+        {id: 2}
+      ],
+      items: [
+        {id: 1, merchant_id: 1},
+        {id: 2, merchant_id: 2},
+        {id: 3, merchant_id: 2}
+      ],
+    )
+    assert_equal [1], SalesAnalyst
+                    .new(sales_engine)
+                    .merchants_with_only_one_item
+                    .map(&:id)
+  end
+
+  def test_sales_anaylst_identifies_merchants_with_one_item_registered_in_month
+    sales_engine = SalesEngine.new(
+      merchants:  [
+        {id: 1, created_at: "2012-12-27 14:54:09 UTC"},
+        {id: 2, created_at: "2012-12-27 14:54:09 UTC"},
+        {id: 3, created_at: "2012-12-27 14:54:09 UTC"}
+      ],
+      items: [
+        {id: 1, merchant_id: 1},
+        {id: 2, merchant_id: 1},
+        {id: 3, merchant_id: 1},
+        {id: 4, merchant_id: 2},
+        {id: 5, merchant_id: 3},
+        {id: 6, merchant_id: 1}
+      ],
+    )
+    assert_equal Merchant, SalesAnalyst
+                          .new(sales_engine)
+                          .merchants_with_only_one_item_registered_in_month("december").first.class
+
+    assert_equal [2, 3], SalesAnalyst
+                         .new(sales_engine)
+                         .merchants_with_only_one_item_registered_in_month("december").map(&:id)
+  end
+
+  def test_sales_anaylst_calculates_revenue_by_merchant_id
+    sales_engine = SalesEngine.new(
+      merchants: [{id: 1}],
+      invoices:  [
+        {id: 1, merchant_id: 1},
+        {id: 2, merchant_id: 1},
+        {id: 3, merchant_id: 1}
+      ],
+      invoice_items: [
+        {id: 1, invoice_id: 1, quantity: 3, unit_price:  4000, item_id: 1},
+        {id: 2, invoice_id: 2, quantity:  1, unit_price: 1000, item_id: 2},
+        {id: 3, invoice_id: 3, quantity:  5, unit_price: 2000, item_id: 3}
+      ],
+      transactions: [
+        {id: 1, invoice_id: 1, result: "success"},
+        {id: 2, invoice_id: 2, result: "success"},
+        {id: 3, invoice_id: 3, result: "failed"}
+      ],
+    )
+    assert_equal 130.0, SalesAnalyst
+                      .new(sales_engine)
+                      .revenue_by_merchant(1)
+  end
+
+  def test_sales_analyst_calculates_most_sold_item_for_merchant
+    sales_engine = SalesEngine.new(
+      merchants: [{id: 1}],
+      invoices:  [{id: 1, merchant_id: 1}, {id: 2, merchant_id: 1}, {id: 3, merchant_id: 1}],
+      invoice_items: [
+        {id: 1, invoice_id: 1, quantity: 3, unit_price:  4000, item_id: 1},
+        {id: 2, invoice_id: 2, quantity:  2, unit_price: 50000, item_id: 2}, {id: 3, invoice_id: 3, quantity:  30, unit_price: 2000, item_id: 3}
+      ],
+      items: [
+        {id: 1, unit_price:  4000, merchant_id: 1},
+        {id: 2, unit_price: 50000, merchant_id: 1},
+        {id: 3, unit_price: 2000, merchant_id: 1}
+      ],
+      transactions: [
+        {id: 1, invoice_id: 1, result: "success"},
+        {id: 2, invoice_id: 2, result: "success"},
+        {id: 3, invoice_id: 3, result: "failed"}
+      ],
+    )
+    assert_equal 1, SalesAnalyst
+                      .new(sales_engine)
+                      .most_sold_item_for_merchant(1).first
+                      .id
+  end
+
+  def test_sales_analyst_calculates_best_item_for_merchant
+    sales_engine = SalesEngine.new(
+      merchants: [{id: 1}],
+      invoices:  [{id: 1, merchant_id: 1}, {id: 2, merchant_id: 1}, {id: 3, merchant_id: 1}],
+      invoice_items: [
+        {id: 1, invoice_id: 1, quantity: 3, unit_price:  4000, item_id: 1},
+        {id: 2, invoice_id: 2, quantity:  10, unit_price: 50000, item_id: 2}, {id: 3, invoice_id: 3, quantity:  5, unit_price: 2000, item_id: 3}
+      ],
+      items: [
+        {id: 1, unit_price:  4000, merchant_id: 1},
+        {id: 2, unit_price: 50000, merchant_id: 1},
+        {id: 3, unit_price: 2000, merchant_id: 1}
+      ],
+      transactions: [
+        {id: 1, invoice_id: 1, result: "success"},
+        {id: 2, invoice_id: 2, result: "success"},
+        {id: 3, invoice_id: 3, result: "failed"}
+      ],
+    )
+    assert_equal 2, SalesAnalyst
+                      .new(sales_engine)
+                      .best_item_for_merchant(1)
+                      .id
+  end
+
+  def test_sales_analyst_calculates_best_item_for_merchant_with_quant
+    sales_engine = SalesEngine.new(
+      merchants: [{id: 1}],
+      invoices:  [{id: 1, merchant_id: 1}, {id: 2, merchant_id: 1}],
+      invoice_items: [
+        {id: 1, invoice_id: 1, quantity: 20, unit_price:  4000, item_id: 1},
+        {id: 2, invoice_id: 2, quantity:  1, unit_price: 50000, item_id: 2},
+      ],
+      items: [
+        {id: 1, unit_price:  4_000, merchant_id: 1},
+        {id: 2, unit_price: 50_000, merchant_id: 1},
+      ],
+      transactions: [
+        {id: 1, invoice_id: 1, result: "success"},
+        {id: 2, invoice_id: 2, result: "success"},
+      ],
+    )
+    assert_equal 1, SalesAnalyst
+                      .new(sales_engine)
+                      .best_item_for_merchant(1)
+                      .id
+  end
+
+  def test_sales_analyst_ranks_merchants_by_revenue
+    sales_engine = SalesEngine.new(
+      merchants: [{id: 1}, {id: 2}, {id: 3}],
+      invoices:  [{id: 1, merchant_id: 1}, {id: 2, merchant_id: 2}, {id: 3, merchant_id: 3}],
+      invoice_items: [
+        {id: 1, invoice_id: 1, quantity: 1, unit_price:  50000},
+        {id: 2, invoice_id: 2, quantity:  1, unit_price: 60000},
+        {id: 3, invoice_id: 3, quantity:  1, unit_price: 70000}
+      ],
+      transactions: [
+        {id: 1, invoice_id: 1, result: "success"},
+        {id: 2, invoice_id: 2, result: "success"},
+        {id: 3, invoice_id: 3, result: "success"}
+      ],
+    )
+    assert_equal [3, 2, 1], SalesAnalyst
+                            .new(sales_engine)
+                            .merchants_ranked_by_revenue
+                            .map(&:id)
+  end
+
   def test_sales_analyst_has_access_to_sales_engine
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
     sales_analyst = SalesAnalyst.new(sales_engine)
@@ -173,194 +334,11 @@ class SalesAnalystTest < Minitest::Test
     assert_equal ["Got"], sales_analyst.merchants_with_pending_invoices.map { |m| m.name }
   end
 
-  def test_sales_anaylst_calculates_merchants_with_one_item
-    sales_engine = SalesEngine.new
-    merchant_one = Merchant.new({id: 1})
-    merchant_two = Merchant.new({id: 2})
-    item_one = Item.new({id: 1, merchant_id: 1})
-    item_two = Item.new({id: 2, merchant_id: 2})
-    item_three = Item.new({id: 3, merchant_id: 2})
-    sales_engine.merchants.all << merchant_one
-    sales_engine.merchants.all << merchant_two
-    sales_engine.items.all << item_one
-    sales_engine.items.all << item_two
-    sales_engine.items.all << item_three
-    sales_engine.merchant_item_relationship
-    sales_analyst = SalesAnalyst.new(sales_engine)
-
-    assert_equal [merchant_one], sales_analyst.merchants_with_only_one_item
-  end
-
-  def test_sales_anaylst_integration_calculates_merchants_with_one_item
-    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
-    sales_analyst = SalesAnalyst.new(sales_engine)
-
-    assert_equal [2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], sales_analyst.merchants_with_only_one_item.map { |m| m.id }
-  end
-
-  def test_sales_anaylst_identifies_merchants_with_one_item_registered_in_month
-    sales_engine = SalesEngine.new
-    merchant_one = Merchant.new({id: 1, created_at: "2012-12-27 14:54:09 UTC"})
-    merchant_two = Merchant.new({id: 2, created_at: "2012-12-27 14:54:09 UTC"})
-    merchant_three = Merchant.new({id: 3, created_at: "2012-12-27 14:54:09 UTC"})
-    item_one = Item.new({id: 1, merchant_id: 1})
-    item_two = Item.new({id: 2, merchant_id: 1})
-    item_three = Item.new({id: 3, merchant_id: 1})
-    item_four = Item.new({id: 4, merchant_id: 2})
-    item_five = Item.new({id: 5, merchant_id: 3})
-    item_six = Item.new({id: 6, merchant_id: 1})
-
-    sales_engine.merchants.all << merchant_one
-    sales_engine.merchants.all << merchant_two
-    sales_engine.merchants.all << merchant_three
-    sales_engine.items.all << item_one
-    sales_engine.items.all << item_two
-    sales_engine.items.all << item_three
-    sales_engine.items.all << item_four
-    sales_engine.items.all << item_five
-    sales_engine.items.all << item_six
-    sales_engine.merchant_item_relationship
-    sales_analyst = SalesAnalyst.new(sales_engine)
-
-    assert_equal Merchant, sales_analyst.merchants_with_only_one_item_registered_in_month("december").first.class
-
-    assert_equal [2, 3], sales_analyst.merchants_with_only_one_item_registered_in_month("december").map { |m| m.id }
-  end
-
-  def test_sales_anaylst_integration_identifies_merchants_with_one_item_registered_month
-    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
-    sales_analyst = SalesAnalyst.new(sales_engine)
-
-    assert_equal [6], sales_analyst.merchants_with_only_one_item_registered_in_month("june").map { |m| m.id }
-  end
-
-  def test_sales_anaylst_calculates_revenue_by_merchant_id
-    sales_engine = SalesEngine.new
-    merchant = Merchant.new({id: 1})
-    invoice_one = Invoice.new({id: 1, merchant_id: 1})
-    invoice_two = Invoice.new({id: 2, merchant_id: 1})
-    invoice_three = Invoice.new({id: 3, merchant_id: 1})
-    invoice_item_one = InvoiceItem.new({id: 1, invoice_id: 1, quantity: 3, unit_price: 4000})
-    invoice_item_two = InvoiceItem.new({id: 2, invoice_id: 2, quantity: 1, unit_price: 1000})
-    invoice_item_three = InvoiceItem.new({id: 3, invoice_id: 3, quantity: 5, unit_price: 2000})
-    transaction_one = Transaction.new({id: 1, invoice_id: 1, result: "success"})
-    transaction_two = Transaction.new({id: 2, invoice_id: 2, result: "success"})
-    transaction_three = Transaction.new({id: 3, invoice_id: 3, result: "failed"})
-    sales_engine.merchants.all << merchant
-    sales_engine.invoices.all << invoice_one
-    sales_engine.invoices.all << invoice_two
-    sales_engine.invoices.all << invoice_three
-    sales_engine.invoice_items.all << invoice_item_one
-    sales_engine.invoice_items.all << invoice_item_two
-    sales_engine.invoice_items.all << invoice_item_three
-    sales_engine.transactions.all << transaction_one
-    sales_engine.transactions.all << transaction_two
-    sales_engine.transactions.all << transaction_three
-    sales_engine.relationships
-
-    sales_analyst = SalesAnalyst.new(sales_engine)
-
-    assert_equal 130.0, sales_analyst.revenue_by_merchant(1)
-  end
-
-  def test_sales_analyst_calculates_most_sold_item_for_merchant
-    sales_engine = SalesEngine.new
-    merchant = Merchant.new({id: 1})
-    invoice_one = Invoice.new({id: 1, merchant_id: 1})
-    invoice_two = Invoice.new({id: 2, merchant_id: 1})
-    invoice_three = Invoice.new({id: 3, merchant_id: 1})
-    invoice_item_one = InvoiceItem.new({id: 1, invoice_id: 1, quantity: 3, unit_price: 4000, item_id: 1})
-    invoice_item_two = InvoiceItem.new({id: 2, invoice_id: 2, quantity: 1, unit_price: 1000, item_id: 2})
-    invoice_item_three = InvoiceItem.new({id: 3, invoice_id: 3, quantity: 5, unit_price: 2000, item_id: 3})
-    item_one = Item.new({id: 1, unit_price: 4000, merchant_id: 1})
-    item_two = Item.new({id: 2, unit_price: 1000, merchant_id: 1})
-    item_three = Item.new({id: 3, unit_price: 2000, merchant_id: 1})
-    transaction_one = Transaction.new({id: 1, invoice_id: 1, result: "success"})
-    transaction_two = Transaction.new({id: 2, invoice_id: 2, result: "success"})
-    transaction_three = Transaction.new({id: 3, invoice_id: 3, result: "failed"})
-    sales_engine.merchants.all << merchant
-    sales_engine.invoices.all << invoice_one
-    sales_engine.invoices.all << invoice_two
-    sales_engine.invoices.all << invoice_three
-    sales_engine.invoice_items.all << invoice_item_one
-    sales_engine.invoice_items.all << invoice_item_two
-    sales_engine.invoice_items.all << invoice_item_three
-    sales_engine.transactions.all << transaction_one
-    sales_engine.transactions.all << transaction_two
-    sales_engine.transactions.all << transaction_three
-    sales_engine.items.all << item_one
-    sales_engine.items.all << item_two
-    sales_engine.items.all << item_three
-    sales_engine.relationships
-
-    sales_analyst = SalesAnalyst.new(sales_engine)
-
-    assert_equal item_one, sales_analyst.most_sold_item_for_merchant(1)
-  end
-
-  def test_sales_anaylst_integration_calculates_most_sold_item_for_merchant_nil
+  def test_sales_anaylst_integration_calculates_best_item_for_merchant_nil
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
     sales_analyst = SalesAnalyst.new(sales_engine)
 
     assert_equal nil, sales_analyst.most_sold_item_for_merchant(1)
-  end
-
-  def test_sales_analyst_calculates_most_sold_item_for_merchant
-    sales_engine = SalesEngine.new
-    merchant = Merchant.new({id: 1})
-    invoice_one = Invoice.new({id: 1, merchant_id: 1})
-    invoice_two = Invoice.new({id: 2, merchant_id: 1})
-    invoice_three = Invoice.new({id: 3, merchant_id: 1})
-    invoice_item_one = InvoiceItem.new({id: 1, invoice_id: 1, quantity: 3, unit_price: 4000, item_id: 1})
-    invoice_item_two = InvoiceItem.new({id: 2, invoice_id: 2, quantity: 1, unit_price: 50000, item_id: 2})
-    invoice_item_three = InvoiceItem.new({id: 3, invoice_id: 3, quantity: 5, unit_price: 2000, item_id: 3})
-    item_one = Item.new({id: 1, unit_price: 4000, merchant_id: 1})
-    item_two = Item.new({id: 2, unit_price: 50000, merchant_id: 1})
-    item_three = Item.new({id: 3, unit_price: 2000, merchant_id: 1})
-    transaction_one = Transaction.new({id: 1, invoice_id: 1, result: "success"})
-    transaction_two = Transaction.new({id: 2, invoice_id: 2, result: "success"})
-    transaction_three = Transaction.new({id: 3, invoice_id: 3, result: "failed"})
-    sales_engine.merchants.all << merchant
-    sales_engine.invoices.all << invoice_one
-    sales_engine.invoices.all << invoice_two
-    sales_engine.invoices.all << invoice_three
-    sales_engine.invoice_items.all << invoice_item_one
-    sales_engine.invoice_items.all << invoice_item_two
-    sales_engine.invoice_items.all << invoice_item_three
-    sales_engine.transactions.all << transaction_one
-    sales_engine.transactions.all << transaction_two
-    sales_engine.transactions.all << transaction_three
-    sales_engine.items.all << item_one
-    sales_engine.items.all << item_two
-    sales_engine.items.all << item_three
-    sales_engine.relationships
-
-    sales_analyst = SalesAnalyst.new(sales_engine)
-
-    assert_equal item_two, sales_analyst.best_item_for_merchant(1)
-  end
-
-  def test_sales_analyst_calculates_most_sold_item_for_merchant_with_quant
-    sales_engine = SalesEngine.new(
-      merchants: [{id: 1}],
-      invoices:  [{id: 1, merchant_id: 1}, {id: 2, merchant_id: 1}],
-      invoice_items: [
-        {id: 1, invoice_id: 1, quantity: 20, unit_price:  4000, item_id: 1},
-        {id: 2, invoice_id: 2, quantity:  1, unit_price: 50000, item_id: 2},
-      ],
-      items: [
-        {id: 1, unit_price:  4_000, merchant_id: 1},
-        {id: 2, unit_price: 50_000, merchant_id: 1},
-      ],
-      transactions: [
-        {id: 1, invoice_id: 1, result: "success"},
-        {id: 2, invoice_id: 2, result: "success"},
-      ],
-    )
-    assert_equal 1, SalesAnalyst
-                      .new(sales_engine)
-                      .best_item_for_merchant(1)
-                      .id
   end
 
   def test_sales_anaylst_integration_calculates_best_item_for_merchant
@@ -377,22 +355,18 @@ class SalesAnalystTest < Minitest::Test
     assert_equal nil, sales_analyst.best_item_for_merchant(1)
   end
 
-  def test_sales_analyst_ranks_merchants_by_revenue
-    sales_engine = SalesEngine.new
-    merchant_one = Merchant.new({id: 1})
-    merchant_two = Merchant.new({id: 2})
-    merchant_three = Merchant.new({id: 3})
-    merchant_one.revenue = 50000
-    merchant_two.revenue = 60000
-    merchant_three.revenue = 70000
-
-    sales_engine.merchants.all << merchant_one
-    sales_engine.merchants.all << merchant_two
-    sales_engine.merchants.all << merchant_three
-
+  def test_sales_anaylst_integration_identifies_merchants_with_one_item_registered_month
+    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
     sales_analyst = SalesAnalyst.new(sales_engine)
 
-    assert_equal [merchant_three, merchant_two, merchant_one], sales_analyst.merchants_ranked_by_revenue
+    assert_equal [6], sales_analyst.merchants_with_only_one_item_registered_in_month("june").map { |m| m.id }
+  end
+
+  def test_sales_anaylst_integration_calculates_merchants_with_one_item
+    sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+    sales_analyst = SalesAnalyst.new(sales_engine)
+
+    assert_equal [2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], sales_analyst.merchants_with_only_one_item.map { |m| m.id }
   end
 
   # def test_sales_analyst_creates_graphs
