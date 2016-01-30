@@ -48,6 +48,7 @@ class SalesEngineTest < Minitest::Test
 
   def test_sales_engine_object_can_access_item_id
     sales_engine = SalesEngine.from_csv(test_helper_csv_hash)
+    require "pry"; binding.pry
 
     item_id = sales_engine.items.find_by_name("Very Magnifique").id
 
