@@ -7,4 +7,4 @@ Black Thursday is a system that is able to build to load, parse, search, and exe
 
 The data structure is modeled below:
 
-![Alt text](/data_structure_visio.pdf?raw=true "Data Structure")
+![Alt text](/data_structure_visio.jpg?raw=true "Data Structure")
